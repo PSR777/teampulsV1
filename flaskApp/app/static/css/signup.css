@@ -1,0 +1,312 @@
+body {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f2f5;
+    margin: 0;
+}
+
+.login-container {
+    display: flex;
+    width: 900px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: auto;
+    background-color: #fff;
+}
+
+
+.login-left {
+    background-color: #faec28;
+    color: #004e98;
+    padding: 30px;
+    margin: 10px;
+    width: 60%;
+    position: relative;
+    border-radius: 50px 0px 50px 0px;
+}
+
+.logo h2 {
+    font-size: 36px;
+    color: #004e98;
+}
+
+.logo h2 span {
+    font-weight: bold;
+}
+
+.carousel-indicator {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 5px;
+}
+
+.carousel-indicator .dot {
+    width: 8px;
+    height: 8px;
+    background-color: #fff;
+    border-radius: 50%;
+}
+
+.carousel-indicator .active {
+    background-color: #004e98;
+}
+
+.login-right {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 580px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.p_box {
+    margin: 10px;
+    width: 80%;
+    
+
+
+}
+
+.hdng {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.hdng h4 {
+    color: var(--grey-1100);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 140%;
+    display: block;
+    margin: 0;
+}
+
+.hdng:after {
+    content: "";
+    width: 50%;
+    height: 2px;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    background: #e7e5e5;
+    background-image: linear-gradient(to right, #fff, #e7e5e5, #fff);
+}
+
+
+
+
+
+
+
+
+.radio-inputs {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 0.5rem;
+    background-color: #b9b7b7;
+    box-sizing: border-box;
+    box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
+    padding: 0.25rem;
+    width: 100%;
+    font-size: 14px;
+}
+
+.radio-inputs .radio {
+    flex: 1 1 auto;
+    text-align: center;
+}
+
+.radio-inputs .radio input {
+    display: none;
+}
+
+.radio-inputs .radio .name {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    border: none;
+    padding: .5rem 0;
+    color: rgba(51, 65, 85, 1);
+    transition: all .15s ease-in-out;
+}
+
+.radio-inputs .radio input:checked+.name {
+    background-color: #a3e7de;
+    font-weight: 600;
+}
+
+
+#user_name {
+    margin-top: 10px;
+    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+#passwordSec {
+    margin-top: 10px;
+    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.input {
+
+
+    border: none;
+    box-shadow: 0px 1.5px 0px 0px #858585;
+    padding: .5rem;
+    transition: all 200ms ease-in-out;
+    opacity: .8;
+    position: relative;
+}
+
+.input-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-label {
+    font-size: .625rem;
+    font-weight: bold;
+    color: #858585;
+    margin-bottom: 4px;
+    margin-left: 1px;
+}
+
+.input-helper {
+    color: #858585;
+    font-size: .5rem;
+    margin-top: 6px;
+    margin-left: 1px;
+    visibility: hidden;
+    transform: translateY(-.5rem);
+    transition: all 100ms linear;
+    z-index: -1;
+}
+
+.input::placeholder {
+    color: rgb(145, 145, 145);
+    font-size: .75rem;
+}
+
+.input::after {
+    content: attr(placeholder);
+    position: absolute;
+    color: #161616;
+    top: 0;
+    left: 0;
+}
+
+.input:focus {
+    border: none;
+    box-shadow: 0px 1.5px 0px 0px #72E985;
+    outline: none;
+}
+error.input-{
+    border: 0px 1.5px 0px 0px #ff0000;
+}
+
+.input:focus+.input-helper {
+    visibility: visible;
+    transform: translateY(0rem);
+}
+
+.input:focus::placeholder {
+    visibility: hidden;
+}
+
+.form-btn {
+    padding: 10px 15px;
+    width: 100%;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    border-radius: 20px;
+    border: 0 !important;
+    outline: 0 !important;
+    background: teal;
+    color: white;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.form-btn:active {
+    box-shadow: none;
+}
+.form-btn:disabled{
+    opacity: 0.7;
+    cursor:default;
+}
+
+
+
+
+
+#signupDev {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    /* Adjust height as needed */
+}
+
+.signup-text {
+    font-size: 1em;
+}
+
+.signup-text a {
+    color: blue;
+    /* Optional: customize link color */
+    text-decoration: none;
+}
+
+.signup-text a:hover {
+    text-decoration: underline;
+}
+
+
+#passShow {
+    margin-top: 10px;
+    justify-content: space-between;
+    display: flex;
+    margin-bottom: 30px;
+
+}
+
+.wrapper {
+
+    position: relative;
+}
+
+.wrapper div {
+    background: white;
+    border-radius: 50px;
+    aspect-ratio: 1;
+    height: 33%;
+    position: absolute;
+    top: 52%;
+    right: 10px;
+}
+
+
+.other-details div{
+    margin-bottom: 10px;
+}

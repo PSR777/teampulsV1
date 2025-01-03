@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/scholarship.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <title>Scholarships</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo_search">
+                <a href="/" class="logo">
+                    <img src="../static/img/header_log.webp?height=40&width=120" alt="Unstop">
+                </a>
+
+                <div class="search-container">
+                    <span class="search-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </span>
+                    <input id="main_search" type="text" placeholder="Search Scholarships">
+                </div>
+            </div>
+
+
+            <nav>
+                <ul class="nav-links">
+                    <li id="homeLi"><a href="/home">Home</a></li>
+                    <li id="carrierLi"><a href="/carrier">Carrier</a></li>
+                    <li id="internshipLi"><a href="/internship/home">Internships</a></li>
+                    <li id="jobLi"><a href="/job/home">Jobs</a></li>
+                    <li id="scholarshipLi"><a href="/scholarship/home">Scholarship</a></li>
+                    <li id="courseLi"><a href="/courses">Courses</a></li>
+                    <li id="mentorshipLi"><a href="/mentorships">Mentorship</a></li>
+
+                </ul>
+            </nav>
+
+            <div class="right-section">
+                <button class="icon-button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                </button>
+
+                <div class="profile-pic" onclick="window.location = window.location.origin + '/profile'">
+                    <img width="37" height="37" alt=""
+                        src="https://d8it4huxumps7.cloudfront.net/uploads/images/unstop/user-avatar/png/15.png?d=100x100"
+                        class="">
+                </div>
+
+                <button class="host-button" onclick="window.location = window.location.origin + '/payment'">
+                    <i class="fa fa-rocket" aria-hidden="true"></i>
+                    <span>Pro</span>
+                </button>
+
+                <button class="business-button">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                        </path>
+                    </svg>
+                    <span>For Business</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <aside class="sidebar" id="sidebar">
+                <div class="sidebar-header">
+                    <h3>Filters</h3>
+                    <i class="fa fa-close" style="font-size:24px" onclick="close_sidebar()"></i>
+                </div>
+
+                <div class="filter-group">
+                    <label for="locationFilter">Location:</label>
+                    <select id="locationFilter" onchange="filterScholarships(id)">
+                        <option value="">All Types</option>
+                        <option value="United States">United States</option>
+                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="Singapore">Singapore</option>
+                        <option value="Global">Global</option>
+                        <option value="Germany">Germany</option>
+                        <option value="Diversity-Based">Diversity-Baseds</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="typeFilter">Scholarship Type:</label>
+                    <select id="typeFilter" onchange="filterScholarships(id)">
+                        <option value="">All Types</option>
+                        <option value="Merit-Based">Merit-Based</option>
+                        <option value="Need-Based">Need-Based</option>
+                        <option value="Service-Based">Service-Based</option>
+                        <option value="STEM">Talent-Based</option>
+                        <option value="Research-Based">Research-Based</option>
+                        <option value="Entrepreneurship">Entrepreneurship</option>
+                        <option value="Healthcare">Healthcare</option>
+                        <option value="Innovation-Based">Innovation-Based</option>
+                    </select>
+                </div>
+            </aside>
+            <main class="main-content">
+                <div class="filter_list" id="filter_list_show">
+                    <button class="filter-toggle" id="filterToggle">☰ Filters</button>
+                    <section class="scholarship-list" id="scholarshipList">
+                        <!-- Scholarship list items will be dynamically added here -->
+                        {% for scholarship in scholarships %}
+                        <div class="scholarship-card" data-typeFilter="{{scholarship.type}}"
+                            data-locationFilter="{{scholarship.location}}" id="{{scholarship.id}}"
+                            data-type="{{ scholarship.type }}" data-location="{{ scholarship.location }}"
+                            data-organization="{{ scholarship.organization }}" onclick="showScholarshipDetails(id)">
+                            <div class="provider">Provided by university</div>
+                            <div class="details-row">
+                                <div class="detail-group">
+                                    <span class="detail-label">Grant</span>
+                                    <span class="detail-value">{{scholarship.amount}}</span>
+                                </div>
+                                <div class="detail-group">
+                                    <span class="detail-label">Deadline</span>
+                                    <span class="detail-value">{{scholarship.deadline}}</span>
+                                </div>
+                            </div>
+                            <h2 class="scholarship_name">{{scholarship.title}}</h2>
+                            <div class="tag">{{scholarship.type}}</div>
+                            <div class="university-info">
+                                <div class="university-icon">
+                                    🏛️
+                                </div>
+                                <div class="university-details">
+                                    <span class="university-name">{{scholarship.organization}}</span>
+                                    <span class="university-location">{{scholarship.location}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </section>
+                </div>
+                <section class="scholarship-details" id="scholarshipDetails1">
+                    <div class="container-fluid individual_internship_right " id="individual_internship_2626982">
+                        <div class="internship_meta">
+                            <div class=" provider" style="right: 10px;">
+                                Provided by university
+                            </div>
+                            <div class="individual_internship_header">
+                                <div class="company">
+                                    <div class="heading_4_5 profile">
+                                        STEM Excellence Scholarship
+                                    </div>
+                                    <div class="heading_6 company_name">
+                                        <div class="company_and_premium">
+                                            <a class="link_display_like_text" target="_blank"
+                                                href="/company/zi-cloud-1672161997">
+                                                🏛️ TechFuture Foundation </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button id="apply_btn" onclick="apply(id)" class="apply">
+                                    Apply now
+                                </button>
+                            </div>
+                            <div class="individual_internship_details">
+                                <div id="location_names">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>
+                                        <a>United States</a>
+                                        <span style="vertical-align: middle">
+                                            <i class="pop ic-16-alert-circle office_days_popover"
+                                                data-popover_content="3 day(s) in-office in a week"
+                                                data-original-title="" title=""></i>
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="internship_other_details_container">
+                                    <div class="other_detail_item_row">
+                                    </div>
+                                    <div class="other_detail_item_row">
+                                        <div class="other_detail_item stipend_container">
+                                            <div class="item_heading">
+                                                <i class="fa fa-dollar"></i>
+                                                <span>
+                                                    Grant </span>
+                                            </div>
+                                            <div class="item_body">
+                                                <span class="stipend" id="grant">$10,000</span>
+                                            </div>
+                                        </div>
+                                        <div class="other_detail_item  apply_by">
+                                            <div class="item_heading">
+                                                <i class="fa fa-hourglass-start"></i>
+                                                <span>Deadline</span>
+                                            </div>
+                                            <div class="item_body">24 Nov' 24</div>
+                                        </div>
+                                        <div class="other_detail_item  apply_by">
+                                            <div class="item_heading">
+                                                <i class="fa fa-hourglass-start"></i>
+                                                <span>Duration</span>
+                                            </div>
+                                            <div class="item_body">1 Year</div>
+                                        </div>
+                                        <div class="other_detail_item  apply_by">
+                                            <div class="item_heading">
+                                                <i class="fa fa-dollar"></i>
+                                                <span> Fee</span>
+                                            </div>
+                                            <div class="item_body" id="applicationFee">0</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tags_container_outer hide">
+                                <div class="other_label_container">
+                                    <div class="status-container">
+                                        <div class="tag" id="sch-type">Merit-Based</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="applicants_container">
+                            <div class="applications_message_container">
+                                <div class="application_icon">
+                                    <i class="fa fa-users"></i>
+                                </div>
+                                <div class="applications_message">66 applicants</div>
+                            </div>
+                        </div>
+                        <h2 class="section_heading heading_5_5 about_heading">description the scholarship:</h2>
+                        <div class="text-container">
+                            Supports outstanding students pursuing degrees in Science, Technology, Engineering, or
+                            Mathematics.
+                        </div>
+                        <h2 class="section_heading heading_5_5 about_heading">To be eligible, a candidate must:</h2>
+                        <div class="text-container">
+                            <ol>
+                                <li> Be a citizen of India</li>
+                                <li>Not hold British or dual-British citizenship</li>
+                                <li>Intend to return to India after the end of their studies</li>
+                                <li>Have a good working knowledge of English</li>
+                                <li>Hold a degree equivalent to at least a UK second-class honours degree (minimum of
+                                    65-70% marks in Indian standard) or have equivalent professional training and/or
+                                    experience
+                                </li>
+                                <li>Have completed at least five years or its equivalent work experience, by the end of
+                                    2024
+                                </li>
+                                <li>work in areas such as the visual and performing arts, museums, libraries, archives
+                                    and heritage, film and digital media, and cultural policy and practice
+                                </li>
+                            </ol>
+                        </div>
+                        <h3 class="section_heading heading_5_5 skills_heading">Eligibility:</h3>
+                        <div class="round_tabs_container">
+                            <span class="round_tabs">Undergraduate STEM majors with a GPA of 3.5+</span>
+                        </div>
+                        <h3 class="section_heading heading_5_5 skills_heading">Required Documents:</h3>
+                        <div class="round_tabs_container">
+                            <span class="round_tabs">Research proposal</span>
+                            <span class="round_tabs">Transcript</span>
+                        </div>
+                        <h2 class="section_heading heading_5_5 about_heading">Terms and Conditions:</h2>
+                        <div class="text-container">
+                            <ol>
+                                <li> The candidates must not accept any other form of public funding during the tenure
+                                    of the fellowship
+                                </li>
+                                <li>Candidates must inform the Chevening secretariat/ fellowship committee of any
+                                    funding/employment/internship opportunities outside of the fellowship program that
+                                    they have applied for, or are offered, within the fellowship tenure.
+                                </li>
+                                <li>Candidates cannot change their course of study to something other than what is
+                                    mentioned in their final award letter.
+                                </li>
+                                <li>Have a good working knowledge of English</li>
+                                <li>Misinformation, misconduct, and failure to continue studies will result in the
+                                    termination of the fellowship
+                                </li>
+                            </ol>
+                        </div>
+                        <div class="text-container website_link">
+                            <a href="http://zicloud.co" target="_blank" rel="nofollow noopener noreferrer">Application
+                                Link <i class="fa fa-external-link"></i></a>
+                            <a href="http://zicloud.co" target="_blank" rel="nofollow noopener noreferrer">Website Link
+                                <i class="fa fa-external-link"></i></a>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+        <script>
+
+
+
+
+
+            // DOM elements
+            const filterToggle = document.getElementById('filterToggle');
+            const sidebar = document.getElementById('sidebar');
+            const scholarshipList = document.getElementById('scholarshipList');
+            const scholarshipDetails = document.getElementById('scholarshipDetails');
+            const locationFilter = document.getElementById('locationFilter');
+            const typeFilter = document.getElementById('typeFilter');
+            const universityFilter = document.getElementById('universityFilter');
+            const filter_list_show = document.getElementById('filter_list_show');
+
+
+
+            filterToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('active');
+                filter_list_show.classList.toggle('filter_list_show');
+                filterToggle.classList.add('hide-filter-btn'); // toggles the class
+                filterToggle.classList.remove('show-filter-btn');
+                scholarshipList.classList.add('list-moved-up');
+                scholarshipList.classList.remove('list-moved-down');// adds visibility back
+            });
+
+            function close_sidebar() {
+                sidebar.classList.toggle('active');
+                filter_list_show.classList.toggle('filter_list_show');
+                filterToggle.classList.remove('hide-filter-btn');
+                filterToggle.classList.add('show-filter-btn');
+                scholarshipList.classList.remove('list-moved-up');
+                scholarshipList.classList.add('list-moved-down');
+            }
+
+            // Render scholarship list
+            function apply() {
+                let id = document.getElementById('apply_btn').getAttribute('data-id')
+                let table = 'scholarships'
+
+                fetch(`/apply/${table}/${id}`, {
+                    method: 'POST',
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data) {
+                            alert(data.message);
+                            let applyBtn = document.getElementById('apply_btn')
+                            applyBtn.innerText = 'Applied'
+                            applyBtn.style.opacity = '0.7'
+                            applyBtn.style.cursor = 'none'
+                            applyBtn.disabled = true;
+
+                        } else {
+                            alert(`Error while applying`);
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                        alert(`Error while ${table}`);
+                    });
+            }
+
+
+            // Show scholarship details
+            function showScholarshipDetails(id) {
+                fetch('/scholarship/' + id)
+                    .then((response) => response.json())
+                    .then((job_data) => {
+                        data = job_data[0]
+                        let applyBtn = document.getElementById('apply_btn')
+                        if (job_data[1] == true) {
+
+                            applyBtn.innerText = 'Applied'
+                            applyBtn.style.opacity = '0.7'
+                            applyBtn.style.cursor = 'none'
+                            applyBtn.disabled = true;
+                        } else {
+                            applyBtn.innerText = 'Apply'
+                            applyBtn.style.opacity = '1'
+                            applyBtn.style.cursor = 'pointer'
+                            applyBtn.disabled = false;
+                        }
+                        document.getElementById('apply_btn').setAttribute('data-id', data.id)
+                        document.querySelector(".heading_4_5.profile").textContent = data.title;
+                        document.querySelector(".link_display_like_text").textContent = `🏛️ ${data.organization}`;
+                        document.querySelector(".link_display_like_text").href = data.organizationLink;
+                        document.querySelector("#location_names a").textContent = data.location;
+                        document.querySelector(".stipend").textContent = data.amount;
+                        document.querySelector(".apply_by .item_body").textContent = data.deadline;
+                        document.querySelectorAll(".apply_by .item_body")[1].textContent = data.duration;  // Assuming it's the second item
+                        document.querySelector("#applicationFee").textContent = data.applicationFee;  // Third item for fee
+                        document.querySelector("#sch-type").textContent = data.type;
+                        document.querySelector(".applications_message").textContent = `${data.applicants} applicants`;
+                        document.querySelector(".about_heading + .text-container").textContent = data.description;
+                        document.querySelector(".skills_heading + .round_tabs_container .round_tabs").textContent = data.eligibility;
+
+                        // Update required documents
+                        const documentsContainer = document.querySelectorAll(".round_tabs_container")[1];
+                        documentsContainer.innerHTML = "";  // Clear existing items
+                        if (data.requiredDocuments) {
+                            data.requiredDocuments.split(", ").forEach(doc => {
+                                const docElement = document.createElement("span");
+                                docElement.className = "round_tabs";
+                                docElement.textContent = doc;
+                                documentsContainer.appendChild(docElement);
+                            });
+                        }
+
+
+                        // Update application and website links
+                        document.querySelector(".website_link a").href = data.applicationLink;
+                        document.querySelector(".website_link a").textContent = "Application Link";
+                        document.querySelectorAll(".website_link a")[1].href = data.websiteLink;
+                        document.querySelectorAll(".website_link a")[1].textContent = "Website Link";
+
+                        // Highlight selected scholarship in the list
+                        document.querySelectorAll('.scholarship-card').forEach(item => item.classList.remove('active'));
+                        document.getElementById(data.id).classList.add('active');
+
+                    })
+
+
+            }
+
+
+            showScholarshipDetails(1)
+
+        </script>
+        <script>
+            function filterScholarships(id) {
+                const Filter = document.getElementById(id).value;
+
+
+                const scholarships = document.querySelectorAll(".scholarship-card");
+                let ids = []
+                scholarships.forEach(scholarship => {
+                    const type = scholarship.getAttribute("data-" + id);
+
+
+                    // Check if the scholarship meets filter criteria
+                    const matchesType = Filter === "" || type === Filter;
+
+
+                    if (matchesType) {
+                        scholarship.style.display = "block";
+                        ids.push(scholarship.id)
+                    } else {
+                        scholarship.style.display = "none";
+                    }
+                });
+                console.log(ids)
+                showScholarshipDetails(ids[0])
+            }
+
+        </script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const span = document.getElementById("scholarshipLi");
+                span.classList.add('LiActive');
+                var Id = {{ id|tojson }};
+                if (Id) {
+                    showScholarshipDetails(Id);
+                } else {
+                    showScholarshipDetails(1);
+                }
+
+            });
+        </script>
+        <script>
+
+            const searchInput = document.getElementById("main_search");
+
+            // Event listener for input
+            searchInput.addEventListener("input", function () {
+                const scholarships = document.querySelectorAll(".scholarship-card");
+                const query = searchInput.value.toLowerCase();
+
+                scholarships.forEach(scholarship => {
+                    const type = scholarship.getAttribute("data-type").toLowerCase();
+                    const location = scholarship.getAttribute("data-location").toLowerCase();
+                    const university = scholarship.getAttribute("data-organization").toLowerCase();
+
+                    // Show scholarships that match the query in any of the fields
+                    if (type.includes(query) || location.includes(query) || university.includes(query)) {
+                        console.log(scholarship.id)
+                        scholarship.style.display = "block";
+                    } else {
+                        scholarship.style.display = "none";
+                    }
+                });
+            });
+
+        </script>
+
+</body>
+</main>
+
+</html>

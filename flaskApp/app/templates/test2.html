@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/profile_edit.css') }}" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+            rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+        <title>profile</title>
+    </head>
+
+    <body>
+        <header class="header">
+            <div class="header-container">
+                <div class="logo_search">
+                    <a href="/" class="logo">
+                        <img src="../static/img/header_log.webp?height=40&width=120" alt="Unstop">
+                    </a>
+    
+                    <div class="search-container">
+                        <span class="search-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </span>
+                        <input id="main_search" type="text" placeholder="Search Scholarships">
+                    </div>
+                </div>
+    
+    
+                <nav>
+                    <ul class="nav-links">
+                        <li id="homeLi"><a href="/home">Home</a></li>
+                        <li id="carrierLi"><a href="/carrier">Carrier</a></li>
+                        <li id="internshipLi"><a href="/internship/home">Internships</a></li>
+                        <li id="jobLi"><a href="/job/home">Jobs</a></li>
+                        <li id="scholarshipLi"><a href="/scholarship/home">Scholarship</a></li>
+                        <li id="courseLi"><a href="/courses">Courses</a></li>
+                        <li id="mentorshipLi"><a href="/mentorships">Mentorship</a></li>
+                        
+                    </ul>
+                </nav>
+    
+                <div class="right-section">
+                    <button class="icon-button">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                    </button>
+    
+                    <div class="profile-pic" onclick="window.location = window.location.origin + '/profile'">
+                        <img width="37" height="37" alt=""
+                            src="https://d8it4huxumps7.cloudfront.net/uploads/images/unstop/user-avatar/png/15.png?d=100x100"
+                            class="">
+                    </div>
+    
+                    <button class="host-button" onclick="window.location = window.location.origin + '/payment'">
+                        <i class="fa fa-rocket" aria-hidden="true"></i>
+                        <span>Pro</span>
+                    </button>
+    
+                    <button class="business-button">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                            </path>
+                        </svg>
+                        <span>For Business</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div class="p_content">
+            <div class="left_view">
+                <div class="resume_container ng-tns-c2148870034-3">
+                    <div class="align-center mb-10 ng-tns-c2148870034-3">
+                        <h6 class="ttl ng-tns-c2148870034-3">Upload your Resume</h6>
+                        <!----><!---->
+                    </div>
+                    <div id="upload_resume" class="upload_resume  ng-tns-c2148870034-3 ng-star-inserted">
+                        <input type="file" id="file-input" class="d-none ng-tns-c2148870034-3"><strong
+                            id="upload-button" class="ng-tns-c2148870034-3"><span class="ng-tns-c2148870034-3">Supported
+                                file formats DOC,
+                                DOCX, PDF. File size limit 10 MB.</span></strong>
+
+                    </div><!----><!---->
+                </div>
+                <script>
+                    // JavaScript to trigger the file input
+                    document.getElementById('upload-button').addEventListener('click', function () {
+                        document.getElementById('file-input').click();
+                    });
+
+                    // Optional: Display selected file name
+                    document.getElementById('file-input').addEventListener('change', function () {
+                        const fileName = this.files[0] ? this.files[0].name : 'No file chosen';
+                        document.getElementById('upload_resume').innerHTML = fileName + "<span class='edit-icons icon-delete'></span>";
+
+                    });
+                </script>
+
+
+                <div class="profile_complete ">
+
+                    <strong> Complete your profile <span>And standout to
+                            recruiters!</span></strong>
+                    <div class="align-center mt-10  ">
+                        <div class="bar-bg ">
+                            <div class="bar " style="width:{{ filled_percentage }}" >
+                            </div>
+                        </div>
+                        <div class="txt "> <span style="margin-left: 15px;"> {{filled_percentage}} </span> </div>
+                    </div>
+
+                </div>
+                <nav class="thin  custom-scrollbar ">
+                    <span class="inprogress  active">
+                        Basic Details
+                        <h6 class="tpo-tag required  "> Required </h6>
+
+                    </span>
+                    <span>
+                        About
+                        <h6 class="tpo_status_tag required  ">Required</h6>
+
+                    </span>
+                    <span>
+                        Skills
+                        <h6 class="tpo_status_tag required  ">Required</h6>
+
+                    </span>
+                    <span>
+                        Education
+
+                    </span>
+                    <span>
+                        Work Experience
+                        <h6 class="tpo_status_tag required  ">Required</h6>
+
+                    </span>
+                    <span>
+                        Responsibilities
+                    </span>
+                    <span>
+                        Certificates
+                    </span>
+                    <span>
+                        Projects
+
+                    </span>
+                    <span>
+                        Achievements
+                    </span>
+                    <span>
+                        Hobbies
+                    </span>
+                    <span> Social Links
+                    </span>
+                </nav>
+            </div>
+            <div class="right_view">
+                <form id="myForm">
+
+                    <div class="hdngs">
+                        <strong class="inprogress">Basic Details </strong>
+
+                    </div>
+                    <div class="form_view custom-scrollbar thin ">
+                        <div>
+                            <div class="user_img ">
+                                <div class="img ">
+                                    <img loading="lazy"
+                                        src="https://d8it4huxumps7.cloudfront.net/uploads/images/unstop/user-avatar/png/15.png">
+                                    <div class="image_overlay material-icons "> edit </div>
+
+                                </div>
+                                <div class="cptn ">
+                                    <div class="row ">
+                                        <div id="row1">
+                                            <div class="input_fields_bdr col  s6 m6">
+                                                <label for="first_name">
+                                                    First Name
+                                                    <sup style="color: red;">*</sup>
+                                                </label>
+                                                <input id="first_name" type="text" name="first_name" minlength="2"
+                                                    maxlength="180" required="" value="{{ user['first_name'] }}">
+                                            </div>
+                                            <div class="input_fields_bdr col  s6 m6">
+                                                <label for="last_name">Last Name</label>
+                                                <input id="last_name" type="text" name="last_name" min="2"
+                                                    pattern="^[a-zA-Z\s.]+$" maxlength="180"
+                                                    value="{{ user['last_name'] }}">
+                                            </div>
+                                        </div>
+
+                                        <div class="input_fields_bdr col m12  ">
+                                            <div class="position-relative username_1 ">
+                                                <label for="username">Username <sup style="color: red;">*</sup></label>
+                                                <input id="username" type="text" name="username" required=""
+                                                    minlength="8" pattern="^(?=.*[a-zA-Z])[a-zA-Z0-9_-]+$"
+                                                    maxlength="16" disabled="" value="{{ user['user_name'] }}">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input_fields_bdr">
+                                <label for="email" class="change_email  has-value">
+                                    <div> Email <sup style="color: red;">*</sup></div>
+                                    
+
+                                </label>
+                                <input id="email" type="email" name="email" required="" disabled=""
+                                    value="{{ user['email'] }}">
+                                
+
+                            </div>
+
+                            <div class="input_fields_bdr">
+                                <label for="mobile">
+                                    Mobile <sup style="color: red;">*</sup>
+                                </label>
+                                <input type="tel" autocomplete="off"  id="mobile"
+                                    >
+
+                            </div>
+
+                            <div class="bdr_radio no_icon input_fields_bdr  ">
+                                <div class="l_title "> Pronouns
+                                </div>
+                                <div class="d-flex ">
+                                    <input name="pronoun" type="radio" id="He/Him/his" {% if user.pronoun=='He/Him/his'
+                                        %} checked {% endif %}>
+                                    <label for="He/Him/his"> He/Him/his
+                                    </label><input name="pronoun" type="radio" id="She/Her" {% if
+                                        user.pronoun=='She/Her' %} checked {% endif %}><label for="She/Her"> She/Her
+                                    </label><input name="pronoun" type="radio" id="Them/They" {% if
+                                        user.pronoun=='Them/They' %} checked {% endif %}><label for="Them/They">
+                                        Them/They
+                                    </label><input name="pronoun" type="radio" id="not_show"><label for="not_show"> Do
+                                        not
+                                        want to
+                                        show </label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="m_bg ">
+                            <div class="bdr_radio gender_box ">
+                                <div class="l_title ">
+                                    Gender
+                                    <sup style="color: red;">*</sup>
+                                </div>
+                                <div class="d-flex ">
+                                    <input name="gender" type="radio" id="gender0" class="with-gap" value="Male" {% if
+                                        user.gender=='Male' %} checked {% endif %}>
+                                    <label for="gender0">
+                                        <div class="icon "><img
+                                                src="https://d8it4huxumps7.cloudfront.net/uploads/images/656426f95e8ac_male_icon.svg"
+                                                alt="Male" loading="lazy"></div>
+                                        <span>Male</span>
+                                    </label>
+                                    <input name="gender" type="radio" id="gender1" class="with-gap" value="Female" {% if
+                                        user.gender=='Female' %} checked {% endif %}>
+                                    <label for="gender1">
+                                        <div class="icon "><img
+                                                src="https://d8it4huxumps7.cloudfront.net/uploads/images/6564270f11fda_female_icon.svg"
+                                                alt="Female" loading="lazy"></div>
+                                        <span>Female</span>
+                                    </label>
+                                    <div class="position-relative ">
+                                        <div class="dropdown_btn ">
+                                            <div class="icon ">
+                                                <img loading="lazy"
+                                                    src="https://d8it4huxumps7.cloudfront.net/uploads/images/656427c14318b_others_icon.svg"
+                                                    alt="More Options">
+                                            </div>
+                                            <span>More Options </span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="bdr_radio ">
+                                <div class="l_title "> User
+                                    Type <sup>*</sup>
+                                </div>
+                                <div class="d-flex ">
+                                    <input name="user_type" type="radio" id="user_type1">
+                                    <label for="user_type1">
+                                        <div class="icon "><img
+                                                src="https://d8it4huxumps7.cloudfront.net/uploads/images/65642c1bab02b_college_student_icon.svg"
+                                                alt="College Student" width="24" height="24" loading="lazy"></div>
+                                        <span>College
+                                            Student</span>
+                                    </label>
+                                    <input name="user_type" type="radio" id="user_type4">
+                                    <label for="user_type4">
+                                        <div class="icon "><img
+                                                src="https://d8it4huxumps7.cloudfront.net/uploads/images/65642c2b5f9a0_school_student_icon.svg"
+                                                alt="School Student" width="24" height="24" loading="lazy"></div>
+                                        <span>School
+                                            Student</span>
+                                    </label>
+                                    <input name="user_type" type="radio" id="user_type2">
+                                    <label for="user_type2">
+                                        <div class="icon "><img
+                                                src="https://d8it4huxumps7.cloudfront.net/uploads/images/65642c3750098_professional_icon.svg"
+                                                alt="Professional" width="24" height="24" loading="lazy"></div>
+                                        <span>Professional</span>
+                                    </label>
+                                    <input name="user_type" type="radio" id="user_type5">
+                                    <label for="user_type5">
+                                        <div class="icon "><img
+                                                src="https://d8it4huxumps7.cloudfront.net/uploads/images/65642c431d80a_fresher_icon.svg"
+                                                alt="Fresher" width="24" height="24" loading="lazy"></div>
+                                        <span>Fresher</span>
+                                    </label>
+                                    <input name="user_type" type="radio" id="user_type6">
+                                    <label for="user_type6">
+                                        <div class="icon "><img
+                                                src="https://d8it4huxumps7.cloudfront.net/uploads/images/65642c4d9aaf4_recruiter_icon.svg"
+                                                alt="Recruiter" width="24" height="24" loading="lazy"></div>
+                                        <span>Recruiter</span>
+                                    </label>
+                                    <input name="user_type" type="radio" id="user_type7">
+                                    <label for="user_type7">
+                                        <div class="icon "><img
+                                                src="https://d8it4huxumps7.cloudfront.net/uploads/images/65642c5930929_organizer_icon.svg"
+                                                alt="Organizer" width="24" height="24" loading="lazy"></div>
+                                        <span>Organizer</span>
+                                    </label>
+                                    <input name="user_type" type="radio" id="user_type3">
+                                    <label for="user_type3">
+                                        <div class="icon "><img
+                                                src="https://d8it4huxumps7.cloudfront.net/uploads/images/656427c14318b_others_icon.svg"
+                                                alt="Others" width="24" height="24" loading="lazy"></div>
+                                        <span>Others</span>
+                                    </label>
+                                </div>
+
+                            </div>
+
+
+                            <div class="input_fields_bdr">
+                                <label for="work_experience">Work Experience <sup>*</sup></label>
+                                <select class="selections" id="work_experience" name="work_experience">
+                                    <option value="">-- Select Sector --</option>
+                                    <option value="value1" selected disabled>Choose option</option>
+                                    <option value="value1" {% if user.work_experience=='value1' %} selected {% endif %}>
+                                        Value 1</option>
+                                    <option value="value2" {% if user.work_experience=='value2' %} selected {% endif %}>
+                                        Value 2</option>
+                                    <option value="value3" {% if user.work_experience=='value3' %} selected {% endif %}>
+                                        Value 3</option>
+                                </select>
+                            </div>
+                            <div class="input_fields_bdr">
+                                <label for="current_sector">Current Sector:</label>
+                                <select class="selections" id="current_sector" name="current_sector">
+                                    <option value="">-- Select Sector --</option>
+                                    <option value="value1" selected disabled>Choose option</option>
+                                    <option value="value1" {% if user.current_sector=='value1' %} selected {% endif %}>
+                                        Value
+                                        1</option>
+                                    <option value="value2" {% if user.current_sector=='value2' %} selected {% endif %}>
+                                        Value
+                                        2</option>
+                                    <option value="value3" {% if user.current_sector=='value3' %} selected {% endif %}>
+                                        Value
+                                        3</option>
+                                </select>
+                            </div>
+                            <div class="input_fields_bdr">
+                                <label for="current_designation"> Designation <sup>*</sup></label>
+                                <select class="selections" id="current_designation" name="current_designation">
+                                    <option value="">-- Select Sector --</option>
+                                    <option value="value1" selected disabled>Choose option</option>
+                                    <option value="value1" {% if user.current_designation=='value1' %} selected {% endif
+                                        %}>
+                                        Value 1</option>
+                                    <option value="value2" {% if user.current_designation=='value2' %} selected {% endif
+                                        %}>
+                                        Value 2</option>
+                                    <option value="value3" {% if user.current_designation=='value3' %} selected {% endif
+                                        %}>
+                                        Value 3</option>
+                                </select>
+                            </div>
+
+
+                            <div class="input_fields_bdr checkbox_type  "><input type="checkbox" name="career_change"
+                                    id="career_change" class="filled-in    ng-valid"><label for="career_change"
+                                    class="pl-20 ">Looking for Career Change</label></div>
+
+                            <div id="org-inp" class="input_fields_bdr ">
+                                <label for="organisation">
+                                    Organisation/College <sup>*</sup>
+                                </label>
+                                <app-organisation-autocomplete _nghost-serverapp-c571133313="">
+                                    <app-autocomplete _nghost-serverapp-c3766097448="">
+                                        <div class="input_field autocomplete-wrapper"
+                                            id="organisation-organisation_select_div">
+                                            <input type="text" autocomplete="off" class="auto-complete   ng-valid"
+                                                id="organisation-organisation_select_input" placeholder="Organisation"
+                                                required=""><span class="d-none">Organisation is
+                                                required</span>
+                                        </div>
+                                    </app-autocomplete>
+
+                                </app-organisation-autocomplete>
+                            </div>
+                            <div class="position-relative ">
+                                <div id="cities_div" class="input_fields_bdr active">
+                                    <label for="Location">
+                                        Location <sup>*</sup>
+                                    </label>
+                                    <input id="cities_input" type="text" placeholder="Location"
+                                        name="Hyderabad, Telangana, India" required="">
+                                </div>
+
+                            </div>
+                            <div class="input_fields_bdr ">
+                                <label for="start_date">
+                                    DOB
+                                </label>
+                                <input id="dob" type="text" readonly="" name="dob" placeholder="DOB"
+                                    class="mat-datepicker-input    ng-valid" aria-haspopup="dialog"
+                                    max="2024-10-18T11:13:48+05:30" data-mat-calendar="mat-datepicker-1">
+                                <mat-datepicker-toggle matsuffix="" class="mat-datepicker-toggle "
+                                    data-mat-calendar="mat-datepicker-1">
+                                    <button mat-icon-button="" type="button" mat-ripple-loader-uninitialized=""
+                                        mat-ripple-loader-class-name="mat-mdc-button-ripple"
+                                        class="mdc-icon-button mat-mdc-icon-button mat-unthemed mat-mdc-button-base"
+                                        mat-ripple-loader-centered="" aria-haspopup="dialog" aria-label="Open calendar"
+                                        tabindex="0">
+                                        <span class="mat-mdc-button-persistent-ripple mdc-icon-button__ripple"></span>
+                                        <svg viewBox="0 0 24 24" width="24px" height="24px" fill="currentColor"
+                                            focusable="false" aria-hidden="true"
+                                            class="mat-datepicker-toggle-default-icon ">
+                                            <path
+                                                d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z">
+                                            </path>
+                                        </svg>
+                                        <span class="mat-mdc-focus-indicator"></span><span
+                                            class="mat-mdc-button-touch-target"></span>
+                                    </button>
+                                </mat-datepicker-toggle>
+                                <mat-datepicker></mat-datepicker>
+
+                            </div>
+                            <div class="address-container input_fields_bdr ">
+                                <div>
+                                    <label> Current Address
+                                    </label>
+                                    <div class="address ">
+                                        <div class="input_fields_bdr ">
+                                            <label for="address1_0">
+                                                Address Line
+                                                1
+                                            </label>
+                                            <input type="text" id="address1" placeholder="Address 1">
+                                        </div>
+                                        <div class="input_fields_bdr ">
+                                            <label for="address2_0">
+                                                Address Line
+                                                2
+                                            </label>
+                                            <input type="text" id="address2" placeholder="Address 2">
+                                        </div>
+                                        <div class="input_fields_bdr ">
+                                            <label for="landmark_0">
+                                                Landmark
+                                            </label>
+                                            <input type="text" id="landmark" placeholder="Landmark">
+                                        </div>
+                                        <div class="input_fields_bdr ">
+                                            <label for="pincode_0">
+                                                Pincode
+                                            </label>
+                                            <input type="number" id="pincode" placeholder="Pincode">
+                                        </div>
+                                        <div class="position-relative ">
+                                            <app-cities-autocomplete>
+                                                <div id="cities_div" class="input_fields_bdr">
+                                                    <label for="Location">
+                                                        Location
+
+                                                    </label>
+                                                    <input id="cities_input" type="text" placeholder="Location" name="">
+                                                </div>
+                                            </app-cities-autocomplete>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+
+                                    <label class="j-between  ">
+                                        Permanent Address
+                                        <div class="checkbox_type "><input type="checkbox" name="same-as-permanent"
+                                                id="same-as-permanent" class="filled-in ">
+                                            <label for="same-as-permanent" class="pl-20 ">Copy
+                                                Current Address</label>
+                                        </div>
+                                    </label>
+                                    <div class="address ">
+                                        <div class="input_fields_bdr ">
+                                            <label for="address1_1">
+                                                Address Line
+                                                1
+                                            </label>
+                                            <input type="text" id="address1" placeholder="Address 1">
+                                        </div>
+                                        <div class="input_fields_bdr ">
+                                            <label for="address2_1">
+                                                Address Line
+                                                2
+                                            </label>
+                                            <input type="text" id="address2" placeholder="Address 2">
+                                        </div>
+                                        <div class="input_fields_bdr ">
+                                            <label for="landmark_1">
+                                                Landmark
+                                            </label>
+                                            <input type="text" id="landmark" placeholder="Landmark">
+                                        </div>
+                                        <div class="input_fields_bdr ">
+                                            <label for="pincode_1">
+                                                Pincode
+                                            </label>
+                                            <input type="number" id="pincode" placeholder="Pincode">
+                                        </div>
+                                        <div class="position-relative ">
+                                            <app-cities-autocomplete>
+                                                <div id="cities_div" class="input_fields_bdr">
+                                                    <label for="Location">
+                                                        Location
+
+                                                    </label>
+                                                    <input id="cities_input" type="text" placeholder="Location" name="">
+                                                </div>
+                                            </app-cities-autocomplete>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer no-discard "><button type="submit" class="save waves-effect" id="submitBtn"
+                            onclick="myfun()"><em class="material-icons ">check</em> Save </button></div>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            function myfun() {
+                const formData = {
+                    first_name: document.getElementById('first_name').value,
+                    last_name: document.getElementById('last_name').value,
+                    pronoun: document.querySelector('input[name="pronoun"]:checked').id,
+                    gender: document.querySelector('input[name="gender"]:checked').value,
+                    work_experience: document.getElementById('work_experience').value,
+                    current_sector: document.getElementById('current_sector').value,
+                    current_designation: document.getElementById('current_designation').value
+                };
+
+                // Remove any fields with empty values (optional)
+                Object.keys(formData).forEach(key => {
+                    if (!formData[key]) delete formData[key];
+                });
+
+                // Send an AJAX request to update the user details
+                fetch('/update-user', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('User details updated successfully');
+                        } else {
+                            alert('Failed to update user details');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
+
+        </script>
+
+
+    </body>
+
+    </html>

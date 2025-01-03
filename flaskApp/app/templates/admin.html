@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+
+
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin: 4px 0;
+            box-sizing: border-box;
+        }
+
+        .sidebar {
+            width: 15%;
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .saveRecordBtn {
+            display: none;
+            background: green;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        .cancelBtn {
+            display: none;
+            color: rgb(0, 0, 0);
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+            background: rgb(255, 217, 2);
+        }
+
+        .updateRecordBtn {
+            color: rgb(0, 0, 0);
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+            background: rgb(44, 255, 2);
+        }
+
+        .btns {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .main-content {
+            width: 85%;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        h1,
+        h2 {
+            color: #333;
+        }
+
+        .sidebar h2 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .table-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .table-list li {
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .table-list li:hover {
+            background-color: #444;
+        }
+
+        .table-list li.active {
+            background-color: #555;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #fff;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .delete-btn {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        .delete-btn:hover {
+            background-color: #cc0000;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            .sidebar,
+            .main-content {
+                width: 100%;
+            }
+        }
+
+        main {
+            display: flex;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo_search">
+                <a href="/" class="logo">
+                    <img src="../static/img/header_log.webp?height=40&width=120" alt="Unstop">
+                </a>
+
+                <div class="search-container">
+                    <span class="search-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </span>
+                    <input id="main_search" type="text" placeholder="Search Scholarships">
+                </div>
+            </div>
+
+
+            <nav>
+                <ul class="nav-links">
+                    <li id="homeLi"><a href="/home">Home</a></li>
+                    <li id="carrierLi"><a href="/carrier">Carrier</a></li>
+                    <li id="internshipLi"><a href="/internship/home">Internships</a></li>
+                    <li id="jobLi"><a href="/job/home">Jobs</a></li>
+                    <li id="scholarshipLi"><a href="/scholarship/home">Scholarship</a></li>
+                    <li id="courseLi"><a href="/courses">Courses</a></li>
+                    <li id="mentorshipLi"><a href="/mentorships">Mentorship</a></li>
+
+                </ul>
+            </nav>
+
+            <div class="right-section">
+                <button class="icon-button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                </button>
+
+                <div class="profile-pic" onclick="window.location = window.location.origin + '/profile'">
+                    <img width="37" height="37" alt=""
+                        src="https://d8it4huxumps7.cloudfront.net/uploads/images/unstop/user-avatar/png/15.png?d=100x100"
+                        class="">
+                </div>
+
+                <button class="host-button" onclick="window.location = window.location.origin + '/payment'">
+                    <i class="fa fa-rocket" aria-hidden="true"></i>
+                    <span>Pro</span>
+                </button>
+
+                <button class="business-button">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                        </path>
+                    </svg>
+                    <span>For Business</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="sidebar">
+            <h2>Admin Dashboard</h2>
+            <ul class="table-list">
+                <li class="active" data-table="users">Users</li>
+                <li data-table="internships">Internships</li>
+                <li data-table="scholarships">Scholarships</li>
+                <li data-table="jobs">Jobs</li>
+                <li data-table="registrations">registrations</li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div id="tableContainer"></div>
+        </div>
+    </main>
+
+    <script>
+        // Embedding Python data in JavaScript variables
+        users = {{ users | tojson }};
+        jobs = {{ jobs | tojson }};
+        internships = {{ internships | tojson }};
+        scholarships = {{ scholarships | tojson }};
+        registrations = {{ registrations | tojson }};
+
+        // Create a mapping for easy access
+        const tables = {
+            users: {
+                headers: Object.keys(users[0] || {}), // Get headers from the first user object
+                data: users,
+            },
+            internships: {
+                headers: Object.keys(internships[0] || {}), // Get headers from the first internship object
+                data: internships,
+            },
+            scholarships: {
+                headers: Object.keys(scholarships[0] || {}), // Get headers from the first scholarship object
+                data: scholarships,
+            },
+            jobs: {
+                headers: Object.keys(jobs[0] || {}), // Get headers from the first scholarship object
+                data: jobs,
+            },
+            registrations: {
+                headers: Object.keys(registrations[0] || {}), // Get headers from the first scholarship object
+                data: registrations,
+            }
+
+        };
+
+        function showTable(tableName) {
+            const tableContainer = document.getElementById('tableContainer');
+            const table = tables[tableName]; // Access the correct table data
+            let tableHTML = `<h2>${tableName.charAt(0).toUpperCase() + tableName.slice(1)}</h2>`;
+            tableHTML += '<table>';
+            tableHTML += '<tr>';
+            tableHTML += `<th>No</th>`;
+
+            // Create table headers
+
+            table.headers.forEach(header => {
+
+                tableHTML += `<th>${header.charAt(0).toUpperCase() + header.slice(1)}</th>`;
+
+            });
+            // Add action column
+            tableHTML += '<th>Action</th>';
+            tableHTML += '<th>Action</th>';
+            tableHTML += '</tr>';
+
+            // Create table rows
+            let no = 1
+            table.data.forEach(row => {
+                tableHTML += `<tr id=${row.id}>`;
+                tableHTML += `<td>${no++}</td>`;
+
+                table.headers.forEach(header => {
+
+                    tableHTML += `<td data-column=${header}>${row[header]}</td>`;
+
+                });
+                tableHTML += `<td><div class = 'btns'>
+                     <button id= 'updateRecordBtn${row.id}' class="updateRecordBtn" onclick="updateRecord('${tableName}', ${row.id})">Update</button>
+                     <button id= 'saveRecordBtn${row.id}' class="saveRecordBtn" onclick="saveRecord('${tableName}', ${row.id})">Save</button>
+                     <button id= 'cancelBtn${row.id}' class="cancelBtn" onclick="updateRecord('${tableName}', ${row.id})">Cancel</button>
+                     </div>
+                     </td>`;
+
+                tableHTML += `<td><button class="delete-btn" onclick="deleteRecord('${tableName}', ${row.id})">Delete</button></td>`;
+
+                tableHTML += '</tr>';
+            });
+
+            tableHTML += '</table>';
+            tableContainer.innerHTML = tableHTML;
+        }
+
+        let isEditing = false;
+        function updateRecord(tableName, id) {
+            const row = document.getElementById(id);
+            const updateRecordBtn = document.getElementById('updateRecordBtn' + id);
+            const saveRecordBtn = document.getElementById('saveRecordBtn' + id);
+            const cancelBtn = document.getElementById('cancelBtn' + id);
+
+
+            isEditing = !isEditing;
+            if (isEditing) {
+                updateRecordBtn.style.display = 'none'
+                saveRecordBtn.style.display = 'block'
+                cancelBtn.style.display = 'block'
+                for (let cell of row.cells) {
+                    if (row.rowIndex !== 0) { // Skip header row
+                        if (cell.cellIndex == row.cells.length - 2) {
+                            break
+                        }
+                        const text = cell.textContent;
+                        const column = cell.getAttribute("data-column");
+                        cell.innerHTML = `<input data-column=${column} type="text" value="${text}" data-original-value="${text}">`;
+                    }
+                }
+            } else {
+                updateRecordBtn.style.display = 'block'
+                saveRecordBtn.style.display = 'none'
+                cancelBtn.style.display = 'none'
+
+                for (let cell of row.cells) {
+                    if (row.rowIndex !== 0) { // Skip header row
+                        const input = cell.querySelector('input');
+                        if (input) {
+                            cell.textContent = input.value;
+                        }
+                    }
+                }
+            }
+
+        }
+
+
+
+        function saveRecord(tableName, id) {
+            const row = document.getElementById(id);
+            const inputs = row.getElementsByTagName("input");
+            console.log(row)
+            if (tableName == 'users') {
+                tableName = 'user'
+            } else if (tableName == 'internships') {
+                tableName = 'internships_main'
+            } else if (tableName == 'jobs') {
+                tableName = 'jobsMain'
+            }
+            const updatedData = {
+                'header': {
+                    'table_name': tableName,
+                    'id': id
+                },
+                'column': {}
+            };
+            let hasChanged = false; // Flag to track if any value has changed
+
+            for (let input of inputs) {
+                const originalValue = input.getAttribute("data-original-value");
+                const newValue = input.value;
+
+                // Compare new value with original value
+                if (newValue !== originalValue) {
+                    updatedData['column'][input.getAttribute("data-column")] = newValue;
+                    hasChanged = true; // Set the flag to true if any value has changed
+                }
+            }
+            if (hasChanged) {
+                fetch('/admin/update', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(updatedData),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert(`${tableName.charAt(0).toUpperCase() + tableName.slice(1)} updated successfully!`);
+                            if (tableName == 'user') {
+                                tableName = 'users'
+                            }
+                            updateRecord(tableName, id)
+                        } else {
+                            alert(`Error updating ${tableName}: ${data.message}`);
+                            if (tableName == 'user') {
+                                tableName = 'users'
+                            }
+                            updateRecord(tableName, id)
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert(`Error updating ${tableName}`);
+                    });
+            } else {
+                alert('No changes were made.');
+                if (tableName == 'user') {
+                    tableName = 'users'
+                }
+                updateRecord(tableName, id)
+                // Refresh the table to revert to original values
+            }
+
+            console.log(updatedData)
+        }
+
+        function deleteRecord(type, id) {
+            if (confirm(`Are you sure you want to delete this ${type}?`)) {
+                if (type == 'users') {
+                    type = 'user'
+                } else if (type == 'internships') {
+                    type = 'internships_main'
+                } else if (type == 'jobs') {
+                    type = 'jobsMain'
+                }
+                fetch(`/admin/delete/${type}/${id}`, {
+                    method: 'POST',
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert(`${type.charAt(0).toUpperCase() + type.slice(1)} deleted successfully`);
+                            // Remove the record from the local data
+                            tables[type].data = tables[type].data.filter(item => item.id !== id);
+                            showTable(type);
+                        } else {
+                            alert(`Error deleting ${type}`);
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                        alert(`Error deleting ${type}`);
+                    });
+            }
+        }
+
+        // Add click event listeners to table list items
+        document.querySelectorAll('.table-list li').forEach(item => {
+            item.addEventListener('click', (e) => {
+                document.querySelectorAll('.table-list li').forEach(li => li.classList.remove('active'));
+                e.target.classList.add('active');
+                const tableName = e.target.getAttribute('data-table');
+                showTable(tableName);
+            });
+        });
+
+        // Show the users table by default
+        showTable('users');
+    </script>
+</body>
+
+</html>

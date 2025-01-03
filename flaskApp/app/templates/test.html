@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="myForm">
+        <input type="text" name="name" placeholder="Name">
+        <input type="email" name="email" placeholder="Email">
+        <select name="country">
+            <option value="">Select Country</option>
+            <option value="US">United States</option>
+            <option value="CA">Canada</option>
+        </select>
+        <textarea name="message" placeholder="Your message"></textarea>
+        <button type="submit">Submit</button>
+    </form>
+    
+    <p id="status"></p>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById('myForm');
+            const fields = form.querySelectorAll('input, select, textarea');
+            const status = document.getElementById('status');
+
+            // Store the initial values of each field in an object
+            const initialValues = {};
+            fields.forEach(field => {
+                initialValues[field.name] = field.value;  // Store initial values keyed by field name
+            });
+
+            // Function to check if any field value has changed
+            function checkForChanges() {
+                let isChanged = false;
+
+                fields.forEach(field => {
+                    if (field.value !== initialValues[field.name]) {
+                        isChanged = true;  // Mark as changed if any field value is different
+                    }
+                });
+
+                // Update the status message
+                if (isChanged) {
+                    status.textContent = "Form has unsaved changes!";
+                } else {
+                    status.textContent = "No changes detected.";
+                }
+            }
+
+            // Add event listeners for 'input' (for text changes) and 'change' (for selects)
+            fields.forEach(field => {
+                field.addEventListener('input', checkForChanges);
+                field.addEventListener('change', checkForChanges);
+            });
+
+            // Initial check for changes when the page loads
+            checkForChanges();
+        });
+
+    </script>
+</body>
+
+</html>

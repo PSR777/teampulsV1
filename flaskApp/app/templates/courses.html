@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <title>Course Listings</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            display: block !important;
+        }
+
+        
+
+        h1 {
+            margin-bottom: 0.5rem;
+        }
+
+        main {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .course-grid {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .course-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .course-content {
+            padding: 1rem;
+        }
+
+        .course-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .course-rating {
+            color: #f39c12;
+        }
+
+        @media (max-width: 600px) {
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo_search">
+                <a href="/" class="logo">
+                    <img src="../static/img/header_log.webp?height=40&width=120" alt="Unstop">
+                </a>
+
+                <div class="search-container">
+                    <span class="search-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </span>
+                    <input id="main_search" type="text" placeholder="Search Scholarships">
+                </div>
+            </div>
+
+
+            <nav>
+                <ul class="nav-links">
+                    <li id="homeLi"><a href="/home">Home</a></li>
+                    <li id="carrierLi"><a href="/carrier">Carrier</a></li>
+                    <li id="internshipLi"><a href="/internship/home">Internships</a></li>
+                    <li id="jobLi"><a href="/job/home">Jobs</a></li>
+                    <li id="scholarshipLi"><a href="/scholarship/home">Scholarship</a></li>
+                    <li id="courseLi"><a href="/courses">Courses</a></li>
+                    <li id="mentorshipLi"><a href="/mentorships">Mentorship</a></li>
+                    
+                </ul>
+            </nav>
+
+            <div class="right-section">
+                <button class="icon-button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                </button>
+
+                <div class="profile-pic" onclick="window.location = window.location.origin + '/profile'">
+                    <img width="37" height="37" alt=""
+                        src="https://d8it4huxumps7.cloudfront.net/uploads/images/unstop/user-avatar/png/15.png?d=100x100"
+                        class="">
+                </div>
+
+                <button class="host-button" onclick="window.location = window.location.origin + '/payment'">
+                    <i class="fa fa-rocket" aria-hidden="true"></i>
+                    <span>Pro</span>
+                </button>
+
+                <button class="business-button">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                        </path>
+                    </svg>
+                    <span>For Business</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="course-grid">
+            <div class="course-card">
+                <img src="../static/img/placeholder.svg?height=150&width=250" alt="Introduction to Programming"
+                    class="course-image">
+                <div class="course-content">
+                    <h2 class="course-title">Introduction to Programming</h2>
+                    <p class="course-description">Learn the basics of programming with this comprehensive course.</p>
+                    <div class="course-meta">
+                        <span>8 weeks</span>
+                        <span class="course-rating">★★★★☆ 4.5</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <img src="../static/img/placeholder.svg?height=150&width=250" alt="Web Development Fundamentals"
+                    class="course-image">
+                <div class="course-content">
+                    <h2 class="course-title">Web Development Fundamentals</h2>
+                    <p class="course-description">Master HTML, CSS, and JavaScript to build modern websites.</p>
+                    <div class="course-meta">
+                        <span>10 weeks</span>
+                        <span class="course-rating">★★★★★ 4.8</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <img src="../static/img/placeholder.svg?height=150&width=250" alt="Data Science Essentials"
+                    class="course-image">
+                <div class="course-content">
+                    <h2 class="course-title">Data Science Essentials</h2>
+                    <p class="course-description">Explore data analysis, visualization, and machine learning techniques.
+                    </p>
+                    <div class="course-meta">
+                        <span>12 weeks</span>
+                        <span class="course-rating">★★★★☆ 4.6</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <img src="../static/img/placeholder.svg?height=150&width=250" alt="Mobile App Development"
+                    class="course-image">
+                <div class="course-content">
+                    <h2 class="course-title">Mobile App Development</h2>
+                    <p class="course-description">Create iOS and Android apps using React Native.</p>
+                    <div class="course-meta">
+                        <span>10 weeks</span>
+                        <span class="course-rating">★★★★☆ 4.4</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <img src="../static/img/placeholder.svg?height=150&width=250" alt="Artificial Intelligence Fundamentals"
+                    class="course-image">
+                <div class="course-content">
+                    <h2 class="course-title">Artificial Intelligence Fundamentals</h2>
+                    <p class="course-description">Dive into AI concepts, algorithms, and applications.</p>
+                    <div class="course-meta">
+                        <span>14 weeks</span>
+                        <span class="course-rating">★★★★★ 4.9</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <img src="../static/img/placeholder.svg?height=150&width=250" alt="Cybersecurity Basics"
+                    class="course-image">
+                <div class="course-content">
+                    <h2 class="course-title">Cybersecurity Basics</h2>
+                    <p class="course-description">Learn to protect systems and networks from cyber threats.</p>
+                    <div class="course-meta">
+                        <span>8 weeks</span>
+                        <span class="course-rating">★★★★☆ 4.7</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <img src="../static/img/placeholder.svg?height=150&width=250" alt="Cloud Computing Essentials"
+                    class="course-image">
+                <div class="course-content">
+                    <h2 class="course-title">Cloud Computing Essentials</h2>
+                    <p class="course-description">Understand cloud architectures and services like AWS and Azure.</p>
+                    <div class="course-meta">
+                        <span>10 weeks</span>
+                        <span class="course-rating">★★★★☆ 4.5</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <img src="../static/img/placeholder.svg?height=150&width=250" alt="UX/UI Design Principles"
+                    class="course-image">
+                <div class="course-content">
+                    <h2 class="course-title">UX/UI Design Principles</h2>
+                    <p class="course-description">Create user-centered designs for digital products.</p>
+                    <div class="course-meta">
+                        <span>8 weeks</span>
+                        <span class="course-rating">★★★★★ 4.8</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <img src="../static/img/placeholder.svg?height=150&width=250" alt="Blockchain Technology"
+                    class="course-image">
+                <div class="course-content">
+                    <h2 class="course-title">Blockchain Technology</h2>
+                    <p class="course-description">Explore the fundamentals of blockchain and cryptocurrencies.</p>
+                    <div class="course-meta">
+                        <span>10 weeks</span>
+                        <span class="course-rating">★★★★☆ 4.6</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <img src="../static/img/placeholder.svg?height=150&width=250" alt="DevOps Practices"
+                    class="course-image">
+                <div class="course-content">
+                    <h2 class="course-title">DevOps Practices</h2>
+                    <p class="course-description">Learn to streamline development and operations processes.</p>
+                    <div class="course-meta">
+                        <span>12 weeks</span>
+                        <span class="course-rating">★★★★☆ 4.7</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <img src="../static/img/placeholder.svg?height=150&width=250" alt="Big Data Analytics"
+                    class="course-image">
+                <div class="course-content">
+                    <h2 class="course-title">Big Data Analytics</h2>
+                    <p class="course-description">Analyze and interpret large datasets using modern tools.</p>
+                    <div class="course-meta">
+                        <span>14 weeks</span>
+                        <span class="course-rating">★★★★☆ 4.5</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <img src="../static/img/placeholder.svg?height=150&width=250" alt="Internet of Things (IoT)"
+                    class="course-image">
+                <div class="course-content">
+                    <h2 class="course-title">Internet of Things (IoT)</h2>
+                    <p class="course-description">Discover how to connect and control smart devices.</p>
+                    <div class="course-meta">
+                        <span>10 weeks</span>
+                        <span class="course-rating">★★★★☆ 4.4</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <img src="../static/img/placeholder.svg?height=150&width=250" alt="Game Development with Unity"
+                    class="course-image">
+                <div class="course-content">
+                    <h2 class="course-title">Game Development with Unity</h2>
+                    <p class="course-description">Create 2D and 3D games using the Unity game engine.</p>
+                    <div class="course-meta">
+                        <span>12 weeks</span>
+                        <span class="course-rating">★★★★★ 4.8</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <img src="../static/img/placeholder.svg?height=150&width=250" alt="Digital Marketing Strategies"
+                    class="course-image">
+                <div class="course-content">
+                    <h2 class="course-title">Digital Marketing Strategies</h2>
+                    <p class="course-description">Learn effective online marketing techniques and tools.</p>
+                    <div class="course-meta">
+                        <span>8 weeks</span>
+                        <span class="course-rating">★★★★☆ 4.6</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <img src="../static/img/placeholder.svg?height=150&width=250" alt="Agile Project Management"
+                    class="course-image">
+                <div class="course-content">
+                    <h2 class="course-title">Agile Project Management</h2>
+                    <p class="course-description">Master Agile methodologies for efficient project delivery.</p>
+                    <div class="course-meta">
+                        <span>6 weeks</span>
+                        <span class="course-rating">★★★★☆ 4.7</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <img src="../static/img/placeholder.svg?height=150&width=250" alt="3D Modeling and Animation"
+                    class="course-image">
+                <div class="course-content">
+                    <h2 class="course-title">3D Modeling and Animation</h2>
+                    <p class="course-description">Create stunning 3D models and animations for various industries.</p>
+                    <div class="course-meta">
+                        <span>14 weeks</span>
+                        <span class="course-rating">★★★★★ 4.9</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <img src="../static/img/placeholder.svg?height=150&width=250" alt="Natural Language Processing"
+                    class="course-image">
+                <div class="course-content">
+                    <h2 class="course-title">Natural Language Processing</h2>
+                    <p class="course-description">Explore techniques for processing and analyzing human language.</p>
+                    <div class="course-meta">
+                        <span>12 weeks</span>
+                        <span class="course-rating">★★★★☆ 4.6</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <img src="../static/img/placeholder.svg?height=150&width=250" alt="Quantum Computing Basics"
+                    class="course-image">
+                <div class="course-content">
+                    <h2 class="course-title">Quantum Computing Basics</h2>
+                    <p class="course-description">Understand the principles of quantum computing and its applications.
+                    </p>
+                    <div class="course-meta">
+                        <span>10 weeks</span>
+                        <span class="course-rating">★★★★★ 4.8</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <img src="../static/img/placeholder.svg?height=150&width=250" alt="Ethical Hacking"
+                    class="course-image">
+                <div class="course-content">
+                    <h2 class="course-title">Ethical Hacking</h2>
+                    <p class="course-description">Learn to identify and fix security vulnerabilities in systems.</p>
+                    <div class="course-meta">
+                        <span>12 weeks</span>
+                        <span class="course-rating">★★★★☆ 4.7</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <img src="../static/img/placeholder.svg?height=150&width=250" alt="Robotics Engineering"
+                    class="course-image">
+                <div class="course-content">
+                    <h2 class="course-title">Robotics Engineering</h2>
+                    <p class="course-description">Design and program robots for various applications.</p>
+                    <div class="course-meta">
+                        <span>16 weeks</span>
+                        <span class="course-rating">★★★★★ 4.9</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

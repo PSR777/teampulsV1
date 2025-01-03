@@ -1,0 +1,576 @@
+:root {
+  --primary-color: #0056b3;
+  --secondary-color: #6c757d;
+  --light-color: #f8f9fa;
+  --dark-color: #343a40;
+  --border-color: #dee2e6;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--dark-color);
+  background-color: var(--light-color);
+}
+
+
+/* main container*/
+.container {
+  display: flex;
+  height: 450px;
+  
+}
+
+/* side bar*/
+.sidebar {
+  width: 200px;
+  background-color: var(--light-color);
+  border-right: 1px solid var(--border-color);
+  padding: 20px;
+  overflow-y: auto;
+  position: fixed;
+  top: 70px;
+  left: -250px;
+  bottom: 0;
+  transition: left 0.4s ease-in-out;
+  z-index: 1000;
+}
+
+.sidebar.active {
+  left: 0;
+  transition: left 0.4s ease-in-out;
+}
+
+.sidebar h3 {
+  margin-bottom: 15px;
+}
+
+.filter-group {
+  margin-bottom: 20px;
+}
+
+.filter-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.filter-group input[type="text"],
+.filter-group select {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+}
+
+.sidebar-header{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.main-content {
+  flex: 1;
+  display: flex;
+  margin-left: 0;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+.sidebar.active+.main-content {
+  margin-left: 200px;
+  transition: margin 0.4s ease-in-out;
+}
+
+.filter_list {
+  position: relative;
+  width: 30%;
+  border-right: 1px solid var(--border-color);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 20px;
+  padding-left: 20px;
+  height: calc(100vh - 90px);
+}
+
+.filter_list_show {
+  width: 40%;
+}
+
+
+.scholarship-item {
+
+  background: rgb(255, 255, 255);
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 10px;
+}
+
+.scholarship-item h3 {
+  text-decoration: none;
+  color: #484848;
+  font-family: Inter, sans-serif;
+  font-weight: 600;
+  line-height: 1.33;
+  background-color: transparent;
+}
+
+.scholarship-item:hover {
+  background-color: red;
+}
+
+.scholarship-item.active {
+  background-color: var(--light-color);
+  font-weight: bold;
+}
+
+.scholarship-details {
+  width: 70%;
+  height: calc(100vh - 90px);
+  overflow-y: auto;
+}
+
+
+.filter-toggle {
+  position: sticky;
+  top: 0px;
+  z-index: 1001;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 6px;
+  
+}
+.hide-filter-btn {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.9s ease-in-out, visibility 0.9s ease-in-out;
+  position: absolute;
+}
+
+.show-filter-btn {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.9s ease-in-out, visibility 0.9s ease-in-out;
+}
+
+.list-moved-up {
+  margin-top: -18px; 
+  transition: margin 0.9s ease-in-out, height 0.9s ease-in-out;
+}
+.list-moved-down {
+  margin-top: 0px; 
+  transition: margin 0.9s ease-in-out, height 0.9s ease-in-out;
+}
+
+.scholarship-card {
+  width: 100%;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  max-width: 400px;
+  padding-right: 20px;
+  padding-left: 20px;
+  
+  padding-bottom: 20px;
+  
+  margin-top: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.scholarship-card:hover{
+  background-color: rgb(192, 240, 243);
+  cursor: pointer;
+}
+.scholarship-card.active{
+  background-color: rgb(226, 251, 253);
+  border-left: 1px solid blue;
+  
+}
+
+
+.provider {
+  border: 3px solid #fff;
+  border-radius: .5rem 0 1.5rem;
+  font-size: .75rem;
+  font-weight: 400;
+  line-height: 1rem;
+  padding: .5rem 3rem .5rem 1rem;
+  width: fit-content;
+  background-color: #fef7e9;
+  position: relative;
+  right: 20px;
+}
+
+.details-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.detail-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-label {
+  color: #666;
+  font-size: 14px;
+
+}
+
+.scholarship_name {
+  font-size: 1rem;
+  font-weight: 400;
+  
+  line-height: 1.5rem;
+  margin: 0 0 .75rem;
+  overflow: hidden;
+}
+
+.detail-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.scholarship-name {
+  color: #0066cc;
+  font-size: 16px;
+  margin-bottom: 12px;
+  text-decoration: none;
+}
+
+.scholarship-name:hover {
+  text-decoration: underline;
+}
+
+.tag {
+  display: inline-block;
+  background: #f5f5f5;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 12px;
+}
+
+.eligibility-link {
+  display: flex;
+  align-items: center;
+  color: #0066cc;
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.eligibility-link:hover {
+  text-decoration: underline;
+}
+
+.eligibility-link::after {
+  content: "→";
+  margin-left: 4px;
+}
+
+.university-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.university-icon {
+  width: 24px;
+  height: 24px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.university-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.university-name {
+  font-size: 14px;
+  color: #333;
+  font-weight: 700;
+}
+
+.university-location {
+  font-size: 14px;
+  color: #666;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.actively_hiring_badge {
+  border: 1px solid #ddd;
+  padding: 4px 8px;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  gap: 4px;
+  background: white;
+  
+}
+
+.actively_hiring_badge i {
+  color: #008BDC;
+  margin-right: 2px;
+  font-size: 16px;
+}
+
+.actively_hiring_badge span {
+  font-size: 12px;
+  line-height: 1.33333333;
+  font-weight: 500;
+  color: #484848;
+}
+
+.individual_internship_header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.individual_internship_header .internship_logo img {
+  max-width: 104px;
+  max-height: 48px;
+  color: transparent;
+}
+
+.individual_internship_header .profile {
+  font-size: 25px;
+  line-height: 20px;
+  margin-top: 10px;
+}
+
+.individual_internship_header .company_name a {
+  color: #8A8A8A;
+  font-family: Inter, sans-serif;
+  
+  line-height: 1.43;
+  margin-bottom: 0;
+  text-decoration: none;
+  
+}
+
+.company_name{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+#location_names {
+  display: flex;
+  margin-bottom: 20px;
+  gap: 8px;
+  align-items: center;
+
+}
+
+#location_names i {
+  
+  font-size: 14px
+
+}
+
+#location_names span {
+  color: #484848;
+  font-size: 14px
+}
+
+.internship_other_details_container {
+  display: flex;
+
+}
+
+.other_detail_item_row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.other_detail_item {
+  margin-right: 5rem;
+}
+
+.item_heading {
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  color: #8A8A8A;
+  gap: 8px;
+  display: flex;
+  font-family: Inter, sans-serif;
+  font-weight: 500;
+  align-items: center;
+}
+
+.other_detail_item .item_body {
+
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-top: 5px;
+  background-color: #fcfcfc;
+  border-radius: 10px;
+  color: rgb(0, 0, 0);
+  padding: 5px;
+  justify-content: center;
+}
+
+
+.tags_container_outer {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+  align-items: center;
+}
+
+.applications_message_container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.individual_internship_right {
+  background: rgb(255, 255, 255);
+  
+  margin-bottom: 20px;
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 10px;
+  border-bottom: 1px solid gray;
+}
+
+.internship_details .section_heading {
+  margin-top: 16px;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.heading_5_4,
+.heading_5_5 {
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 600;
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+
+.internship_details .text-container {
+  word-break: break-word;
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  padding-bottom: 8px;
+  color: #484848;
+}
+
+.text-container{
+  word-break: break-word;
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  padding-bottom: 8px;
+  color: #484848;
+  padding: 15px;
+}
+
+.internship_details .round_tabs_container {
+
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.round_tabs {
+  background: #F8F8F8;
+  color: #242323;
+  padding: 6px 12px;
+  border-radius: 14px;
+  margin-right: 16px;
+  margin-bottom: 8px;
+  line-height: 16px;
+  font-size: 14px;
+  margin-left: 15px;
+}
+
+
+.apply {
+  border-radius: 50px;
+  border: 1px solid #1C4980;
+  height: 38px;
+  padding: 0 8px;
+  display: inline-flex;
+  align-items: center;
+  color: #1c4980;
+  font-size: 16px;
+  transition: .3s;
+  cursor: pointer;
+}
+.apply:hover{
+  
+  border: 1px solid #0073ff;
+  padding: 0 30px;
+}
+
+.applicants_container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.website_link{
+  margin-top: 20px;
+  display: flex;
+  width: fit-content;
+  gap: 10px;
+}

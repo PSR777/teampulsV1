@@ -1,0 +1,77 @@
+header {
+    background: transparent;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+
+.main{
+    
+    background-image: url(../img/scholarship.jpg);
+    /* Set the background image */
+    background-size: cover; /* Scale the image to cover the entire main area */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    height: 550px; /* Set the height of the main element to the full viewport height */
+    color: white; /* Set text color for better readability on the image */
+    display: flex; /* Center the content horizontally and vertically */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    
+}
+
+
+.right {
+    width: 50%;
+    padding-right: 50px;
+    padding-left: 50px;
+
+}
+
+.right h1 {
+    color: #ffffff;
+    font-size: 50px;
+    font-weight: 600;
+    line-height: 120%;
+}
+
+.right p {
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 140%;
+    margin-top: 26px;
+    margin-bottom: 0;
+}
+
+.explore {
+    margin-top: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.explore button {
+    border-radius: 50px;
+    border: 1px solid #1C4980;
+    height: 52px;
+    padding: 0 20px;
+    display: inline-flex;
+    align-items: center;
+    color: #1c4980;
+    font-size: 16px;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.explore button:not(:last-child) {
+    margin-right: 10px;
+}
+
+.explore button:first-child {
+    background: #2600ff;
+    color: #fff;
+}

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signup</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
+    <style>
+        .mySlides {
+            display: none;
+        }
+
+        img {
+            vertical-align: middle;
+        }
+
+        /* Slideshow container */
+        .slideshow-container {
+            max-width: 1000px;
+            position: relative;
+            margin: auto;
+        }
+
+        /* Caption text */
+        .text {
+            color: #f2f2f2;
+            font-size: 15px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Number text (1/3 etc) */
+        .numbertext {
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+        }
+
+        /* The dots/bullets/indicators */
+        .dot {
+            height: 10px;
+            width: 10px;
+            margin: 0 2px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active {
+            background-color: #717171;
+        }
+
+        /* Fading animation */
+        .fade {
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: .4
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        /* On smaller screens, decrease text size */
+        @media only screen and (max-width: 300px) {
+            .text {
+                font-size: 11px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-left">
+            <div class="logo">
+                <h2>Sai<span>ram</span></h2>
+            </div>
+            <div class="slideshow-container">
+
+                <div class="mySlides fade">
+
+                    <img src="../static/img/login-img-1.png" style="width:100%">
+
+                </div>
+
+                <div class="mySlides fade">
+
+                    <img src="../static/img/login-img-2.png" style="width:100%">
+
+                </div>
+
+                <div class="mySlides fade">
+
+                    <img src="../static/img/login-img-3.png" style="width:100%">
+
+                </div>
+                <div class="mySlides fade">
+
+                    <img src="../static/img/login-img-4.png" style="width:100%">
+
+                </div>
+                <div class="mySlides fade">
+
+                    <img src="../static/img/login-img-5.png" style="width:100%">
+
+                </div>
+                <div class="mySlides fade">
+
+                    <img src="../static/img/login-img-6.png" style="width:100%">
+
+                </div>
+                <div class="mySlides fade">
+
+                    <img src="../static/img/login-img-7.png" style="width:100%">
+
+                </div>
+
+            </div>
+            <br>
+
+            <div style="text-align:center">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+
+            </div>
+            <script>
+                let slideIndex = 0;
+                showSlides();
+
+                function showSlides() {
+                    let i;
+                    let slides = document.getElementsByClassName("mySlides");
+                    let dots = document.getElementsByClassName("dot");
+                    for (i = 0; i < slides.length; i++) {
+                        slides[i].style.display = "none";
+                    }
+                    slideIndex++;
+                    if (slideIndex > slides.length) { slideIndex = 1 }
+                    for (i = 0; i < dots.length; i++) {
+                        dots[i].className = dots[i].className.replace(" active", "");
+                    }
+                    slides[slideIndex - 1].style.display = "block";
+                    dots[slideIndex - 1].className += " active";
+                    setTimeout(showSlides, 3000); // Change image every 2 seconds
+                }
+            </script>
+        </div>
+        <div class="login-right">
+            <div class="p_box">
+                <div class="hdng">
+                    <img src="https://d8it4huxumps7.cloudfront.net/uploads/images/login/create-icon.png?d=80x80"
+                        alt="Welcome Back" width="40" height="40" loading="lazy">
+                    <span>
+                        <h4><b>Create an account</b> </h4>
+                    </span>
+
+                </div>
+
+                <form method="post" action="/register">
+
+
+                    <div class="radio-inputs">
+                        <label class="radio">
+                            <input type="radio" name="user_type" checked="" value="candidate">
+                            <span class="name">Candidate</span>
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="user_type" value="company">
+                            <span class="name">Company</span>
+                        </label>
+
+                        <label class="radio">
+                            <input type="radio" name="user_type" value="host">
+                            <span class="name">Host</span>
+                        </label>
+                    </div>
+
+                    <div id="user_name">
+                        <div class="input-box">
+                            <label class="input-label">First name</label>
+                            <input placeholder="First name" class="input" name="First_name" type="text">
+                            <span class="input-helper">First name</span>
+                        </div>
+                        <div class="input-box">
+                            <label class="input-label">Last name</label>
+                            <input placeholder="Last name" class="input" name="Last_name" type="text">
+                            <span class="input-helper">Last name</span>
+                        </div>
+
+                    </div>
+                    <div class="user-details" >
+                        <!-- Input for Full Name -->
+
+
+                        <div class="input-box">
+                            <label class="input-label">User Name</label>
+                            <input placeholder="User Name" class="input" id="username" name="User_name" type="text"
+                                required>
+
+                            <span class="input-helper">enter a User Name</span>
+                        </div>
+                        <div class="input-box">
+                            <label class="input-label">Email</label>
+                            <input placeholder="user@mail.com" class="input" id="email" name="email" type="email"
+                                onblur="checkEmail()" oninput="clearError()" required>
+                            <span class="input-helper">enter a valid email</span>
+                            <div id="email-message"
+                                style="color: red; font-size: 0.9em; display: none; padding-bottom: 5px;"></div>
+
+                        </div>
+                        <div class="input-box">
+                            <label class="input-label">Phone Number</label>
+                            <input placeholder="Phone Number" class="input" name="Phone_number" type="text"
+                                oninput="removeNonNumeric(this)">
+
+                            <span class="input-helper">enter a Phone Number</span>
+
+                        </div>
+
+
+                    </div>
+
+                    <div id="passShow">
+                        <div class="wrapper">
+                            <label class="input-label">Password</label>
+                            <input placeholder="Password" id="login-form-password" class="input" name="Password"
+                                type="Password" required>
+
+                            <div>
+                                <svg id="Layer_1" onclick="togglePass1()" data-name="Layer 1" width="15"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <title>eye-glyph</title>
+                                    <path
+                                        d="M320,256a64,64,0,1,1-64-64A64.07,64.07,0,0,1,320,256Zm189.81,9.42C460.86,364.89,363.6,426.67,256,426.67S51.14,364.89,2.19,265.42a21.33,21.33,0,0,1,0-18.83C51.14,147.11,148.4,85.33,256,85.33s204.86,61.78,253.81,161.25A21.33,21.33,0,0,1,509.81,265.42ZM362.67,256A106.67,106.67,0,1,0,256,362.67,106.79,106.79,0,0,0,362.67,256Z" />
+                                </svg>
+                                <svg id="Layer_2" onclick="togglePass1()" data-name="Layer 2" width="15"
+                                    xmlns="http://www.w3.org/2000/svg" style='display: none' viewBox="0 0 512 512">
+                                    <title>eye-disabled-glyph</title>
+                                    <path
+                                        d="M409.84,132.33l95.91-95.91A21.33,21.33,0,1,0,475.58,6.25L6.25,475.58a21.33,21.33,0,1,0,30.17,30.17L140.77,401.4A275.84,275.84,0,0,0,256,426.67c107.6,0,204.85-61.78,253.81-161.25a21.33,21.33,0,0,0,0-18.83A291,291,0,0,0,409.84,132.33ZM256,362.67a105.78,105.78,0,0,1-58.7-17.8l31.21-31.21A63.29,63.29,0,0,0,256,320a64.07,64.07,0,0,0,64-64,63.28,63.28,0,0,0-6.34-27.49l31.21-31.21A106.45,106.45,0,0,1,256,362.67ZM2.19,265.42a21.33,21.33,0,0,1,0-18.83C51.15,147.11,148.4,85.33,256,85.33a277,277,0,0,1,70.4,9.22l-55.88,55.88A105.9,105.9,0,0,0,150.44,270.52L67.88,353.08A295.2,295.2,0,0,1,2.19,265.42Z" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="wrapper">
+                            <label class="input-label">Password</label>
+                            <input placeholder="Password" id="login-form-Conpassword" class="input" name="Password"
+                                type="Password" oninput="validatePasswords()">
+
+                            <div>
+                                <svg id="Layer_11" onclick="togglePass2()" data-name="Layer 11" width="15"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <title>eye-glyph</title>
+                                    <path
+                                        d="M320,256a64,64,0,1,1-64-64A64.07,64.07,0,0,1,320,256Zm189.81,9.42C460.86,364.89,363.6,426.67,256,426.67S51.14,364.89,2.19,265.42a21.33,21.33,0,0,1,0-18.83C51.14,147.11,148.4,85.33,256,85.33s204.86,61.78,253.81,161.25A21.33,21.33,0,0,1,509.81,265.42ZM362.67,256A106.67,106.67,0,1,0,256,362.67,106.79,106.79,0,0,0,362.67,256Z" />
+
+
+                                </svg>
+                                <svg id="Layer_22" onclick="togglePass2()" data-name="Layer 22" width="15"
+                                    xmlns="http://www.w3.org/2000/svg" style='display: none' viewBox="0 0 512 512">
+                                    <title>eye-disabled-glyph</title>
+                                    <path
+                                        d="M409.84,132.33l95.91-95.91A21.33,21.33,0,1,0,475.58,6.25L6.25,475.58a21.33,21.33,0,1,0,30.17,30.17L140.77,401.4A275.84,275.84,0,0,0,256,426.67c107.6,0,204.85-61.78,253.81-161.25a21.33,21.33,0,0,0,0-18.83A291,291,0,0,0,409.84,132.33ZM256,362.67a105.78,105.78,0,0,1-58.7-17.8l31.21-31.21A63.29,63.29,0,0,0,256,320a64.07,64.07,0,0,0,64-64,63.28,63.28,0,0,0-6.34-27.49l31.21-31.21A106.45,106.45,0,0,1,256,362.67ZM2.19,265.42a21.33,21.33,0,0,1,0-18.83C51.15,147.11,148.4,85.33,256,85.33a277,277,0,0,1,70.4,9.22l-55.88,55.88A105.9,105.9,0,0,0,150.44,270.52L67.88,353.08A295.2,295.2,0,0,1,2.19,265.42Z" />
+
+                                </svg>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    
+
+
+
+                    <!-- Submit button -->
+                    <div id="error-message" style="color: red; font-size: 0.9em; display: none;"></div>
+                    <button class="form-btn" id="Submit-btn">Create</button>
+
+                    <script>
+                        function clearError() {
+                            const messageDiv = document.getElementById("email-message");
+                            messageDiv.style.display = 'none';
+                        }
+                        function checkEmail() {
+                            const email = document.getElementById("email");
+                            const Submit_btn = document.getElementById("Submit-btn");
+
+                            // Regular expression for basic email validation
+                            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+                            let valid = emailPattern.test(email.value);
+                            if (email.value == '') {
+                                messageDiv.style.display = 'none';
+                            }
+                            if (valid) {
+
+                                Submit_btn.disabled = false;
+                                ;
+                                fetch(`/check-email?email=${encodeURIComponent(email.value)}`)
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        const messageDiv = document.getElementById("email-message");
+                                        if (data.exists) {
+                                            messageDiv.textContent = "Email already exists.";
+                                            messageDiv.style.color = "red";
+                                            messageDiv.style.display = 'block';
+                                        } else {
+                                            messageDiv.textContent = "Email is available.";
+                                            messageDiv.style.color = "green";
+                                            messageDiv.style.display = 'block';
+                                        }
+                                    })
+                                    .catch(error => console.error("Error:", error));
+
+                            } else {
+                                Submit_btn.disabled = true;
+
+
+                                const messageDiv = document.getElementById("email-message");
+                                messageDiv.textContent = "enter a valid email.";
+                                messageDiv.style.color = "red";
+                                messageDiv.style.display = 'block';
+                            }
+
+
+                        }
+                    </script>
+
+                    <script>
+                        function removeNonNumeric(input) {
+                            // Replace any non-numeric character with an empty string
+                            input.value = input.value.replace(/\D/g, '');
+                            // Limit the length to 10 characters
+                            if (input.value.length > 10) {
+                                input.value = input.value.slice(0, 10);
+                            }
+                        }
+
+                        function togglePass2() {
+                            var x = document.getElementById("login-form-Conpassword");   // Input
+                            var s = document.getElementById("Layer_11");               // Show pass
+                            var h = document.getElementById("Layer_22");
+                            if (x.type === "password") {
+                                x.type = 'text';
+                                s.style.display = 'none';
+                                h.style.display = 'inline';
+                            } else {
+                                x.type = 'password';
+                                s.style.display = 'inline';
+                                h.style.display = 'none';
+                            }
+                        }
+
+                        function togglePass1() {
+                            var x = document.getElementById("login-form-password");   // Input
+                            var s = document.getElementById("Layer_1");               // Show pass
+                            var h = document.getElementById("Layer_2");
+                            if (x.type === "password") {
+                                x.type = 'text';
+                                s.style.display = 'none';
+                                h.style.display = 'inline';
+                            } else {
+                                x.type = 'password';
+                                s.style.display = 'inline';
+                                h.style.display = 'none';
+                            }
+                        }
+                    </script>
+                    <script>
+                        function validatePasswords() {
+                            const password = document.getElementById("login-form-password").value;
+                            const confirmPassword = document.getElementById("login-form-Conpassword").value;
+                            const errorMessage = document.getElementById("error-message");
+
+                            // Reset error message
+                            errorMessage.style.display = "none";
+                            errorMessage.textContent = "";
+
+                            // Check if passwords match
+                            if (password !== confirmPassword) {
+                                errorMessage.textContent = "Passwords do not match.";
+                                errorMessage.style.display = "block"; // Show error message
+                            }
+                        }
+
+                    </script>
+
+                </form>
+                <div id="signupDev">
+                    <p class="signup-text"> have an account ? <a href="/login">Login</a></p>
+
+                </div>
+                <div class="other-details" >
+                    <h3>1. Basic Details</h3>
+                    <div class="input-box">
+                        <label class="input-label" for="college">College:</label>
+                        <input type="text" id="college" class="input" name="college" required>
+                    </div>
+                    <div class="input-box">
+                        <label class="input-label" for="course">Course:</label>
+                        <input type="text" id="course" class="input" name="course" required>
+                    </div>
+                    <div class="input-box">
+                        <label class="input-label" for="course-duration">Course Duration:</label>
+                        <input type="text" id="course-duration" class="input" name="course_duration" required>
+                    </div>
+                    <div class="input-box">
+                        <label class="input-label" for="dob">Date of Birth:</label>
+                        <input type="date" id="dob" class="input" name="dob" required>
+                    </div>
+                    <div class="input-box">
+                        <label class="input-label" for="current-address">Current Address:</label>
+                        <textarea id="current-address" class="input" name="current_address" required></textarea>
+                    </div>
+                    <div class="input-box">
+                        <label class="input-label" for="permanent-address">Permanent Address:</label>
+                        <textarea id="permanent-address" class="input" name="permanent_address" required></textarea>
+                    </div>
+                    <!-- About -->
+                    <h3>2. About</h3>
+                    <div class="input-box">
+                        <label class="input-label" for="purpose">Purpose (e.g., open to work, hiring,
+                            upskilling):</label>
+                        <input type="text" id="purpose" class="input" name="purpose" required>
+                    </div>
+                    <div class="input-box">
+                        <label class="input-label" for="interest-area">Interest Area (Role):</label>
+                        <input type="text" id="interest-area" class="input" name="interest_area" required>
+                    </div>
+                    <!-- Skills -->
+                    <h3>3. Skills</h3>
+                    <textarea id="skills" name="skills" placeholder="List your skills" required></textarea>
+
+                    <!-- Work Experience -->
+                    <h3>4. Work Experience</h3>
+                    <textarea id="work-experience" name="work_experience"
+                        placeholder="Describe your work experience" required></textarea>
+
+                    <!-- Certificates -->
+                    <h3>5. Certificates</h3>
+                    <textarea id="certificates" name="certificates" placeholder="List your certificates"
+                        required></textarea>
+
+                    <!-- Projects -->
+                    <h3>6. Projects</h3>
+                    <textarea id="projects" name="projects" placeholder="Describe your projects"
+                        required></textarea>
+
+                    <!-- Achievements -->
+                    <h3>7. Achievements</h3>
+                    <textarea id="achievements" name="achievements" placeholder="List your achievements"
+                        required></textarea>
+
+                    <!-- Hobbies -->
+                    <h3>8. Hobbies</h3>
+                    <textarea id="hobbies" name="hobbies" placeholder="Describe your hobbies" required></textarea>
+
+                    <!-- Social Links -->
+                    <h3>9. Social Links</h3>
+                    <div class="input-box">
+                        <label class="input-label" for="linkedin">LinkedIn:</label>
+                        <input type="url" id="linkedin" class="input" name="linkedin">
+                    </div>
+                    <div class="input-box">
+                        <label class="input-label" for="github">GitHub:</label>
+                        <input type="url" id="github" class="input" name="github">
+                    </div>
+                    <div class="input-box">
+                        <label class="input-label" for="twitter">Twitter:</label>
+                        <input type="url" id="twitter" class="input" name="twitter">
+                    </div>
+
+                    <div class="input-box">
+                        <label class="input-label" for="portfolio">Portfolio/Website:</label>
+                        <input type="url" id="portfolio" class="input" name="portfolio">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</body>
+
+</html>

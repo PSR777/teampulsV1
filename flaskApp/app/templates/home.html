@@ -1,0 +1,120 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block extra_css
+%}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}" />
+
+<style>
+  
+</style>
+{% endblock %} {% block content %}
+<div class="container">
+  <div class="bodyHeader">
+    <h1>Unlock Your Career</h1>
+    <p>
+      Explore opportunities from across the globe to learn, showcase skills,
+      gain CV points & get hired by your dream company.
+    </p>
+  </div>
+
+  <div class="flex">
+    <div class="status-section">
+      <h3>Status / Upcoming Events</h3>
+      <p>
+        Share your background and career goals for personalized recommendations!
+      </p>
+      <button class="complete-profile-btn">Complete my profile</button>
+    </div>
+    <div class="profile-section">
+      <div class="profile-avatar">
+        <img src="../static/img/pro.jpg??height=40&width=40" alt="" />
+      </div>
+      <div class="profile-info">
+        <p>Just Went For Pro!</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-card internship">
+      <div>
+        <h3>Internship</h3>
+        <p>Gain Practical Experience</p>
+      </div>
+      <img
+        src="../static/img/login-img-1.png"
+        alt="Mentorship illustration"
+        style="width: 100px; height: 100px"
+      />
+    </div>
+
+    <div class="feature-card mentorship">
+      <div>
+        <h3>Mentorship</h3>
+        <p>Guidance From Top Mentors</p>
+      </div>
+      <img
+        src="../static/img/login-img-2.png"
+        alt="Mentorship illustration"
+        style="width: 100px; height: 100px"
+      />
+    </div>
+
+    <div class="feature-card jobs">
+      <div>
+        <h3>Jobs</h3>
+        <p>Explore Diverse Careers</p>
+      </div>
+      <div class="feature-icons">
+        <img
+          src="../static/img/login-img-3.png"
+          alt="Mentorship illustration"
+          style="width: 100px; height: 100px"
+        />
+      </div>
+    </div>
+
+    <div class="feature-card courses">
+      <div>
+        <h3>Courses</h3>
+        <p>Expand Knowledge Base</p>
+      </div>
+      <div class="feature-icons">
+        <img
+          src="../static/img/login-img-4.png"
+          alt="Mentorship illustration"
+          style="width: 100px; height: 100px"
+        />
+      </div>
+    </div>
+
+    <div class="feature-card compete">
+      <div>
+        <h3>Carrier</h3>
+        <p>Battle For Excellence</p>
+      </div>
+      <img
+        src="../static/img/login-img-5.png"
+        alt="Mentorship illustration"
+        style="width: 100px; height: 100px"
+      />
+    </div>
+
+    <div class="feature-card practice">
+      <div>
+        <h3>Scholarship</h3>
+        <p>Refine Skills Daily</p>
+      </div>
+      <img
+        src="../static/img/login-img-6.png"
+        alt="Mentorship illustration"
+        style="width: 100px; height: 100px"
+      />
+    </div>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const span = document.getElementById("homeLi");
+      span.classList.add("LiActive");
+    });
+  </script>
+  {% endblock %}
+</div>

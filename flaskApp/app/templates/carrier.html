@@ -1,0 +1,1350 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/carrier.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/scholarship.css') }}" />
+    <title>Career Guidance and Path</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        /* Form Section Styles */
+        .form-section {
+            max-width: 1400px;
+            margin: 20px auto;
+            padding: 0 24px;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .form-select {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .submit-btn {
+            padding: 12px 32px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Career Path Section */
+        .career-path {
+            max-width: 1400px;
+            margin: 20px auto;
+            padding: 0 24px;
+            height: 70px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Main Content Layout */
+        .main-content {
+            max-width: 1400px;
+            margin: 20px auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 24px;
+        }
+
+        /* Mentors Sidebar */
+        .mentors-sidebar {
+            background: white;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+
+
+        /* Content Area */
+        .content-area {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .roadmap-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 1024px) {
+            .form-section {
+                flex-direction: column;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+
+        /* Hide scrollbar on Chrome, Edge, and Safari */
+        .slideshow-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .slideshow-container {
+            overflow: -moz-scrollbars-none;
+            /* For Firefox */
+            -ms-overflow-style: none;
+            /* For IE and Edge */
+        }
+    </style>
+    <style>
+        body {
+            background-color: rgb(255, 255, 255);
+        }
+
+        .mySlides1 {
+            display: none
+        }
+
+        .mySlides1 img {
+            vertical-align: middle;
+
+            object-fit: cover
+        }
+
+        .mySlides1 {
+            border-radius: 50%;
+        }
+
+        .active {
+            background-color: #717171;
+        }
+
+        /* Fading animation */
+        .fade1 {
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: .4
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        .scholarship-list {
+            display: grid;
+            width: 100%;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            /* Creates 3 equal-width columns */
+            gap: 10px;
+            /* Adds a gap between grid items */
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+    </style>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+
+            box-sizing: border-box;
+        }
+
+        .button-container {
+            display: flex;
+            width: 100%;
+
+        }
+
+        .btn {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            transition: all 1s ease;
+            /* Smooth transition for all properties */
+        }
+
+        .btn.active {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .content-wrapper {
+            position: relative;
+            height: 200px;
+            /* Set a fixed height for the wrapper */
+            overflow: hidden;
+        }
+
+        .content {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            /* Smooth transition for opacity and visibility */
+        }
+
+        .content.visible {
+
+            display: block;
+        }
+
+        .flex {
+            display: flex;
+            height: 450px;
+        }
+
+        .sidediv {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            
+            align-items: center;
+            height: 100%;
+            overflow-y: scroll;
+            
+            
+        }
+
+        .scholarship-list {
+            height: 100%;
+            overflow-y: scroll;
+        }
+    </style>
+    <style>
+        .sidediv .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .sidediv label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .sidediv input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 0.5rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border: 1px solid #d1d5db;
+            border-radius: 0.25rem;
+            appearance: none;
+        }
+        .sidediv .inputs {
+            max-width: 28rem;
+            margin: 0 auto;
+            padding: 1.5rem;
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .sidediv h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .sidediv select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 0.5rem;
+        }
+
+        .sidediv button[type="submit"] {
+            width: 100%;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: white;
+            background-color: #3b82f6;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .sidediv button[type="submit"]:hover {
+            background-color: #2563eb;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo_search">
+                <a href="/" class="logo">
+                    <img src="../static/img/header_log.webp?height=40&width=120" alt="Unstop">
+                </a>
+
+                <div class="search-container">
+                    <span class="search-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </span>
+                    <input id="main_search" type="text" placeholder="Search Scholarships">
+                </div>
+            </div>
+
+
+            <nav>
+                <ul class="nav-links">
+                    <li id="homeLi"><a href="/home">Home</a></li>
+                    <li id="carrierLi"><a href="/carrier">Carrier</a></li>
+                    <li id="internshipLi"><a href="/internship/home">Internships</a></li>
+                    <li id="jobLi"><a href="/job/home">Jobs</a></li>
+                    <li id="scholarshipLi"><a href="/scholarship/home">Scholarship</a></li>
+                    <li id="courseLi"><a href="/courses">Courses</a></li>
+                    <li id="mentorshipLi"><a href="/mentorships">Mentorship</a></li>
+                    
+                </ul>
+            </nav>
+
+            <div class="right-section">
+                <button class="icon-button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                </button>
+
+                <div class="profile-pic" onclick="window.location = window.location.origin + '/profile'">
+                    <img width="37" height="37" alt=""
+                        src="https://d8it4huxumps7.cloudfront.net/uploads/images/unstop/user-avatar/png/15.png?d=100x100"
+                        class="">
+                </div>
+
+                <button class="host-button" onclick="window.location = window.location.origin + '/payment'">
+                    <i class="fa fa-rocket" aria-hidden="true"></i>
+                    <span>Pro</span>
+                </button>
+
+                <button class="business-button">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                        </path>
+                    </svg>
+                    <span>For Business</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="button-container">
+            <button id="guidanceBtn" class="btn active">Career Guidance</button>
+            <button id="pathBtn" class="btn">Career Path</button>
+        </div>
+
+        <div id="guidanceContent" class="content visible">
+            <div class="form-section">
+                <select id="desiredRole" name="desiredRole" class="form-select" onchange="filterMentors(id)" required>
+                    <option value="">Select Desired Role</option>
+                </select>
+                <script>
+                    const jobData = {
+                        "jobs": [
+                            'Business And Management',
+                            'Software Engineering',
+                            'Web Development',
+                            'Mobile Development',
+                            'Embedded Systems',
+                            'Game Development',
+                            'Firmware Engineering',
+                            'Systems Engineering',
+                            'Platform Engineering',
+                            'Data Science',
+                            'Machine Learning',
+                            'Data Engineering',
+                            'Artificial Intelligence',
+                            'Natural Language Processing',
+                            'Computer Vision',
+                            'DevOps Engineering',
+                            'Cloud Computing',
+                            'Cyber Security',
+                            'Blockchain Development'
+                        ]
+
+                    };
+                    const selectField = document.getElementById("desiredRole");
+                    jobData.jobs.forEach(job => {
+                        const option = document.createElement("option");
+                        option.value = job
+                        option.textContent = job;
+                        selectField.appendChild(option);
+                    });
+                </script>
+
+
+
+                <button class="submit-btn" type="submit" id="carrier-btn" onclick="toggleLoading()">
+                    <div class="wrapper">
+                        <div class="dot hidden" id="dot"></div>
+                        <span class="text" id="loading">
+                            Loading
+                        </span>
+                        <span class="text" id="submit">
+                            Submit
+                        </span>
+                    </div>
+                </button>
+            </div>
+            <!-- Main Content -->
+            <div class="main-content ">
+                <!-- Mentors Sidebar -->
+                <aside class="mentors-sidebar ">
+                    <div class="slideshow-container custom-scrollbar thin ">
+                        <h3><span style="color: rgb(0, 0, 122); padding-right: 10px;">Unlock </span> Guidance with
+                            Mentors</h3>
+                        {% for mentor in mentorships %}
+                        <div class="mentor-card" data-type="{{ mentor.field }}" id="{{mentor.id}}"
+                            onclick="window.location = window.location.origin + '/mentorship/profile/{{mentor.id}}'">
+                            <div class="mentor-header">
+                                <img src="{{mentor.avatar}}" alt="${mentor.name}" class="mentor-avatar">
+                                <div>
+                                    <div class="mentor-rating">
+                                        ★ {{mentor.rating | round(1) }}
+                                        {% if mentor.isTopMentor %}
+                                        Top Mentor
+                                        {% endif %}
+
+                                    </div>
+                                    <div class="mentor-name">{{mentor.name}}</div>
+                                </div>
+                            </div>
+                            <div class="mentor-info">
+                                <div>🕒 {{mentor.experience}} • {{mentor.field}}</div>
+                                <div>📝 {{mentor.reviews}} Reviews</div>
+                                <div>{{mentor.organization}}</div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                </aside>
+
+                <!-- Content Area -->
+                <main id="aiPath" class="content-area">
+
+                    <div class="slideshow-container1">
+
+                        <div class="mySlides1 fade1">
+
+                            <img src="../static/img/carrier/Career-Path-Template-1.png" style="width:100%">
+
+                        </div>
+
+                        <div class="mySlides1 fade1">
+
+                            <img src="../static/img/carrier/Career-Path-Template-2.png" style="width:100%">
+
+                        </div>
+
+                        <div class="mySlides1 fade1">
+
+                            <img src="../static/img/carrier/Career-Path-Template-3.png" style="width:100%">
+
+                        </div>
+                        <div class="mySlides1 fade1">
+
+                            <img src="../static/img/carrier/Career-Path-Template-4.png" style="width:100%">
+
+                        </div>
+                        <div class="mySlides1 fade1">
+
+                            <img src="../static/img/carrier/Career-Path-Template-5.png" style="width:100%">
+
+                        </div>
+                        <div class="mySlides1 fade1">
+
+                            <img src="../static/img/carrier/Career-Path-Template-6.png" style="width:100%">
+
+                        </div>
+
+
+
+                    </div>
+
+                </main>
+            </div>
+        </div>
+
+        <div id="pathContent" class="content">
+            
+            <div id="pathContainer" class="career-path">
+
+            </div>
+            <div class="flex">
+                <div class="sidediv">
+                    <div class="inputs">
+                        <h2>Tell us more</h2>
+
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input type="number" id="age" name="age" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="study_level">Select your current study level</label>
+                            <select id="studySelect" name="study_level" class="form-select">
+                                <option value="">Select your current study level</option>
+                                <option value="10th">10th</option>
+                                <option value="12th">12th</option>
+                                <option value="Bachelors">Bachelors</option>
+                                <option value="Masters">Masters</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="role1">Select a role</label>
+                            <select id="roleSelect" name="role1" class="form-select">
+                                <option value="">Select a role</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="educationLevel">Current Education Level</label>
+                            <select id="educationLevel" name="educationLevel" required>
+                                <option value="" disabled selected>Select education level</option>
+                                <option value="highSchool">High School</option>
+                                <option value="undergraduate">Undergraduate</option>
+                                <option value="graduate">Graduate</option>
+                                <option value="phd">PhD</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="gpa">GPA</label>
+                            <input type="number" id="gpa" name="gpa" step="0.01" min="0" max="4" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="major">Intended Major/Field of Study</label>
+                            <input type="text" id="major" name="major" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nationality">Nationality</label>
+                            <input type="text" id="nationality" name="nationality" required>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="financialNeed" name="financialNeed">
+                            <label for="financialNeed">Financial Need</label>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="extracurricular" name="extracurricular">
+                            <label for="extracurricular">Extracurricular Activities</label>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="volunteer" name="volunteer">
+                            <label for="volunteer">Volunteer Experience</label>
+                        </div>
+
+                        <button class="submit-btn" type="submit" id="carrier-btn" onclick="toggleLoading()">
+                            <div class="wrapper">
+                                <div class="dot hidden" id="dot"></div>
+                                <span class="text" id="loading">
+                                    Loading
+                                </span>
+                                <span class="text" id="submit">
+                                    Submit
+                                </span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <section class="scholarship-list" id="scholarshipList">
+                    <!-- Scholarship list items will be dynamically added here -->
+                    {% for scholarship in scholarships %}
+                    <div class="scholarship-card" data-typeFilter="{{scholarship.type}}"
+                        data-locationFilter="{{scholarship.location}}" id="{{scholarship.id}}"
+                        data-type="{{ scholarship.type }}" data-location="{{ scholarship.location }}"
+                        data-organization="{{ scholarship.organization }}" onclick="showScholarshipDetails(id)">
+                        <div class="provider">Provided by university</div>
+                        <div class="details-row">
+                            <div class="detail-group">
+                                <span class="detail-label">Grant</span>
+                                <span class="detail-value">{{scholarship.amount}}</span>
+                            </div>
+                            <div class="detail-group">
+                                <span class="detail-label">Deadline</span>
+                                <span class="detail-value">{{scholarship.deadline}}</span>
+                            </div>
+                        </div>
+                        <h2 class="scholarship_name">{{scholarship.title}}</h2>
+                        <div class="tag">{{scholarship.type}}</div>
+                        <div class="university-info">
+                            <div class="university-icon">
+                                🏛️
+                            </div>
+                            <div class="university-details">
+                                <span class="university-name">{{scholarship.organization}}</span>
+                                <span class="university-location">{{scholarship.location}}</span>
+                            </div>
+                        </div>
+                        <span class="university-location">{{scholarship.eligibility}}</span>
+                    </div>
+                    {% endfor %}
+                </section>
+            </div>
+
+        </div>
+    </main>
+
+
+    <script>
+        const guidanceBtn = document.getElementById('guidanceBtn');
+        const pathBtn = document.getElementById('pathBtn');
+        const guidanceContent = document.getElementById('guidanceContent');
+        const pathContent = document.getElementById('pathContent');
+
+        function toggleContent(activeBtn, activeContent, inactiveBtn, inactiveContent) {
+            activeBtn.classList.add('active');
+            inactiveBtn.classList.remove('active');
+
+            // Adjust button widths
+            activeBtn.style.flex = '1';
+            inactiveBtn.style.flex = '0 1 auto';
+
+            // Toggle content visibility
+            activeContent.classList.add('visible');
+            inactiveContent.classList.remove('visible');
+        }
+
+        guidanceBtn.addEventListener('click', () => {
+            toggleContent(guidanceBtn, guidanceContent, pathBtn, pathContent);
+        });
+
+        pathBtn.addEventListener('click', () => {
+            toggleContent(pathBtn, pathContent, guidanceBtn, guidanceContent);
+        });
+    </script>
+    <script>
+        // Function to toggle visibility
+        async function toggleLoading() {
+
+            const carrier_btn = document.getElementById("carrier-btn");
+            const loadingText = document.getElementById("loading");
+            const submitText = document.getElementById("submit");
+            const dot = document.getElementById("dot");
+            carrier_btn.disabled = true;
+
+            // Toggle visibility on click
+            submitText.style.display = "none";
+            loadingText.style.display = "inline";
+            dot.style.display = "inline";
+
+            // Get form data
+
+            const dreamRole = document.getElementById('desiredRole').value;
+
+            try {
+                // Send POST request using fetch
+                const response = await fetch('/career_path', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ dream_role: dreamRole })
+                });
+
+                // Check if the response is ok
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log(data.candidates[0]['content']['parts'][0])
+                    let res_text = data.candidates[0]['content']['parts'][0]['text']
+                    let modifiedString = res_text.replace(/\*/g, '');
+
+                    document.getElementById('aiPath').innerHTML =
+                        modifiedString || "Career path information is not available.";
+                    const loadingText = document.getElementById("loading");
+                    const submitText = document.getElementById("submit");
+                    const dot = document.getElementById("dot");
+
+                    // Toggle visibility on click
+                    submitText.style.display = "inline";
+                    loadingText.style.display = "none";
+                    dot.style.display = "none";
+                    carrier_btn.disabled = false;
+                } else {
+                    document.getElementById('result').innerText = "Error retrieving career path.";
+                    carrier_btn.disabled = false;
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                document.getElementById('result').innerText = "An error occurred.";
+                carrier_btn.disabled = false;
+            }
+
+        }
+
+    </script>
+    <!-- sliding script -->
+    <script>
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("mySlides1");
+
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+
+            slides[slideIndex - 1].style.display = "block";
+
+            setTimeout(showSlides, 10000); // Change image every 2 seconds
+        }
+
+    </script>
+    <!-- filter Mentors -->
+    <script>
+        function filterMentors(id) {
+            const filterValue = document.getElementById(id).value.trim().toLowerCase(); // Normalize filter input
+            const mentors = document.querySelectorAll(".mentor-card");
+            let matchedMentors = []; // Array to store matched mentors
+
+            mentors.forEach(mentor => {
+                const type = mentor.getAttribute("data-type").toLowerCase().trim(); // Normalize mentor type
+
+                // Use a regex pattern to allow for flexible matching
+                const regex = new RegExp(filterValue, 'i'); // 'i' for case-insensitive matching
+                const matchesType = type === filterValue; // Test the regex against the mentor type
+
+                if (matchesType) {
+                    mentor.style.display = "block"; // Show the mentor card
+                    matchedMentors.push(mentor); // Add to matched mentors array
+                } else {
+                    mentor.style.display = "none"; // Hide the mentor card
+                }
+            });
+
+            console.log(matchedMentors); // Log matched mentors
+        }
+
+    </script>
+
+    <!-- indicate header element -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const Li = document.getElementById("carrierLi");
+            Li.classList.add('LiActive');
+
+        });
+    </script>
+    <!-- to show carrier path -->
+    <script>
+        const JobPaths = {
+            'Software Developer': '10th/12th Science (PCM)/Engineering (B.Tech| B.E.) in Computer Science/Software Developer',
+            'Data Scientist': '10th/12th Science (PCM)/Engineering (B.Tech| B.E.) in Computer Science or Science (B.Sc.) in Mathematics/Statistics/M.Tech or M.Sc. in Data Science/Data Scientist',
+            'Mechanical Engineer': '10th/12th Science (PCM)/Engineering (B.Tech| B.E.) in Mechanical/Mechanical Engineer',
+            'Civil Engineer': '10th/12th Science (PCM)/Engineering (B.Tech| B.E.) in Civil/Civil Engineer',
+            'Electrical Engineer': '10th/12th Science (PCM)/Engineering (B.Tech| B.E.) in Electrical/Electrical Engineer',
+            'Chemical Engineer': '10th/12th Science (PCM)/Engineering (B.Tech| B.E.) in Chemical/Chemical Engineer',
+            'Aerospace Engineer': '10th/12th Science (PCM)/Engineering (B.Tech| B.E.) in Aerospace/Aerospace Engineer',
+            'Research Scientist': '10th/12th Science (PCM | PCB)/Science (B.Sc.) in relevant field/M.Sc./Ph.D./Research Scientist',
+            'Accountant': '10th/12th Commerce/B.Com in Accounting and Finance/Accountant',
+            'Financial Analyst': '10th/12th Commerce/B.Com in Accounting and Finance or Economics/MBA in Finance/Financial Analyst',
+            'Business Analyst': '10th/12th Any Stream/BBA or B.Com/MBA/Business Analyst',
+            'Marketing Manager': '10th/12th Any Stream/BBA in Marketing or B.Com/MBA in Marketing/Marketing Manager',
+            'Human Resource Manager': '10th/12th Any Stream/BBA in HR or BA in Psychology/MBA in HR/Human Resource Manager',
+            'Teacher': '10th/12th Any Stream/BA or B.Sc. in relevant subject| B.Ed./Teacher',
+            'Professor': '10th/12th Any Stream/BA or B.Sc. in relevant subject/MA or M.Sc./Ph.D./Professor',
+            'Lawyer': '10th/12th Any Stream/LLB/Lawyer',
+            'Corporate Lawyer': '10th/12th Any Stream/LLB/LLM in Corporate Law/Corporate Lawyer',
+            'Doctor': '10th/12th Science (PCB)/MBBS/Doctor',
+            'Surgeon': '10th/12th Science (PCB)/MBBS/MS in Surgery/Surgeon',
+            'Dentist': '10th/12th Science (PCB)/BDS/Dentist',
+            'Psychologist': '10th/12th Any Stream/BA in Psychology/MA in Psychology/M.Phil. or Ph.D./Psychologist',
+            'Journalist': '10th/12th Any Stream/BA in Journalism or Mass Communication/MA in Journalism/Journalist',
+            'Graphic Designer': '10th/12th Any Stream/BFA in Graphic Design or B.Des./Graphic Designer',
+            'Architect': '10th/12th Science (PCM)/B.Arch./M.Arch./Architect',
+            'Chartered Accountant': '10th/12th Commerce/B.Com/CA Articleship and Exams/Chartered Accountant',
+            'Investment Banker': '10th/12th Commerce or Science/B.Com or B.Tech/MBA in Finance/Investment Banker',
+            'Data Analyst': '10th/12th Science (PCM)/B.Tech in CS or B.Sc. in Statistics/M.Tech or M.Sc. in Data Analytics/Data Analyst',
+            'Biotechnologist': '10th/12th Science (PCB)/B.Tech in Biotechnology or B.Sc. in Biotechnology/M.Tech or M.Sc. in Biotechnology/Biotechnologist',
+            'Environmental Scientist': '10th/12th Science (PCB)/B.Sc. in Environmental Science/M.Sc. in Environmental Science/Ph.D./Environmental Scientist',
+            'Pharmacist': '10th/12th Science (PCB)/B.Pharm./M.Pharm./Pharmacist',
+            'Nurse': '10th/12th Science (PCB)/B.Sc. in Nursing/M.Sc. in Nursing/Nurse',
+            'Physiotherapist': '10th/12th Science (PCB)/Bachelor of Physiotherapy (BPT)/Master of Physiotherapy (MPT)/Physiotherapist',
+            'Hotel Manager': '10th/12th Any Stream/Bachelor in Hotel Management/MBA in Hospitality Management/Hotel Manager',
+            'Fashion Designer': '10th/12th Any Stream/Bachelor in Fashion Design/Master in Fashion Design/Fashion Designer',
+            'Pilot': '10th/12th Science (PCM)/Bachelor\'s Degree/Commercial Pilot License/Pilot',
+            'Merchant Navy Officer': '10th/12th Science (PCM)/B.Sc. Nautical Science or B.Tech Marine Engineering/Merchant Navy Officer'
+        };
+
+        const studySelect = document.getElementById('studySelect');
+        const roleSelect = document.getElementById('roleSelect');
+        const pathContainer = document.getElementById('pathContainer');
+
+        // Populate the select element with job roles
+        for (const role in JobPaths) {
+            const option = document.createElement('option');
+            option.value = role;
+            option.textContent = role;
+            roleSelect.appendChild(option);
+        }
+
+        function updatePath() {
+            const selectedStudy = studySelect.value;
+            const selectedRole = roleSelect.value;
+
+            if (selectedStudy && selectedRole) {
+                const fullPath = JobPaths[selectedRole].split('/');
+                let startIndex = 0;
+
+                // Find the starting index based on the selected study level
+                if (selectedStudy === '12th') {
+                    startIndex = fullPath.findIndex(step => step.includes('12th'));
+                } else if (selectedStudy === 'Bachelors') {
+                    startIndex = fullPath.findIndex(step =>
+                        step.includes('B.Tech') ||
+                        step.includes('B.E.') ||
+                        step.includes('B.Sc.') ||
+                        step.includes('BBA') ||
+                        step.includes('B.Com') ||
+                        step.includes('BA') ||
+                        step.includes('BFA') ||
+                        step.includes('B.Arch') ||
+                        step.includes('BDS') ||
+                        step.includes('MBBS') ||
+                        step.includes('LLB')
+                    );
+                } else if (selectedStudy === 'Masters') {
+                    startIndex = fullPath.findIndex(step =>
+                        step.includes('M.Tech') ||
+                        step.includes('M.Sc.') ||
+                        step.includes('MBA') ||
+                        step.includes('MA') ||
+                        step.includes('M.Arch') ||
+                        step.includes('MS') ||
+                        step.includes('MDS') ||
+                        step.includes('LLM')
+                    );
+                }
+
+                if (startIndex === -1) startIndex = 0;
+
+                const path = fullPath.slice(startIndex);
+                let stepsHtml = '';
+                path.forEach((step, index) => {
+
+                    if (index != path.length - 1) {
+                        stepsHtml += `<div class="step" data-step="${index + 1}">${step} </div>
+                    <div class="arrow" role="presentation" aria-hidden="true"></div>`;
+                    } else {
+                        stepsHtml += `<div class="step" data-step="${index + 1}">${step}</div>`;
+                    }
+                });
+                pathContainer.innerHTML = stepsHtml;
+                pathContainer.style.display = 'flex';
+                addTooltips()
+            } else {
+                pathContainer.innerHTML = '';
+                pathContainer.style.display = 'none';
+            }
+
+        }
+
+        studySelect.addEventListener('change', updatePath);
+        roleSelect.addEventListener('change', updatePath);
+    </script>
+    <!-- to show tool tip  -->
+    <script>
+        function addTooltips() {
+            const steps = document.querySelectorAll('.step');
+            steps.forEach(step => {
+                step.addEventListener('mouseover', showTooltip);
+                step.addEventListener('mouseout', hideTooltip);
+            });
+        }
+
+        function showTooltip(event) {
+            const step = event.target;
+            const stepText = step.textContent;
+            let tooltipContent = '';
+
+            // Check for skills
+            for (const [role, skills] of Object.entries(JobSkills)) {
+                if (stepText.includes(role)) {
+                    tooltipContent += `<h3>Required Skills:</h3><ul>`;
+                    skills.forEach(skill => {
+                        tooltipContent += `<li>${skill}</li>`;
+                    });
+                    tooltipContent += `</ul>`;
+                    break;
+                }
+            }
+
+            if (tooltipContent) {
+                const tooltip = document.createElement('div');
+                tooltip.className = 'tooltip';
+                tooltip.innerHTML = tooltipContent;
+                step.appendChild(tooltip);
+
+                // Position the tooltip
+                const stepRect = step.getBoundingClientRect();
+
+                tooltip.style.top = `${stepRect.height}px`;
+
+                tooltip.style.display = 'block';
+            }
+        }
+
+        function hideTooltip(event) {
+            const tooltip = event.target.querySelector('.tooltip');
+            if (tooltip) {
+                tooltip.remove();
+            }
+        }
+    </script>
+    <!-- Specializations, and JobSkills data   -->
+    <script>
+        const Specializations = {
+            'Engineering (B.Tech| B.E.)': [
+                "Computer Science",
+                "Electronics and Communication",
+                "Mechanical",
+                "Civil",
+                "Electrical",
+                "Chemical",
+                "Aerospace"
+            ],
+            'Science (B.Sc.)': [
+                "Physics",
+                "Chemistry",
+                "Mathematics",
+                "Biology",
+                "Computer Science",
+                "Environmental Science"
+            ],
+            'Commerce (B.Com)': [
+                "Accounting and Finance",
+                "Business Administration",
+                "Economics",
+                "Banking and Insurance"
+            ],
+            'Arts (BA)': [
+                "English Literature",
+                "History",
+                "Political Science",
+                "Psychology",
+                "Sociology",
+                "Fine Arts"
+            ],
+            'Medical (MBBS/BDS)': [
+                "General Medicine",
+                "Surgery",
+                "Pediatrics",
+                "Dentistry"
+            ],
+            'Law (LLB)': [
+                "Corporate Law",
+                "Criminal Law",
+                "Civil Law",
+                "International Law"
+            ],
+            'Management (BBA)': [
+                "Human Resource Management",
+                "Marketing",
+                "Finance",
+                "Operations Management"
+            ]
+        };
+
+        let JobSkills = {
+            "Software Developer": [
+                "Programming languages (e.g., Java, Python, JavaScript)",
+                "Data structures and algorithms",
+                "Version control (e.g., Git)",
+                "Database management",
+                "Web development frameworks",
+                "Problem-solving skills",
+                "Agile methodologies"
+            ],
+            "Data Scientist": [
+                "Statistical analysis",
+                "Machine learning",
+                "Python or R programming",
+                "Data visualization",
+                "Big data technologies",
+                "SQL and database management",
+                "Critical thinking and problem-solving"
+            ],
+            "Mechanical Engineer": [
+                "CAD software proficiency",
+                "Thermodynamics and fluid mechanics",
+                "Material science knowledge",
+                "Project management",
+                "3D modeling and simulation",
+                "Manufacturing processes",
+                "Technical writing"
+            ],
+            "Civil Engineer": [
+                "Structural analysis",
+                "AutoCAD and other design software",
+                "Construction management",
+                "Geotechnical engineering",
+                "Environmental impact assessment",
+                "Project planning and scheduling",
+                "Building codes and regulations"
+            ],
+            "Electrical Engineer": [
+                "Circuit design and analysis",
+                "Power systems knowledge",
+                "Control systems",
+                "Digital signal processing",
+                "Microcontroller programming",
+                "PCB design",
+                "Electrical safety standards"
+            ],
+            "Chemical Engineer": [
+                "Process design and optimization",
+                "Thermodynamics",
+                "Fluid mechanics",
+                "Chemical reaction engineering",
+                "Process safety management",
+                "Environmental regulations",
+                "Laboratory skills"
+            ],
+            "Aerospace Engineer": [
+                "Aerodynamics",
+                "Propulsion systems",
+                "Structural analysis",
+                "Avionics",
+                "CAD/CAM software",
+                "Flight mechanics",
+                "Composite materials knowledge"
+            ],
+            "Research Scientist": [
+                "Advanced knowledge in specific field",
+                "Experimental design",
+                "Data analysis and interpretation",
+                "Scientific writing",
+                "Grant writing",
+                "Laboratory techniques",
+                "Critical thinking and problem-solving"
+            ],
+            "Accountant": [
+                "Financial reporting",
+                "Taxation knowledge",
+                "Auditing skills",
+                "Bookkeeping",
+                "Accounting software proficiency",
+                "Regulatory compliance",
+                "Analytical skills"
+            ],
+            "Financial Analyst": [
+                "Financial modeling",
+                "Valuation techniques",
+                "Financial statement analysis",
+                "Excel and data analysis tools",
+                "Industry and market research",
+                "Risk assessment",
+                "Presentation skills"
+            ],
+            "Business Analyst": [
+                "Requirements gathering and analysis",
+                "Data analysis and visualization",
+                "Process modeling",
+                "SQL and database querying",
+                "Project management",
+                "Communication skills",
+                "Problem-solving abilities"
+            ],
+            "Marketing Manager": [
+                "Market research",
+                "Digital marketing strategies",
+                "Brand management",
+                "Content creation",
+                "Analytics and data interpretation",
+                "Project management",
+                "Communication and presentation skills"
+            ],
+            "Human Resource Manager": [
+                "Recruitment and selection",
+                "Employee relations",
+                "Performance management",
+                "Labor laws and compliance",
+                "Training and development",
+                "HRIS software proficiency",
+                "Conflict resolution"
+            ],
+            "Teacher": [
+                "Subject matter expertise",
+                "Lesson planning",
+                "Classroom management",
+                "Assessment and evaluation techniques",
+                "Differentiated instruction",
+                "Educational technology use",
+                "Communication skills"
+            ],
+            "Professor": [
+                "Advanced knowledge in field of study",
+                "Research methodologies",
+                "Grant writing",
+                "Academic publishing",
+                "Curriculum development",
+                "Mentoring and advising",
+                "Public speaking"
+            ],
+            "Lawyer": [
+                "Legal research and writing",
+                "Case analysis",
+                "Negotiation skills",
+                "Courtroom procedures",
+                "Client communication",
+                "Analytical thinking",
+                "Knowledge of specific areas of law"
+            ],
+            "Corporate Lawyer": [
+                "Contract law",
+                "Mergers and acquisitions",
+                "Corporate governance",
+                "Securities regulation",
+                "Intellectual property",
+                "Negotiation skills",
+                "Business acumen"
+            ],
+            "Doctor": [
+                "Medical knowledge and diagnosis",
+                "Patient care and communication",
+                "Clinical decision making",
+                "Medical ethics",
+                "Electronic health record management",
+                "Continuing medical education",
+                "Teamwork in healthcare settings"
+            ],
+            "Surgeon": [
+                "Surgical techniques",
+                "Anatomy and physiology",
+                "Sterile procedures",
+                "Pre and post-operative care",
+                "Critical decision making",
+                "Hand-eye coordination",
+                "Stress management"
+            ],
+            "Dentist": [
+                "Dental procedures and treatments",
+                "Oral anatomy and pathology",
+                "Radiography skills",
+                "Patient management",
+                "Dental equipment operation",
+                "Infection control procedures",
+                "Preventive care knowledge"
+            ],
+            "Psychologist": [
+                "Psychological assessment",
+                "Therapeutic techniques",
+                "Research methods",
+                "Ethical practice",
+                "Diagnostic skills",
+                "Active listening",
+                "Cultural competence"
+            ],
+            "Journalist": [
+                "Writing and editing",
+                "Investigative skills",
+                "Interviewing techniques",
+                "Media law knowledge",
+                "Digital media skills",
+                "Fact-checking and verification",
+                "Time management"
+            ],
+            "Graphic Designer": [
+                "Adobe Creative Suite proficiency",
+                "Typography",
+                "Color theory",
+                "UI/UX design principles",
+                "Branding and identity design",
+                "Print production knowledge",
+                "Digital illustration"
+            ],
+            "Architect": [
+                "Architectural design",
+                "CAD and 3D modeling software",
+                "Building codes and regulations",
+                "Sustainable design principles",
+                "Project management",
+                "Structural concepts",
+                "Client communication"
+            ],
+            "Chartered Accountant": [
+                "Advanced financial accounting",
+                "Auditing and assurance",
+                "Taxation",
+                "Corporate finance",
+                "Business law",
+                "Strategic management",
+                "Ethics and professional skills"
+            ],
+            "Investment Banker": [
+                "Financial modeling",
+                "Valuation techniques",
+                "Mergers and acquisitions",
+                "Capital markets knowledge",
+                "Financial statement analysis",
+                "Pitch book creation",
+                "Networking skills"
+            ],
+            "Data Analyst": [
+                "Data cleaning and preprocessing",
+                "Statistical analysis",
+                "Data visualization",
+                "SQL and database querying",
+                "Python or R programming",
+                "Machine learning basics",
+                "Business intelligence tools"
+            ],
+            "Biotechnologist": [
+                "Molecular biology techniques",
+                "Genetic engineering",
+                "Bioinformatics",
+                "Laboratory skills",
+                "Research design",
+                "Data analysis",
+                "Scientific writing"
+            ],
+            "Environmental Scientist": [
+                "Environmental sampling and analysis",
+                "GIS and mapping software",
+                "Environmental regulations",
+                "Ecosystem assessment",
+                "Data analysis and interpretation",
+                "Report writing",
+                "Field work experience"
+            ],
+            "Pharmacist": [
+                "Pharmacology knowledge",
+                "Medication dispensing",
+                "Drug interactions understanding",
+                "Patient counseling",
+                "Pharmacy law and ethics",
+                "Inventory management",
+                "Compounding skills"
+            ],
+            "Nurse": [
+                "Patient care and assessment",
+                "Medical procedures and treatments",
+                "Medication administration",
+                "Electronic health record management",
+                "Critical thinking and decision making",
+                "Communication skills",
+                "Infection control practices"
+            ],
+            "Physiotherapist": [
+                "Musculoskeletal assessment",
+                "Treatment planning",
+                "Manual therapy techniques",
+                "Exercise prescription",
+                "Electrotherapy modalities",
+                "Patient education",
+                "Rehabilitation protocols"
+            ],
+            "Hotel Manager": [
+                "Customer service",
+                "Staff management",
+                "Budgeting and financial management",
+                "Food and beverage operations",
+                "Marketing and sales",
+                "Conflict resolution",
+                "Event planning"
+            ],
+            "Fashion Designer": [
+                "Sketching and illustration",
+                "Pattern making",
+                "Textile knowledge",
+                "CAD software for fashion",
+                "Trend forecasting",
+                "Garment construction",
+                "Fashion merchandising"
+            ],
+            "Pilot": [
+                "Aircraft operation",
+                "Navigation skills",
+                "Weather interpretation",
+                "Emergency procedures",
+                "Air traffic control communication",
+                "Aviation regulations knowledge",
+                "Crew resource management"
+            ],
+            "Merchant Navy Officer": [
+                "Navigation and ship handling",
+                "Maritime law and regulations",
+                "Cargo operations",
+                "Ship stability and construction",
+                "Maritime safety and security",
+                "Engine room operations",
+                "Leadership and team management"
+            ]
+        }
+    </script>
+</body>
+
+</html>

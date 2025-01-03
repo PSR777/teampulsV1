@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/profile_edit.css') }}" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+            rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+        <title>profile</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+
+
+            .container {
+                max-width: 1000px;
+                margin: 0 auto;
+                background: white;
+                padding: 30px;
+                border-radius: 10px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .section {
+                margin-bottom: 30px;
+            }
+
+            .section-title {
+                font-size: 18px;
+                font-weight: 600;
+                margin-bottom: 20px;
+                color: #333;
+            }
+
+            .profile-header {
+                display: flex;
+                align-items: center;
+                margin-bottom: 30px;
+                gap: 30px;
+            }
+
+            .avatar img {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-size: 36px;
+            }
+
+            .form-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+            .form-group.full-width {
+                grid-column: 1 / -1;
+            }
+
+            label {
+                display: block;
+                margin-bottom: 5px;
+                color: #555;
+                font-size: 14px;
+            }
+
+            label.required::after {
+                content: "*";
+                color: #ff4081;
+                margin-left: 4px;
+            }
+
+            input,
+            select,
+            textarea {
+                width: 100%;
+                padding: 8px 12px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                font-size: 14px;
+                transition: border-color 0.3s;
+            }
+
+            input:focus,
+            select:focus,
+            textarea:focus {
+                outline: none;
+                border-color: #2196f3;
+            }
+
+            textarea {
+                min-height: 100px;
+                resize: vertical;
+            }
+
+            .social-links {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .button-container {
+                display: flex;
+                justify-content: flex-end;
+                margin-top: 20px;
+            }
+
+            .save-button {
+                background-color: #2196f3;
+                color: white;
+                border: none;
+                padding: 10px 24px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .save-button:hover {
+                background-color: #1976d2;
+            }
+        </style>
+    </head>
+
+    <body>
+        <header class="header">
+            <div class="header-container">
+                <div class="logo_search">
+                    <a href="/" class="logo">
+                        <img src="../static/img/header_log.webp?height=40&width=120" alt="Unstop">
+                    </a>
+
+                    <div class="search-container">
+                        <span class="search-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </span>
+                        <input id="main_search" type="text" placeholder="Search Scholarships">
+                    </div>
+                </div>
+
+
+                <nav>
+                    <ul class="nav-links">
+                        <li id="homeLi"><a href="/home">Home</a></li>
+                        <li id="carrierLi"><a href="/carrier">Carrier</a></li>
+                        <li id="internshipLi"><a href="/internship/home">Internships</a></li>
+                        <li id="jobLi"><a href="/job/home">Jobs</a></li>
+                        <li id="scholarshipLi"><a href="/scholarship/home">Scholarship</a></li>
+                        <li id="courseLi"><a href="/courses">Courses</a></li>
+                        <li id="mentorshipLi"><a href="/mentorships">Mentorship</a></li>
+
+                    </ul>
+                </nav>
+
+                <div class="right-section">
+                    <button class="icon-button">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                    </button>
+
+                    <div class="profile-pic" onclick="window.location = window.location.origin + '/profile'">
+                        <img width="37" height="37" alt=""
+                            src="https://d8it4huxumps7.cloudfront.net/uploads/images/unstop/user-avatar/png/15.png?d=100x100"
+                            class="">
+                    </div>
+
+                    <button class="host-button" onclick="window.location = window.location.origin + '/payment'">
+                        <i class="fa fa-rocket" aria-hidden="true"></i>
+                        <span>Pro</span>
+                    </button>
+
+                    <button class="business-button">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                            </path>
+                        </svg>
+                        <span>For Business</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div class="p_content">
+            <div class="left_view">
+                <div class="resume_container ng-tns-c2148870034-3">
+                    <div class="align-center mb-10 ng-tns-c2148870034-3">
+                        <h6 class="ttl ng-tns-c2148870034-3">Upload your Resume</h6>
+                        <!----><!---->
+                    </div>
+                    <div id="upload_resume" class="upload_resume  ng-tns-c2148870034-3 ng-star-inserted">
+                        <input type="file" id="file-input" on class="d-none ng-tns-c2148870034-3"><strong
+                            id="upload-button" class="ng-tns-c2148870034-3"><span class="ng-tns-c2148870034-3">Supported
+                                file formats DOC,
+                                DOCX, PDF. File size limit 10 MB.</span></strong>
+
+                    </div><!----><!---->
+                </div>
+                <script>
+                    // JavaScript to trigger the file input
+                    document.getElementById('upload-button').addEventListener('click', function () {
+                        document.getElementById('file-input').click();
+                    });
+
+                    // Optional: Display selected file name
+                    document.getElementById('file-input').addEventListener('change', function () {
+                        const fileName = this.files[0] ? this.files[0].name : 'No file chosen';
+                        document.getElementById('upload_resume').innerHTML = fileName + "<span class='edit-icons icon-delete'></span>";
+
+                    });
+                </script>
+
+
+                <div class="profile_complete ">
+
+                    <strong> Complete your profile <span>And standout to
+                            recruiters!</span></strong>
+                    <div class="align-center mt-10  ">
+                        <div class="bar-bg ">
+                            <div class="bar" id="filled_bar">
+                            </div>
+                        </div>
+                        <div class="txt "> <span style="margin-left: 15px;" id="filled_text"> {{filled_percentage}}
+                            </span> </div>
+                    </div>
+
+                </div>
+                <nav class="thin  custom-scrollbar ">
+                    <span class="inprogress sidebar-item" id="side_basic_details" data-target="basic-details">
+                        Basic Details
+                        <h6 class="tpo-tag required  "> Required </h6>
+
+                    </span>
+
+                    <span class="sidebar-item" id="side_personal_information" data-target="personal-information">
+                        Personal Information
+
+                    </span>
+                    <span class="sidebar-item" id="side_professional_information"
+                        data-target="professional-information">
+                        Professional Information
+
+                    </span>
+                    <span class="sidebar-item" id="side_address_information" data-target="address-information">
+                        Address Information
+                    </span>
+                    <span class="sidebar-item" id="side_skills_achievements" data-target="skills-achievements">
+                        Skills & Achievements
+                    </span>
+                    <span class="sidebar-item" id="side_social_links" data-target="social-links">
+                        Social Links
+                    </span>
+                </nav>
+            </div>
+            <div class="right_view" id="right_view">
+                <form id="form">
+                    <div id="basic-details" class="section">
+                        <h2 class="section-title">Basic Details</h2>
+                        <div class="profile-header" id="basic_details">
+                            <div class="avatar">
+                                <div class="img">
+                                    <img loading="lazy"
+                                        src="{{ user_data.avatar_url|default('https://d8it4huxumps7.cloudfront.net/uploads/images/unstop/user-avatar/png/15.png') }}"
+                                        alt="User Avatar">
+                                </div>
+                            </div>
+                            <div class="form-grid" style="flex-grow: 1;">
+                                <div class="form-group">
+                                    <label class="required" for="first_name">First Name</label>
+                                    <input type="text" id="first_name" name="first_name"
+                                        value="{{ user_data.first_name|default('') }}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="last_name">Last Name</label>
+                                    <input type="text" id="last_name" name="last_name"
+                                        value="{{ user_data.last_name|default('') }}">
+                                </div>
+                                <div class="form-group">
+                                    <label class="required" for="user_name">Username</label>
+                                    <input type="text" id="user_name" name="user_name"
+                                        value="{{ user_data.user_name|default('') }}"  disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label class="required" for="email">Email</label>
+                                    <input type="email" id="email" name="email"
+                                        value="{{ user_data.email|default('') }}" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label class="required" for="phone_number">Mobile</label>
+                                    <input type="tel" id="phone_number" name="phone_number"
+                                        value="{{ user_data.phone_number|default('') }}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="role">Role</label>
+                                    <input type="text" id="role" name="role" {% if user_data.role !="admin" %} disabled {% endif %} value="{{ user_data.role|default('') }}"
+                                        readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="personal_information" class="section">
+                        <h2 class="section-title">Personal Information</h2>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="pronoun">Pronoun</label>
+                                <select id="pronoun" name="pronoun">
+                                    <option value="">Select pronoun</option>
+                                    <option value="he/him" {% if user_data.pronoun=='he/him' %}selected{% endif %}>
+                                        He/Him</option>
+                                    <option value="she/her" {% if user_data.pronoun=='she/her' %}selected{% endif %}>
+                                        She/Her</option>
+                                    <option value="they/them" {% if user_data.pronoun=='they/them' %}selected{% endif
+                                        %}>They/Them</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="gender">Gender</label>
+                                <select id="gender" name="gender">
+                                    <option value="">Select gender</option>
+                                    <option value="male" {% if user_data.gender=='male' %}selected{% endif %}>Male
+                                    </option>
+                                    <option value="female" {% if user_data.gender=='female' %}selected{% endif %}>Female
+                                    </option>
+                                    <option value="other" {% if user_data.gender=='other' %}selected{% endif %}>Other
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="DOB">Date of Birth</label>
+                                <input type="date" id="DOB" name="DOB" value="{{ user_data.DOB|default('') }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Country</label>
+                                <input type="text" id="country" name="country"
+                                    value="{{ user_data.country|default('') }}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="professional_information" class="section">
+                        <h2 class="section-title">Professional Information</h2>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="work_experience">Work Experience (years)</label>
+                                <input type="number" id="work_experience" name="work_experience"
+                                    value="{{ user_data.work_experience|default('') }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="current_sector">Current Sector</label>
+                                <input type="text" id="current_sector" name="current_sector"
+                                    {% if user_data.current_sector == "None" %} value="" {% else %} value="{{ user_data.current_sector|default('') }}"{% endif %}>
+                            </div>
+                            <div class="form-group">
+                                <label for="current_designation">Current Designation</label>
+                                <input type="text" id="current_designation" name="current_designation"
+                                    value="{{ user_data.current_designation|default('') }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="organisation_or_college">Organization/College</label>
+                                <input type="text" id="organisation_or_college" name="organisation_or_college"
+                                    value="{{ user_data.organisation_or_college|default('') }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="course">Course</label>
+                                <input type="text" id="course" name="course" value="{{ user_data.course|default('') }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="course_duration">Course Duration</label>
+                                <input type="text" id="course_duration" name="course_duration"
+                                    value="{{ user_data.course_duration|default('') }}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="address_information" class="section">
+                        <h2 class="section-title">Address Information</h2>
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label for="current_address">Current Address</label>
+                                <textarea id="current_address"
+                                    name="current_address">{{ user_data.current_address|default('') }}</textarea>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="permanent_address">Permanent Address</label>
+                                <textarea id="permanent_address"
+                                    name="permanent_address">{{ user_data.permanent_address|default('') }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="skills_achievements" class="section">
+                        <h2 class="section-title">Skills & Achievements</h2>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="skills">Skills</label>
+                                <textarea id="skills" name="skills">{{ user_data.skills|default('') }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="interest_area">Areas of Interest</label>
+                                <textarea id="interest_area"
+                                    name="interest_area">{{ user_data.interest_area|default('') }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="certificates">Certificates</label>
+                                <textarea id="certificates"
+                                    name="certificates">{{ user_data.certificates|default('') }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="projects">Projects</label>
+                                <textarea id="projects" name="projects">{{ user_data.projects|default('') }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="achievements">Achievements</label>
+                                <textarea id="achievements"
+                                    name="achievements">{{ user_data.achievements|default('') }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="hobbies">Hobbies</label>
+                                <textarea id="hobbies" name="hobbies">{{ user_data.hobbies|default('') }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="social_links" class="section">
+                        <h2 class="section-title">Social Links</h2>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="linkedin">LinkedIn Profile</label>
+                                <input type="url" id="linkedin" name="linkedin"
+                                    value="{{ user_data.linkedin|default('') }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="github">GitHub Profile</label>
+                                <input type="url" id="github" name="github" value="{{ user_data.github|default('') }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="twitter">Twitter Profile</label>
+                                <input type="url" id="twitter" name="twitter"
+                                    value="{{ user_data.twitter|default('') }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="portfolio">Portfolio Website</label>
+                                <input type="url" id="portfolio" name="portfolio"
+                                    value="{{ user_data.portfolio|default('') }}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="button-container">
+                        <button type="submit" id="submit_btn" class="save-button">
+                            ✓ Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const sections = [
+                    { id: 'basic_details', sidebarId: 'side_basic_details', inputSelector: 'input' },
+                    { id: 'personal_information', sidebarId: 'side_personal_information', inputSelector: 'input, select' },
+                    { id: 'professional_information', sidebarId: 'side_professional_information', inputSelector: 'input' },
+                    { id: 'address_information', sidebarId: 'side_address_information', inputSelector: 'textarea' },
+                    { id: 'skills_achievements', sidebarId: 'side_skills_achievements', inputSelector: 'textarea' },
+                    { id: 'social_links', sidebarId: 'side_social_links', inputSelector: 'input' }
+                ];
+
+                function updateSectionStatus(section) {
+                    const div = document.getElementById(section.id);
+                    const sidebarItem = document.getElementById(section.sidebarId);
+                    const fields = div.querySelectorAll(section.inputSelector);
+
+                    function checkFieldsStatus() {
+                        const allFilled = Array.from(fields).every(field => field.value.trim() !== '');
+                        sidebarItem.classList.toggle('completed', allFilled);
+                        sidebarItem.classList.toggle('inprogress', !allFilled);
+                    }
+
+                    fields.forEach(field => {
+                        field.addEventListener('focusout', checkFieldsStatus);
+                    });
+
+                    checkFieldsStatus(); // Initial check
+                }
+
+                sections.forEach(updateSectionStatus);
+            });
+
+            // checking %
+            document.addEventListener("DOMContentLoaded", function () {
+                const form = document.getElementById('form');
+                const fields = form.querySelectorAll('input, select, textarea');
+                const totalFields = fields.length;
+
+                function calculateFilledPercentage() {
+                    let filledCount = 0;
+                    fields.forEach(field => {
+                        if (field.value.trim() !== "") {
+                            filledCount++;
+                        }
+                    });
+                    const percentage = (filledCount / totalFields) * 100;
+
+                    document.getElementById('filled_bar').style.width = percentage.toFixed(0) + '%'
+                    document.getElementById('filled_text').innerText = percentage.toFixed(0) + "%";
+
+                }
+
+                calculateFilledPercentage();
+
+                fields.forEach(field => {
+                    field.addEventListener('focusout', calculateFilledPercentage);
+                });
+            });
+
+            // scrolling 
+            document.addEventListener('DOMContentLoaded', function () {
+                const sidebarItems = document.querySelectorAll('.sidebar-item');
+                const sections = document.querySelectorAll('.section');
+
+                // Function to check if an element is in the viewport
+                function isInViewport(element) {
+                    const rect = element.getBoundingClientRect();
+                    return (
+                        rect.top >= 0 &&
+                        rect.left >= 0 &&
+                        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                    );
+                }
+
+                // Function to update active sidebar item
+                function updateActiveSidebarItem() {
+                    sections.forEach((section, index) => {
+                        if (isInViewport(section)) {
+                            sidebarItems.forEach(item => item.classList.remove('active'));
+                            sidebarItems[index].classList.add('active');
+                            const targetSection = document.getElementById(sidebarItems[index]['id']);
+                            targetSection.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    });
+                }
+
+                // Add click event listeners to sidebar items
+                sidebarItems.forEach(item => {
+                    item.addEventListener('click', function () {
+                        const targetId = this.getAttribute('data-target');
+                        const targetSection = document.getElementById(targetId);
+                        targetSection.scrollIntoView({ behavior: 'smooth' });
+                    });
+                });
+
+                // Add scroll event listener
+                document.getElementById('right_view').addEventListener('scroll', updateActiveSidebarItem);
+
+                // Initial call to set active item on page load
+                updateActiveSidebarItem();
+            });
+
+
+
+
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+
+                const form = document.getElementById('form');
+                const fields = form.querySelectorAll('input, select, textarea');
+                // Add a submit event listener to the form
+                // Store the initial values of each field in an object
+                const initialValues = {};
+                fields.forEach(field => {
+                    initialValues[field.name] = field.value;  // Store initial values keyed by field name
+                });
+                console.log(initialValues)
+                form.addEventListener('submit', function (event) {
+                    event.preventDefault();
+
+                    const form = document.getElementById('form');
+                    const fields = form.querySelectorAll('input, select, textarea');
+                    formData = {}
+                    let TextArea = []
+                    const bulletTextAreas = document.querySelectorAll("textarea");
+                    bulletTextAreas.forEach((bulletTextArea, index) => {
+                        TextArea.push(bulletTextArea.name)
+                    })
+                    fields.forEach(field => {
+                        if (field.value !== initialValues[field.name]) {
+                            if (TextArea.includes(field.name)) {
+                                const commaSeparated = field.value
+                                    .split('\n')
+                                    .map(item => item.replace(/^•\s*/, '').trim())
+                                    .filter(item => item !== '')
+                                    .join(', ');
+
+                                formData[field.name] = commaSeparated
+                            } else {
+                                formData[field.name] = field.value
+                            }
+
+
+                        }
+                    });
+                    console.log(formData)
+                    if (formData) {
+                        fetch('/update-user', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(formData)
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    alert('User details updated successfully');
+                                } else {
+                                    alert('Failed to update user details');
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                            });
+                    }
+                    // Send an AJAX request to update the user details
+
+                })
+
+
+
+
+            })
+
+
+        </script>
+        <script>
+            // Select all text areas with the class 'bulletTextArea'
+            const bulletTextAreas = document.querySelectorAll("textarea");
+            bulletTextAreas.forEach((bulletTextArea, index) => {
+
+
+                // Function to initialize existing comma-separated values as bullets
+                function initializeBullets() {
+                    const existingValue = bulletTextArea.value.trim();
+                    if (existingValue) {
+                        const items = existingValue.split(",").map(item => item.trim());
+                        bulletTextArea.value = items.map((item, index) => `• ${item}`).join("\n");
+                    }
+                }
+
+                // Initialize the textarea with bullets on page load
+                initializeBullets();
+
+
+
+                bulletTextArea.addEventListener("keypress", (event) => {
+                    if (event.key === "Enter") {
+                        event.preventDefault(); // Prevent the default newline action
+                        const start = bulletTextArea.selectionStart;
+                        const end = bulletTextArea.selectionEnd;
+                        const newValue = bulletTextArea.value.substring(0, start) + "\n• " + bulletTextArea.value.substring(end);
+                        bulletTextArea.value = newValue;
+
+                        bulletTextArea.selectionStart = bulletTextArea.selectionEnd = start + 3;
+
+
+                    }
+                });
+
+                // Add the initial bullet when the textarea is focused for the first time
+                bulletTextArea.addEventListener("focus", () => {
+                    if (!bulletTextArea.value.startsWith("• ")) {
+                        bulletTextArea.value = "• ";
+                    }
+                });
+            });
+
+        </script>
+
+
+    </body>
+
+    </html>

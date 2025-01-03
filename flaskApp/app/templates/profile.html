@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Profile</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Content Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jobs.css') }}" />
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        .sidebar1 {
+            width: 250px;
+            height: 100vh;
+            background-color: #ffffff;
+            border-right: 1px solid #e5e7eb;
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-section {
+            margin-bottom: 24px;
+        }
+
+        .nav-section-title {
+            color: #6b7280;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            padding-left: 12px;
+        }
+
+        .nav-section .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            color: #4b5563;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-bottom: 4px;
+            cursor: pointer;
+        }
+
+        .nav-section .nav-item:hover {
+            background-color: #f3f4f6;
+        }
+
+        .nav-section .nav-item i {
+            width: 20px;
+            margin-right: 12px;
+            font-size: 16px;
+        }
+
+        .nav-section .nav-item-text {
+            flex-grow: 1;
+            font-size: 14px;
+        }
+
+        .nav-section .badge {
+            background-color: #e5e7eb;
+            color: #4b5563;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .logout-button {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            background-color: #f3f4f6;
+            color: #4b5563;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .logout-button:hover {
+            background-color: #e5e7eb;
+        }
+
+        .logout-button i {
+            margin-right: 8px;
+        }
+
+        .scholarship-card {
+            width: 100%;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+
+            padding-right: 20px;
+            padding-left: 20px;
+            padding-bottom: 20px;
+            margin-top: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .provider {
+            border: 3px solid #fff;
+            border-radius: .5rem 0 1.5rem;
+            font-size: .75rem;
+            font-weight: 400;
+            line-height: 1rem;
+            padding: .5rem 3rem .5rem 1rem;
+            width: fit-content;
+            background-color: #fef7e9;
+            position: relative;
+            right: 20px;
+        }
+
+        .details-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .detail-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .scholarship_name {
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5rem;
+            margin: 0 0 .75rem;
+            overflow: hidden;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #f5f5f5;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .university-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .university-icon {
+            width: 24px;
+            height: 24px;
+            background: #f5f5f5;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo_search">
+                <a href="/" class="logo">
+                    <img src="../static/img/header_log.webp?height=40&width=120" alt="Unstop">
+                </a>
+
+                <div class="search-container">
+                    <span class="search-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </span>
+                    <input id="main_search" type="text" placeholder="Search Scholarships">
+                </div>
+            </div>
+
+
+            <nav>
+                <ul class="nav-links">
+                    <li id="homeLi"><a href="/home">Home</a></li>
+                    <li id="carrierLi"><a href="/carrier">Carrier</a></li>
+                    <li id="internshipLi"><a href="/internship/home">Internships</a></li>
+                    <li id="jobLi"><a href="/job/home">Jobs</a></li>
+                    <li id="scholarshipLi"><a href="/scholarship/home">Scholarship</a></li>
+                    <li id="courseLi"><a href="/courses">Courses</a></li>
+                    <li id="mentorshipLi"><a href="/mentorships">Mentorship</a></li>
+
+                </ul>
+            </nav>
+
+            <div class="right-section">
+                <button class="icon-button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                </button>
+
+                <div class="profile-pic" onclick="window.location = window.location.origin + '/profile'">
+                    <img width="37" height="37" alt=""
+                        src="https://d8it4huxumps7.cloudfront.net/uploads/images/unstop/user-avatar/png/15.png?d=100x100"
+                        class="">
+                </div>
+
+                <button class="host-button" onclick="window.location = window.location.origin + '/payment'">
+                    <i class="fa fa-rocket" aria-hidden="true"></i>
+                    <span>Pro</span>
+                </button>
+
+                <button class="business-button">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                        </path>
+                    </svg>
+                    <span>For Business</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="sidebar custom-scrollbar thin">
+            <div class="field white_box complete_profile height-auto mb-10">
+                <div class="user_dtls align-center cursor-pointer" tabindex="0">
+                    <div class="img"><img width="37" height="37" alt="sairam padala"
+                            src="https://d8it4huxumps7.cloudfront.net/uploads/images/unstop/user-avatar/png/15.png?d=100x100"
+                            class=""></div>
+                    <div class="content ml-10">
+                        <h2>{{ user['first_name'] }} {{ user['last_name'] }}</h2>
+                        <p>{{ user['email'] }}</p>
+                    </div>
+                </div>
+                <div class="align-center mt-20 ">
+                    <div class="bar-bg">
+                        <div class="bar" style="width: {{ filled_percentage }};"></div>
+                    </div><span class="txt">{{ filled_percentage }}</span>
+                </div>
+                <div class="sidebar1">
+                    <div class="nav-section">
+                        <a href="/profile/edit" class="nav-item">
+                            <i class="fas fa-edit"></i>
+                            <span class="nav-item-text">Edit Profile</span>
+
+                            <a href="#" class="nav-item">
+                                <i class="fas fa-file-alt"></i>
+                                <span class="nav-item-text">Registrations/Applications</span>
+                            </a>
+
+                        </a>
+                        <a href="#" class="nav-item">
+                            <i class="fas fa-user"></i>
+                            <span class="nav-item-text">My Records</span>
+
+                        </a>
+                        <a href="#" class="nav-item">
+                            <i class="fas fa-award"></i>
+                            <span class="nav-item-text">Unread Awards Notifications</span>
+                        </a>
+                        <a href="#" class="nav-item">
+                            <i class="fas fa-eye"></i>
+                            <span class="nav-item-text">Watchlist</span>
+                        </a>
+                        <a href="#" class="nav-item">
+                            <i class="fas fa-clock"></i>
+                            <span class="nav-item-text">Recently Viewed</span>
+                        </a>
+                        <a href="#" class="nav-item">
+                            <i class="fas fa-users"></i>
+                            <span class="nav-item-text">Mentor Sessions</span>
+                        </a>
+                        <a href="#" class="nav-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span class="nav-item-text">Courses</span>
+                        </a>
+                        <a href="#" class="nav-item">
+                            <i class="fas fa-book"></i>
+                            <span class="nav-item-text">My Learning Path</span>
+
+                        </a>
+                        <a href="#" class="nav-item">
+                            <i class="fas fa-certificate"></i>
+                            <span class="nav-item-text">Certificates</span>
+                        </a>
+                        <a href="#" class="nav-item">
+                            <i class="fas fa-ticket-alt"></i>
+                            <span class="nav-item-text">Coupons and Rewards</span>
+                        </a>
+                        <a href="#" class="nav-item">
+                            <i class="fas fa-cog"></i>
+                            <span class="nav-item-text">Settings</span>
+                        </a>
+                    </div>
+
+                    <div class="nav-section">
+                        <div class="nav-section-title">Dispatchers</div>
+                        <a href="#" class="nav-item">
+                            <i class="fas fa-list"></i>
+                            <span class="nav-item-text">Manage Listings</span>
+                        </a>
+                        <a href="#" class="nav-item">
+                            <i class="fas fa-folder"></i>
+                            <span class="nav-item-text">My Favorites</span>
+                        </a>
+                        <a href="#" class="nav-item">
+                            <i class="fas fa-edit"></i>
+                            <span class="nav-item-text">Plans & Billing</span>
+                        </a>
+                    </div>
+
+                    <div class="nav-section">
+                        <div class="nav-section-title">Masters</div>
+                        <a href="#" class="nav-item">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span class="nav-item-text">My Dashboard</span>
+                        </a>
+                    </div>
+
+                    <button class="logout-button" onclick="window.location = window.location.origin + '/logout'">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </button>
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+        <div class="user_data">
+            <div class="hdngs">
+                <strong class="inprogress"> {% if type != "company" %} Registrations {% else %} Postings {% endif
+                    %}</strong>
+            </div>
+            <div class="un_tabs">
+                <span class="active"> All </span>
+                <span> Scholarships </span>
+                <span> Internships </span>
+                <span>Jobs </span>
+
+            </div>
+            <script>
+                // Get all span elements
+                const tabs = document.querySelectorAll('.un_tabs span');
+
+                // Add click event listener to each span
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        // Remove 'active' class from all spans
+                        tabs.forEach(t => t.classList.remove('active'));
+
+                        // Add 'active' class to the clicked span
+                        tab.classList.add('active');
+                    });
+                });
+            </script>
+            <div class="internship-card ">
+
+                {% if applications %}
+                <ul>
+                    {% for app in applications %}
+                    <li>
+                        <strong>Type:</strong> {{ app.type | capitalize }}
+                        <br>
+                        {% if app.type == 'internship' %}
+                        <div class="individual_internship" id="{{ app.data.id }}" onclick="fetchDetails(id)"
+                            data-location="{{ app.data.location }}">
+                            <div class="internship_meta">
+                                <div class="internship-heading-container">
+                                    <div class="company">
+                                        <h3 class="job-internship-name">
+                                            <a class="job-title-href" href="#">{{ app.data.title }}</a>
+                                        </h3>
+                                        <div class="heading_6 company_name">
+                                            <div class="company_and_premium">
+                                                <p class="company-name">{{ app.data.company }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="internship_logo">
+                                        <div class="company-logo">{{ app.data.company_logo_text }}</div>
+                                    </div>
+                                </div>
+                                <div class="individual_internship_details individual_internship_internship">
+                                    <div class="detail-row-1">
+                                        <div class="row-1-item locations">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                            <span>{{ app.data.location }} ({{ app.data.job_type }})</span>
+                                        </div>
+                                        <div class="row-1-item">
+                                            <i class="far fa-calendar-alt"></i>
+                                            <span>{{ app.data.duration }}</span>
+                                        </div>
+                                        <div class="row-1-item">
+                                            <i class="far fa-money-bill-alt"></i>
+                                            <span class="stipend">{{ app.data.salary }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="detail-row-2">
+                                        <div class="color-labels">
+                                            <div class="status-info"><i class="far fa-clock"></i><span>{{
+                                                    app.data.application_end_date }}</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% elif app.type == 'job' %}
+                        <div class="individual_internship" id="{{app.data.0}}" internshipid="{{app.data.0}} "
+                            onclick="fetchDetails(id)" data-source_page="search_page"
+                            data-href="/internship/details/business-development-sales-internship-in-mumbai-at-zi-cloud1729834801">
+                            <div class="internship_meta">
+                                <div class="internship-heading-container">
+                                    <div class="company">
+                                        <h3 class="job-internship-name">
+                                            <a class="job-title-href" href='' target="_blank">{{app.data.jobTitle}}</a>
+                                        </h3>
+                                        <div class="heading_6 company_name">
+                                            <div class="company_and_premium">
+                                                <p class="company-name">
+                                                    {{app.data.companyName}} </p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="internship_logo">
+                                        <img src='../static/img/placeholder.svg' alt="Zi Cloud">
+                                    </div>
+
+                                </div>
+
+                                <div class="individual_internship_details  individual_internship_internship">
+                                    <div class="detail-row-1">
+                                        <div class="row-1-item locations">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                            <span>
+                                                <a>{{app.data.location}}</a> {{app.data.jobType}}
+                                                <span style="vertical-align: middle">
+                                                    <i class="pop ic-16-alert-circle office_days_popover"
+                                                        data-popover_content="3 day(s) in-office in a week"
+                                                        data-original-title="" title=""></i>
+                                                </span>
+                                            </span>
+
+                                        </div>
+                                        <div class="row-1-item">
+                                            <i class="far fa-calendar-alt"></i>
+                                            <span></span>
+                                        </div>
+                                        <div class="row-1-item">
+                                            <i class="far fa-money-bill-alt"></i>
+                                            <span class="stipend">₹ {{app.data.salary}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="detail-row-2">
+                                        <div class="color-labels">
+                                            <div class="status-info"><i class="far fa-clock"></i><span>10
+                                                    days
+                                                    ago</span></div>
+                                        </div>
+                                        <div class="gray-labels hidden">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                        {% elif app.type == 'scholarship' %}
+                        <div class="scholarship-card" data-typeFilter="{{app.data.type}}"
+                            data-locationFilter="{{app.data.location}}" id="{{app.data.id}}"
+                            data-type="{{ app.data.type }}" data-location="{{ app.data.location }}"
+                            data-organization="{{ app.data.organization }}" onclick="showScholarshipDetails(id)">
+                            <div class="provider">Provided by university</div>
+                            <div class="details-row">
+                                <div class="detail-group">
+                                    <span class="detail-label">Grant</span>
+                                    <span class="detail-value">{{app.data.amount}}</span>
+                                </div>
+                                <div class="detail-group">
+                                    <span class="detail-label">Deadline</span>
+                                    <span class="detail-value">{{app.data.deadline}}</span>
+                                </div>
+                            </div>
+                            <h2 class="scholarship_name">{{app.data.title}}</h2>
+                            <div class="tag">{{app.data.type}}</div>
+                            <div class="university-info">
+                                <div class="university-icon">
+                                    🏛️
+                                </div>
+                                <div class="university-details">
+                                    <span class="university-name">{{app.data.organization}}</span>
+                                    <span class="university-location">{{app.data.location}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p>No applications found.</p>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </main>
+    <script>
+        data = {{ applications | tojson }};
+        console.log(data)
+    </script>
+</body>
+
+</html>

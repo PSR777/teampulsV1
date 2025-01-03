@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/internships.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <title>Scholarships</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo_search">
+                <a href="/" class="logo">
+                    <img src="../static/img/header_log.webp?height=40&width=120" alt="Unstop">
+                </a>
+
+                <div class="search-container">
+                    <span class="search-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </span>
+                    <input id="main_search" type="text" placeholder="Search Scholarships">
+                </div>
+            </div>
+
+
+            <nav>
+                <ul class="nav-links">
+                    <li id="homeLi"><a href="/home">Home</a></li>
+                    <li id="carrierLi"><a href="/carrier">Carrier</a></li>
+                    <li id="internshipLi"><a href="/internship/home">Internships</a></li>
+                    <li id="jobLi"><a href="/job/home">Jobs</a></li>
+                    <li id="scholarshipLi"><a href="/scholarship/home">Scholarship</a></li>
+                    <li id="courseLi"><a href="/courses">Courses</a></li>
+                    <li id="mentorshipLi"><a href="/mentorships">Mentorship</a></li>
+                    
+                </ul>
+            </nav>
+
+            <div class="right-section">
+                <button class="icon-button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                </button>
+
+                <div class="profile-pic" onclick="window.location = window.location.origin + '/profile'">
+                    <img width="37" height="37" alt=""
+                        src="https://d8it4huxumps7.cloudfront.net/uploads/images/unstop/user-avatar/png/15.png?d=100x100"
+                        class="">
+                </div>
+
+                <button class="host-button" onclick="window.location = window.location.origin + '/payment'">
+                    <i class="fa fa-rocket" aria-hidden="true"></i>
+                    <span>Pro</span>
+                </button>
+
+                <button class="business-button">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                        </path>
+                    </svg>
+                    <span>For Business</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <aside class="sidebar" id="sidebar">
+                <div class="sidebar-header">
+                    <h3>Filters</h3>
+                    <i class="fa fa-close" style="font-size:24px" onclick="close_sidebar()"></i>
+                </div>
+
+                <div class="filter-group">
+                    <label for="locationFilter">Location:</label>
+                    <select id="locationFilter" onchange="filterScholarships(id)">
+                        <option value="">All Types</option>
+                        <option value="United States">United States</option>
+                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="Singapore">Singapore</option>
+                        <option value="Global">Global</option>
+                        <option value="Germany">Germany</option>
+                        <option value="Diversity-Based">Diversity-Baseds</option>
+                    </select>
+                </div>
+                
+            </aside>
+            <main class="main-content">
+                <div class="filter_list" id="filter_list_show">
+                    <button class="filter-toggle" id="filterToggle">☰ Filters</button>
+                    <section class="scholarship-list" id="scholarshipList">
+                        <!-- Scholarship list items will be dynamically added here -->
+                        {% for job in jobs %}
+                        <div class="individual_internship" id="{{ job.id }}" onclick="fetchDetails(id)" data-location="{{ job.location }}">
+                            <div class="internship_meta">
+                                <div class="internship-heading-container">
+                                    <div class="company">
+                                        <h3 class="job-internship-name">
+                                            <a class="job-title-href" href="#">{{ job.title }}</a>
+                                        </h3>
+                                        <div class="heading_6 company_name">
+                                            <div class="company_and_premium">
+                                                <p class="company-name">{{ job.company }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="internship_logo">
+                                        <div class="company-logo">{{ job.company_logo_text }}</div>
+                                    </div>
+                                </div>
+                                <div class="individual_internship_details individual_internship_internship">
+                                    <div class="detail-row-1">
+                                        <div class="row-1-item locations">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                            <span>{{ job.location }} ({{ job.job_type }})</span>
+                                        </div>
+                                        <div class="row-1-item">
+                                            <i class="far fa-calendar-alt"></i>
+                                            <span>{{ job.duration }}</span>
+                                        </div>
+                                        <div class="row-1-item">
+                                            <i class="far fa-money-bill-alt"></i>
+                                            <span class="stipend">{{ job.salary }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="detail-row-2">
+                                        <div class="color-labels">
+                                            <div class="status-info"><i class="far fa-clock"></i><span>{{
+                                                    job.application_end_date }}</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </section>
+                </div>
+                <section class="scholarship-details" id="scholarshipDetails1">
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div class="header-top">
+                                <div class="company-logo" id="companyLogo"></div>
+                                <div class="header-content">
+                                    <h1 class="job-title" id="jobTitle"></h1>
+                                    <div class="company-name" id="companyName"></div>
+                                    <div class="location-date">
+                                        <span id="jobLocation"></span>
+                                        <span id="updatedDate"></span>
+                                    </div>
+                                </div>
+                                <button class="share-button">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                                        <polyline points="16 6 12 2 8 6"></polyline>
+                                        <line x1="12" y1="2" x2="12" y2="15"></line>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="action-bar">
+                                <button id="apply_btn" onclick="apply(id)" class="quick-apply">Quick Apply</button>
+                            </div>
+                        </div>
+        
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-label">Salary</div>
+                                <div class="stat-value" id="salary"></div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Applications</div>
+                                <div class="stat-value" id="applications"></div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-label">Application Deadline</div>
+                                <div class="stat-value" id="applicationDeadline"></div>
+                            </div>
+                        </div>
+        
+                        <div class="job-description">
+        
+        
+                            <div class="subsection">
+                                <h2 class="subsection-title">Responsibilities:</h2>
+                                <ul id="responsibilities"></ul>
+                            </div>
+        
+                            <div class="subsection">
+                                <h2 class="subsection-title">Requirements:</h2>
+                                <ul id="requirements"></ul>
+                            </div>
+                        </div>
+        
+                        <div class="additional-info">
+                            <h2 class="section-title">Additional Information</h2>
+                            <div class="info-item">
+                                <div class="info-content">
+                                    <div class="info-label">Experience</div>
+                                    <div class="info-value" id="experience"></div>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-content">
+                                    <div class="info-label">Work Details</div>
+                                    <div class="info-value" id="workDetails"></div>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-content">
+                                    <div class="info-label">Perks</div>
+                                    <div class="info-value" id="perks"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+            </main>
+        </div>
+        <script>
+            function apply(){
+                let id = document.getElementById('apply_btn').getAttribute('data-id') 
+                let table  = 'internships_main'
+                
+                fetch(`/apply/${table}/${id}`, {
+                    method: 'POST',
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data) {
+                            alert(data.message);
+                            
+                        } else {
+                            alert(`Error while applying`);
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                        alert(`Error while ${table}`);
+                    });
+            }
+            
+            function fetchDetails(id) {
+                fetch('/internship/' + id)
+                    .then(response => response.json())
+                    .then(job_data => {
+
+                        if (job_data) {
+                            job = job_data[0]
+                            let applyBtn = document.getElementById('apply_btn')
+                            if(job_data[1] == true){
+                               
+                                applyBtn.innerText = 'Applied'
+                                applyBtn.style.opacity = '0.7'
+                                applyBtn.style.cursor = 'none'
+                                applyBtn.disabled = true;
+                            }else{
+                                applyBtn.innerText = 'Apply'
+                                applyBtn.style.opacity = '1'
+                                applyBtn.style.cursor = 'pointer'
+                                applyBtn.disabled = false;
+                            }
+
+                            
+                            document.getElementById('companyLogo').textContent = job.company_logo_text;
+                            document.getElementById('apply_btn').setAttribute('data-id', job.id) 
+                            
+                            document.getElementById('jobTitle').textContent = job.title;
+                            document.getElementById('companyName').textContent = job.company;
+                            document.getElementById('jobLocation').innerHTML = `
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        ${job.location}
+                    `;
+                            document.getElementById('updatedDate').innerHTML = `
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        Updated On: ${job.application_start_date}
+                    `;
+                            document.getElementById('salary').textContent = job.salary;
+                            document.getElementById('applications').textContent = job.applications_received;
+                            document.getElementById('applicationDeadline').textContent = job.application_end_date;
+                            //document.getElementById('jobSummary').textContent = 'dddd' //JSON.parse(job.responsibilities)[0]; // Using the first responsibility as a summary
+    
+                            const responsibilitiesList = document.getElementById('responsibilities');
+                            responsibilitiesList.innerHTML = '';
+                            responsibilities_json = job.requirements.replace(/\n/g, '|').split("|")
+                            console.log(responsibilities_json)
+                            responsibilities_json.forEach(responsibility => {
+                                const li = document.createElement('li');
+                                li.textContent = responsibility;
+                                responsibilitiesList.appendChild(li);
+                            });
+    
+                            const requirementsList = document.getElementById('requirements');
+                            requirementsList.innerHTML = '';
+                            requirements_json = job.requirements.replace(/\n/g, '|').split("|")
+                            requirements_json.forEach(requirement => {
+                                const li = document.createElement('li');
+                                li.textContent = requirement;
+                                requirementsList.appendChild(li);
+                            });
+    
+                            document.getElementById('experience').textContent = job.experience;
+                            document.getElementById('workDetails').textContent = `${job.working_days}, ${job.job_type}`;
+                            document.getElementById('perks').textContent = job.perks.replace(/\n/g, ', ');
+                        }
+                    })
+    
+                // Highlight selected scholarship in the list
+                document.querySelectorAll('.individual_internship').forEach(item => item.classList.remove('activeDiv'));
+                document.getElementById(id).classList.add('activeDiv');
+    
+            }
+    
+            // Load the first job details when the page loads
+            document.addEventListener('DOMContentLoaded', () => {
+                const li = document.getElementById("internshipLi");
+                li.classList.add('LiActive');
+                var Id = {{ id|tojson }};
+                if (Id) {
+                    fetchDetails(Id);
+                } else {
+                    fetchDetails(1);
+                }
+                
+            });
+        </script>
+        <script>
+            function filterScholarships(id) {
+                const Filter = document.getElementById(id).value;
+    
+    
+                const scholarships = document.querySelectorAll(".scholarship-card");
+                let ids = []
+                scholarships.forEach(scholarship => {
+                    const type = scholarship.getAttribute("data-" + id);
+    
+    
+                    // Check if the scholarship meets filter criteria
+                    const matchesType = Filter === "" || type === Filter;
+    
+    
+                    if (matchesType) {
+                        scholarship.style.display = "block";
+                        ids.push(scholarship.id)
+                    } else {
+                        scholarship.style.display = "none";
+                    }
+                });
+                console.log(ids)
+                showScholarshipDetails(ids[0])
+            }
+    
+        </script>
+        <script>
+            const filterToggle = document.getElementById('filterToggle');
+                const sidebar = document.getElementById('sidebar');
+                const scholarshipList = document.getElementById('internship_list_container_1');
+                const scholarshipDetails = document.getElementById('scholarshipDetails');
+                const locationFilter = document.getElementById('locationFilter');
+                const typeFilter = document.getElementById('typeFilter');
+                const universityFilter = document.getElementById('universityFilter');
+                const filter_list_show = document.getElementById('filter_list_show');
+    
+    
+    
+                filterToggle.addEventListener('click', () => {
+                    sidebar.classList.toggle('active');
+                    filter_list_show.classList.toggle('filter_list_show');
+                    filterToggle.classList.add('hide-filter-btn'); // toggles the class
+                    filterToggle.classList.remove('show-filter-btn');
+                    scholarshipList.classList.add('list-moved-up');
+                    scholarshipList.classList.remove('list-moved-down');// adds visibility back
+                });
+    
+                function close_sidebar() {
+                    sidebar.classList.toggle('active');
+                    filter_list_show.classList.toggle('filter_list_show');
+                    filterToggle.classList.remove('hide-filter-btn');
+                    filterToggle.classList.add('show-filter-btn');
+                    scholarshipList.classList.remove('list-moved-up');
+                    scholarshipList.classList.add('list-moved-down');
+                }
+    
+        </script>
+
+</body>
+</main>
+
+</html>

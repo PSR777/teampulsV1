@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/login.css') }}"
+    />
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="login-left">
+        <div class="logo">
+          <h2>Sai<span>ram</span></h2>
+        </div>
+        <div class="slideshow-container">
+          <div class="mySlides fade">
+            <div class="numbertext"></div>
+            <img
+              src="{{ url_for('static', filename='img/login-img-1.png') }}"
+              style="width: 100%"
+            />
+            <div class="text">Caption Text</div>
+          </div>
+          <div class="mySlides fade">
+            <div class="numbertext"></div>
+            <img
+              src="{{ url_for('static', filename='img/login-img-2.png') }}"
+              style="width: 100%"
+            />
+            <div class="text">Caption Two</div>
+          </div>
+          <div class="mySlides fade">
+            <div class="numbertext"></div>
+            <img
+              src="{{ url_for('static', filename='img/login-img-3.png') }}"
+              style="width: 100%"
+            />
+          </div>
+          <div class="mySlides fade">
+            <div class="numbertext"></div>
+            <img
+              src="{{ url_for('static', filename='img/login-img-4.png') }}"
+              style="width: 100%"
+            />
+          </div>
+          <div class="mySlides fade">
+            <div class="numbertext"></div>
+            <img
+              src="{{ url_for('static', filename='img/login-img-5.png') }}"
+              style="width: 100%"
+            />
+          </div>
+          <div class="mySlides fade">
+            <div class="numbertext"></div>
+            <img
+              src="{{ url_for('static', filename='img/login-img-6.png') }}"
+              style="width: 100%"
+            />
+          </div>
+          <div class="mySlides fade">
+            <div class="numbertext"></div>
+            <img
+              src="{{ url_for('static', filename='img/login-img-7.png') }}"
+              style="width: 100%"
+            />
+          </div>
+        </div>
+        <br />
+        <div style="text-align: center">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+      </div>
+      <div class="login-right">
+        <div class="p_box">
+          <div class="hdng">
+            <img
+              src="https://d8it4huxumps7.cloudfront.net/uploads/images/login/create-icon.png?d=80x80"
+              alt="Welcome Back"
+              width="40"
+              height="40"
+              loading="lazy"
+            />
+            <span>
+              <p apptranslate="ltitle">Hi, there!</p>
+            </span>
+          </div>
+          <div class="google-btn">
+            <div class="social_btn">
+              <div id="google-root" data-width="500"></div>
+            </div>
+          </div>
+          <div class="login_social_btn j-between">
+            <img
+              src="https://d8it4huxumps7.cloudfront.net/uploads/images/664ecbbb1335e_linkedin_fav.png"
+              width="18"
+              height="18"
+              alt="LinkedIn Logo"
+              loading="lazy"
+            />
+            <span>Login with LinkedIn</span>
+          </div>
+          <div class="or_login">
+            <span>------- Or login with email -------</span>
+          </div>
+          <form class="login-form" method="post" action="/login">
+            <div class="user-details">
+              <div class="input-box">
+                <label class="input-label">Mail</label>
+                <input
+                  id="email"
+                  placeholder="user@mail.com"
+                  class="input"
+                  name="email"
+                  type="email"
+                  onblur="sendOTP()"
+                  value="{{email}}"
+                />
+                <span class="input-helper">enter a valid email</span>
+              </div>
+              <div class="input-box">
+                <label class="input-label">Password</label>
+                <input
+                  placeholder="Password"
+                  class="input"
+                  name="Password"
+                  type="Password"
+                  value="{{password}}"
+                />
+                <span class="input-helper">enter a valid Password</span>
+              </div>
+              <div id="otpDiv" class="input-box">
+                <label class="input-label" for="otp">OTP</label>
+                <input
+                  id="otp"
+                  placeholder="Enter OTP"
+                  class="input"
+                  name="otp"
+                  type="text"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  maxlength="6"
+                  value="{{otp}}"
+                />
+                <span class="input-helper"
+                  >enter the 6-digit OTP sent to your email</span
+                >
+              </div>
+            </div>
+            <div id="error-message" style="color: red; font-size: 0.9em"></div>
+            <button id="loginButton" class="submit_btn" type="submit">
+              Log In
+            </button>
+          </form>
+          <div id="signupDev">
+            <p class="signup-text">
+              Don't have an account? <a href="/register">Sign up</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div id="popup" class="popup">{{ error }}</div>
+      <div id="popup2" class="popup2"></div>
+    </div>
+    <script>
+                  // JavaScript code for slideshow
+                  let slideIndex = 0;
+                  showSlides();
+                  const emailInput = document.getElementById("email");
+                  if(emailInput.value){
+                      const otpDiv = document.getElementById("otpDiv");
+                      otpDiv.classList.add('show')
+                  }
+
+                  function showSlides() {
+                      let i;
+                      let slides = document.getElementsByClassName("mySlides");
+                      let dots = document.getElementsByClassName("dot");
+                      for (i = 0; i < slides.length; i++) {
+                          slides[i].style.display = "none";
+                      }
+                      slideIndex++;
+                      if (slideIndex > slides.length) {
+                          slideIndex = 1;
+                      }
+                      for (i = 0; i < dots.length; i++) {
+                          dots[i].className = dots[i].className.replace(" active", "");
+                      }
+                      slides[slideIndex - 1].style.display = "block";
+                      dots[slideIndex - 1].className += " active";
+                      setTimeout(showSlides, 3000); // Change image every 3 seconds
+                  }
+
+                  // JavaScript code for form validation and OTP
+                  function validateEmail(email) {
+                      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                      return emailPattern.test(email);
+                  }
+
+                  function sendOTP() {
+                      const emailInput = document.getElementById("email");
+                      const errorMessage = document.getElementById("error-message");
+                      const otpDiv = document.getElementById("otpDiv");
+                      const email = emailInput.value;
+
+                      if (!validateEmail(email)) {
+                          errorMessage.style.display = "block";
+                          errorMessage.textContent = "Please enter a valid email";
+                          otpDiv.classList.remove("show");
+                      } else {
+                          errorMessage.style.display = "none";
+                          otpDiv.classList.add("show");
+
+                          fetch("/send_otp", {
+                              method: "POST",
+                              headers: {
+                              "Content-Type": "application/json",
+                              },
+                              body: JSON.stringify({ email: email }),
+                          })
+                          .then((response) => {
+                                  return response.json(); // Parse the JSON from the response
+                              })
+                              .then((data) => {
+                                  if (data.message) { // Check if the message exists in the response
+                                    console.log(data.message);
+                                    showPopup(data.message); 
+                                  } else {
+                                    alert(data.message);
+                                  }
+                              })
+                              .catch((error) => console.error("Error:", error));
+                                      }
+                                  }
+
+                  // JavaScript code for popup messages
+                  {% if error %}
+                      showPopup2();
+                  {% endif %}
+
+                  function showPopup(text) {
+                      var popup = document.getElementById('popup2');
+                      popup.innerText = text;
+                      popup.classList.add('show');
+                      setTimeout(function() {
+                          popup.classList.remove('show');
+                      }, 3000);
+                  }
+
+                  function showPopup2() {
+                      var popup = document.getElementById('popup');
+                      popup.classList.add('show');
+                      setTimeout(function() {
+                          popup.classList.remove('show');
+                      }, 3000);
+                  }
+    </script>
+  </body>
+</html>

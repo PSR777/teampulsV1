@@ -1,0 +1,249 @@
+
+main{
+    display: flex;
+    align-items:center;
+    gap: 10px;
+}
+
+.sidebar {
+    margin-left: 20px;
+    width: 283px;
+    background: #fff;
+    height: calc(100vh - 64px);
+    overflow-y: auto;
+    box-shadow: 2.00389px -2.00389px 4.00778px #86a0bf0f;
+    
+}
+
+.user_data {
+    min-width: 1000px;
+    height: calc(100vh - 64px);
+    background: #ffffff;
+    gap: 10px;
+    padding-left: 0;
+    padding-top: 0;
+    overflow-y: scroll;
+}
+
+
+.align-center {
+    display: flex;
+    align-items: center;
+}
+
+
+.complete_profile {
+    
+    padding: 20px;
+}
+
+.white_box {
+    background: #fff;
+    border-radius: 0;
+}
+
+.mb-10 {
+    margin-bottom: 10px !important;
+}
+
+
+.user_dtls .img{
+    width: 40px;
+    height: 40px;
+    border-radius: 89.6px;
+    border: 1.6px solid #FFF;
+    background: #d3d3d3 50% / cover no-repeat;
+    box-shadow: -1.6px 1.6px 12px #00000040;
+}
+
+.user_dtls .img{
+    width: 40px;
+    height: 40px;
+    border-radius: 89.6px;
+    border: 1.6px solid #FFF;
+    background: #d3d3d3 50% / cover no-repeat;
+    box-shadow: -1.6px 1.6px 12px #00000040;
+}
+
+.user_dtls .content {
+    width: calc(100% - 60px);
+}
+
+.ml-10 {
+    margin-left: 10px !important;
+}
+
+.user_dtls .content h2{
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 19px;
+    margin: 0;
+    color: rgb(0, 0, 0);
+}
+.user_dtls .content p{
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 400;
+    margin: 0;
+    color: rgba(92, 92, 92, 0.973);
+}
+
+.mt-20 {
+    margin-top: 20px !important;
+}
+
+.complete_profile .bar-bg {
+    height: 6px;
+    width: 100%;
+    background-color: rgb(179, 179, 179);
+    position: relative;
+    border-radius: 8px;
+}
+
+.complete_profile .bar-bg .bar {
+    border-radius: 8px;
+    background: linear-gradient(90deg, #01a768 5.56%, #05c165);
+    height: 6px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.complete_profile span{
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 15px;
+    color: #035e32;
+    margin-left: 10px !important;
+}
+
+
+
+.icon-edit {
+    background-position: 0px 0px;
+}
+
+.edit_profile em {
+    filter: brightness(0) invert(1);
+}
+.edit-icons {
+    height: 20px;
+    width: 20px;
+    background: url(https://d8it4huxumps7.cloudfront.net/uploads/images/65573cde7b122_frame_1000011425.svg) no-repeat;
+    background-position: 0 0;
+}
+
+
+.edit_profile{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    width: 100%;
+    justify-content: center;
+    height: 40px;
+    padding: 0 16px 0 14px;
+    border-radius: 38px;
+    background: #0073e6;
+    color: #fff;
+    cursor: pointer;
+    transition: .3s;
+}
+
+
+
+
+
+
+.logout_icon{
+    background: url(https://d8it4huxumps7.cloudfront.net/uploads/images/652685b34752b_frame_1000011321.svg) no-repeat;
+}
+.logout_profile{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    width: 100%;
+    justify-content: center;
+    height: 40px;
+    padding: 0 16px 0 14px;
+    border-radius: 38px;
+    background: #fc3131cb;
+    color: #fff;
+    cursor: pointer;
+    transition: .3s;
+}
+.icon-registrations{
+    background-position: 0px 0px;
+}
+
+.p_icons, .logout_icon {
+    height: 20px;
+    width: 21px;
+    background-position: 0 0;
+}
+
+
+
+
+
+.hdngs {
+    height: 70px;
+    padding-left: 20PX;
+    display: flex;
+    
+    background: rgba(255, 255, 255, 0.651);
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #e2e2e2;
+    
+}
+
+.un_tabs {
+    padding-left: 20px; 
+    padding-right: 20px; 
+    border-bottom: 3px solid #e2e2e2;
+}
+.un_tabs span:not(:last-child) {
+    margin-right: 20px;
+}
+.un_tabs span {
+    color: #383838;
+    font-size: 14px;
+    line-height: 100%;
+    cursor: pointer;
+    transition: .3s;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    padding: 20px 0;
+    
+    
+}
+.un_tabs span.active {
+    color: #0073e6;
+}
+.un_tabs span.active:after {
+    width: 100%;
+}
+.un_tabs span:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: #0073e6;
+    transition: .3s;
+    
+    
+}
+
+.un_tabs span:hover:after {
+    width: 100%; 
+    background: #79bbfd;
+}

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Internship Home</title>
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            display: flex;
+            align-items: cent;
+            padding: auto;
+        }
+
+        .content {
+
+            min-height: calc(100vh - 156px);
+            display: flex;
+            align-items: center;
+        }
+
+        .right {
+            width: 50%;
+            padding-right: 50px;
+            padding-left: 50px;
+
+        }
+
+        .right h1 {
+            color: #383838;
+            font-size: 50px;
+            font-weight: 600;
+            line-height: 120%;
+        }
+
+        .right p {
+            color: #727272;
+            font-size: 16px;
+            line-height: 140%;
+            margin-top: 26px;
+            margin-bottom: 0;
+        }
+
+        .explore {
+            margin-top: 26px;
+            display: flex;
+        }
+
+        .explore button {
+            border-radius: 50px;
+            border: 1px solid #1C4980;
+            height: 52px;
+            padding: 0 20px;
+            display: inline-flex;
+            align-items: center;
+            color: #1c4980;
+            font-size: 16px;
+            transition: .3s;
+            cursor: pointer;
+        }
+
+        .explore button:disabled {
+
+            opacity: 0.5;
+
+        }
+
+        .explore button:not(:last-child) {
+            margin-right: 10px;
+        }
+
+        .explore button:first-child {
+            background: #2600ff;
+            color: #fff;
+        }
+
+
+
+        .left {
+            width: calc(50% + 40px);
+
+        }
+
+        .left img {
+            width: 90%;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo_search">
+                <a href="/" class="logo">
+                    <img src="../static/img/header_log.webp?height=40&width=120" alt="Unstop">
+                </a>
+
+                <div class="search-container">
+                    <span class="search-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </span>
+                    <input id="main_search" type="text" placeholder="Search Scholarships">
+                </div>
+            </div>
+
+
+            <nav>
+                <ul class="nav-links">
+                    <li id="homeLi"><a href="/home">Home</a></li>
+                    <li id="carrierLi"><a href="/carrier">Carrier</a></li>
+                    <li id="internshipLi"><a href="/internship/home">Internships</a></li>
+                    <li id="jobLi"><a href="/job/home">Jobs</a></li>
+                    <li id="scholarshipLi"><a href="/scholarship/home">Scholarship</a></li>
+                    <li id="courseLi"><a href="/courses">Courses</a></li>
+                    <li id="mentorshipLi"><a href="/mentorships">Mentorship</a></li>
+                    
+                </ul>
+            </nav>
+
+            <div class="right-section">
+                <button class="icon-button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                </button>
+
+                <div class="profile-pic" onclick="window.location = window.location.origin + '/profile'">
+                    <img width="37" height="37" alt=""
+                        src="https://d8it4huxumps7.cloudfront.net/uploads/images/unstop/user-avatar/png/15.png?d=100x100"
+                        class="">
+                </div>
+
+                <button class="host-button" onclick="window.location = window.location.origin + '/payment'">
+                    <i class="fa fa-rocket" aria-hidden="true"></i>
+                    <span>Pro</span>
+                </button>
+
+                <button class="business-button">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                        </path>
+                    </svg>
+                    <span>For Business</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="content">
+            <div class="right">
+                <h1>Unlock Exposure</h1>
+                <p>Apply to a plethora of hiring opportunities & work with your dream companies!</p>
+
+
+                <div class="explore">
+                    <button onclick="window.location = window.location.origin + '/internships'" class="waves-effect"
+                        tabindex="0"> Find Internships </button>
+                    <button {% if type !="company" %} disabled {% endif %}
+                        onclick="window.location = window.location.origin + '/internship/post'"> Post Internships
+                    </button>
+                </div>
+
+            </div>
+            <div class="left">
+
+                <div class="internship_home_logo">
+                    <img src="{{ url_for('static', filename='img/internship_home_img.webp') }}" alt="Unstop Logo">
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const span = document.getElementById("internshipLi");
+            span.classList.add('LiActive');
+
+        });
+    </script>
+</body>
+
+</html>

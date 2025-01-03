@@ -1,0 +1,487 @@
+{
+    
+    "scholarships": [
+        {
+            "column_name": "id",
+            "data_type": "INTEGER",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "title",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "organization",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "type",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "location",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "amount",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "deadline",
+            "data_type": "DATE",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "description",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "eligibility",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "duration",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "applicationFee",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "numberAvailable",
+            "data_type": "INTEGER",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "requiredDocuments",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "applicationLink",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "contactEmail",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "website",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "terms_and_conditions",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "important_dates",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "additional_benefits",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "contact_phone",
+            "data_type": "REAL",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "country",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "selection_criteria",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "documents",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        }
+    ],
+    "mentorships": [
+        {
+            "column_name": "id",
+            "data_type": "INTEGER",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "name",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "avatar",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "rating",
+            "data_type": "REAL",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "experience",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "field",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "reviews",
+            "data_type": "INTEGER",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "organization",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "department",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "role",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "bookings",
+            "data_type": "INTEGER",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "mentoringMins",
+            "data_type": "INTEGER",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "available",
+            "data_type": "BOOLEAN",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "isTopMentor",
+            "data_type": "BOOLEAN",
+            "not_null": false,
+            "default_value": null
+        }
+    ],
+    "jobsMain": [
+        {
+            "column_name": "id",
+            "data_type": "INTEGER",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "companyLogo",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "jobTitle",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "companyName",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "location",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "updatedDate",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "salary",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "impressions",
+            "data_type": "INTEGER",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "applicationDeadline",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "eligibility",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "jobSummary",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "responsibilities",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "qualifications",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "experienceMin",
+            "data_type": "INTEGER",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "experienceMax",
+            "data_type": "INTEGER",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "workingDays",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "jobType",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "jobTiming",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        }
+    ],
+    "internships_main": [
+        {
+            "column_name": "id",
+            "data_type": "INTEGER",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "title",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "company",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "company_logo_text",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "location",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "duration",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "salary",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "working_days",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "job_type",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "experience",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "responsibilities",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "requirements",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "application_start_date",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "application_end_date",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "applications_received",
+            "data_type": "INTEGER",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "perks",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        }
+    ],
+    "registrations": [
+        {
+            "column_name": "id",
+            "data_type": "INTEGER",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "user_id",
+            "data_type": "INTEGER",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "scholarship_id",
+            "data_type": "INTEGER",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "mentorship_id",
+            "data_type": "INTEGER",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "job_id",
+            "data_type": "INTEGER",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "internship_id",
+            "data_type": "INTEGER",
+            "not_null": false,
+            "default_value": null
+        },
+        {
+            "column_name": "applied_at",
+            "data_type": "TIMESTAMP",
+            "not_null": false,
+            "default_value": "CURRENT_TIMESTAMP"
+        },
+        {
+            "column_name": "posted",
+            "data_type": "TEXT",
+            "not_null": false,
+            "default_value": null
+        }
+    ]
+}

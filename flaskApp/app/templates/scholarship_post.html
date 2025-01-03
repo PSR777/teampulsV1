@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/scholarship_post.css') }}">
+    <title>Post a Scholarship</title>
+    
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo_search">
+                <a href="/" class="logo">
+                    <img src="../static/img/header_log.webp?height=40&width=120" alt="Unstop">
+                </a>
+
+                <div class="search-container">
+                    <span class="search-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </span>
+                    <input id="main_search" type="text" placeholder="Search Scholarships">
+                </div>
+            </div>
+
+
+            <nav>
+                <ul class="nav-links">
+                    <li id="homeLi"><a href="/home">Home</a></li>
+                    <li id="carrierLi"><a href="/carrier">Carrier</a></li>
+                    <li id="internshipLi"><a href="/internship/home">Internships</a></li>
+                    <li id="jobLi"><a href="/job/home">Jobs</a></li>
+                    <li id="scholarshipLi"><a href="/scholarship/home">Scholarship</a></li>
+                    <li id="courseLi"><a href="/courses">Courses</a></li>
+                    <li id="mentorshipLi"><a href="/mentorships">Mentorship</a></li>
+                    
+                </ul>
+            </nav>
+
+            <div class="right-section">
+                <button class="icon-button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                </button>
+
+                <div class="profile-pic" onclick="window.location = window.location.origin + '/profile'">
+                    <img width="37" height="37" alt=""
+                        src="https://d8it4huxumps7.cloudfront.net/uploads/images/unstop/user-avatar/png/15.png?d=100x100"
+                        class="">
+                </div>
+
+                <button class="host-button" onclick="window.location = window.location.origin + '/payment'">
+                    <i class="fa fa-rocket" aria-hidden="true"></i>
+                    <span>Pro</span>
+                </button>
+
+                <button class="business-button">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                        </path>
+                    </svg>
+                    <span>For Business</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <h1>Post a Scholarship</h1>
+        <form id="scholarshipForm">
+            
+            <div class="input-box">
+                <label for="title">Scholarship Title*</label>
+                <input type="text" id="title" name="title" class="input">
+            </div>
+
+            <div class="input-box">
+                <label for="organization">Organization Name*</label>
+                <input type="text" id="organization" name="organization" class="input">
+            </div>
+
+            <div class="input-box">
+                <label for="type">Scholarship Type*</label>
+                <select id="type" name="type">
+                    <option value="">Select Type</option>
+                    <option value="Merit-Based">Merit-Based</option>
+                    <option value="Need-Based">Need-Based</option>
+                    <option value="Athletic">Athletic</option>
+                    <option value="STEM">STEM</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="input-box">
+                <label for="eligibility">Eligibility Criteria*</label>
+                <textarea id="eligibility" name="eligibility" class="bulletTextArea" class="input"></textarea>
+            </div>
+
+            <div class="input-box">
+                <label for="country">Country:</label>
+                <select id="country" onchange="updateCities()">
+                    <option value="">Select a country</option>
+                    <option value="USA">USA</option>
+                    <option value="Canada">Canada</option>
+                    <option value="UK">UK</option>
+                    <option value="India">India</option>
+                </select>
+            </div>
+
+            <div class="input-box">
+                <label for="city" >City:</label>
+                <select id="city" name="location" disabled>
+                    <option value="">Select a city</option>
+                </select>
+            </div>
+
+            <div class="input-box">
+                <label for="description">Description*</label>
+                <textarea id="description" name="description" class="bulletTextArea"></textarea>
+            </div>
+
+            <div class="input-box">
+                <label for="amount">Funding Amount*</label>
+                <input type="text" id="amount" name="amount" class="input">
+            </div>
+
+            <div class="input-box">
+                <label for="duration">Duration*</label>
+                <input type="text" id="duration" name="duration" class="input">
+            </div>
+
+            <div class="input-box">
+                <label for="applicationFee">Application Fee</label>
+                <input type="number" id="applicationFee" name="applicationFee" min="0" class="input">
+            </div>
+
+            <div class="input-box">
+                <label for="numberAvailable">Number of Scholarships Available*</label>
+                <input type="number" id="numberAvailable" name="numberAvailable" min="1" class="input">
+            </div>
+
+            <div class="input-box">
+                <label for="Documents"> Documents*</label>
+                <textarea id="Documents" name="Documents" class="bulletTextArea"></textarea>
+            </div>
+
+            <div class="input-box">
+                <label for="skills"> Skills</label>
+                <input type="text" id="skills" name="skills" class="input">
+            </div>
+
+            <div class="input-box">
+                <label for="certifications"> Certifications</label>
+                <input type="text" id="certifications" name="certifications" class="input">
+            </div>
+
+            <div class="input-box">
+                <label for="applicationLink">Application Link*</label>
+                <input type="url" id="applicationLink" name="applicationLink" class="input">
+            </div>
+
+            <div class="input-box">
+                <label for="deadline">Application Deadline*</label>
+                <input type="date" id="deadline" name="deadline" class="input">
+            </div>
+
+            <div class="input-box">
+                <label for="selectionProcess">Interview or Selection Process</label>
+                <textarea id="selectionProcess" name="selectionProcess" class="bulletTextArea"></textarea>
+            </div>
+
+            <div class="input-box">
+                <label for="contactEmail">Contact Email*</label>
+                <input type="email" id="contactEmail" name="contactEmail" class="input">
+            </div>
+
+            <div class="input-box">
+                <label for="contactPhone">Contact Phone</label>
+                <input type="tel" id="contactPhone" name="contactPhone" class="input">
+            </div>
+
+            <div class="input-box">
+                <label for="website">Website</label>
+                <input type="url" id="website" name="website" class="input">
+            </div>
+
+            <div class="input-box">
+                <label for="additionalBenefits">Additional Benefits</label>
+                <textarea id="additionalBenefits" name="additionalBenefits" class="bulletTextArea" class="input"></textarea>
+            </div>
+
+            <div class="input-box">
+                <label for="importantDates">Important Dates</label>
+                <textarea id="importantDates" name="importantDates" class="bulletTextArea" class="input"></textarea>
+            </div>
+
+            <div class="input-box">
+                <label for="termsConditions">Terms and Conditions*</label>
+                <textarea id="termsConditions" rows="1" name="termsConditions" class="bulletTextArea" class="input"></textarea>
+            </div>
+
+            <button type="submit" class="submit_btn">Submit Scholarship</button>
+        </form>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('scholarshipForm');
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                if (true) {
+                    submitForm();
+                }
+            });
+            
+            function validateForm() {
+                let isValid = true;
+                const Fields = form.querySelectorAll('[]');
+
+                Fields.forEach(field => {
+                    if (!field.value.trim()) {
+                        isValid = false;
+                        showError(field, 'This field is ');
+                    } else {
+                        clearError(field);
+                    }
+                });
+
+                const emailField = form.querySelector('#contactEmail');
+                if (emailField.value && !isValidEmail(emailField.value)) {
+                    isValid = false;
+                    showError(emailField, 'Please enter a valid email address');
+                }
+
+                const urlFields = form.querySelectorAll('input[type="url"]');
+                urlFields.forEach(field => {
+                    if (field.value && !isValidUrl(field.value)) {
+                        isValid = false;
+                        showError(field, 'Please enter a valid URL');
+                    }
+                });
+
+                return isValid;
+            }
+
+            function showError(field, message) {
+                clearError(field);
+                const error = document.createElement('div');
+                error.className = 'error';
+                error.textContent = message;
+                field.parentNode.appendChild(error);
+                field.classList.add('invalid');
+            }
+
+            function clearError(field) {
+                const error = field.parentNode.querySelector('.error');
+                if (error) {
+                    error.remove();
+                }
+                field.classList.remove('invalid');
+            }
+
+            function isValidEmail(email) {
+                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            }
+
+            function isValidUrl(url) {
+                try {
+                    new URL(url);
+                    return true;
+                } catch {
+                    return false;
+                }
+            }
+            
+            function submitForm() {
+                const formData = new FormData(form);
+                const scholarshipData = Object.fromEntries(formData.entries());
+                const country = document.getElementById("country").value;
+                scholarshipData.location = scholarshipData.location +', ' +country
+
+                
+                let textareas = ['Documents', 'additionalBenefits', 'description', 'eligibility', 'importantDates', 'selectionProcess', 'termsConditions']
+
+                textareas.forEach((id) => {
+
+                    const text = scholarshipData[id].trim();
+                    const commaSeparated = text
+                        .split('\n')
+                        .map(item => item.replace(/^•\s*/, '').trim())
+                        .filter(item => item !== '') 
+                        .join(', ');
+
+                    scholarshipData[id] = commaSeparated
+                })
+                console.log('Scholarship Data:', scholarshipData);
+                
+                try {
+                    // Send a POST request to the Flask API
+                    const response =  fetch('/scholarship/post', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(scholarshipData),
+                    });
+
+                    // Check if the response is OK (status in the range 200-299)
+                    if (response.ok) {
+                        const result =  response.json();
+                        console.log('Success:', result.message);
+                    } else {
+                        console.error('Error:', response.statusText);
+                    }
+                } catch (error) {
+                    console.error('Network error:', error);
+                }
+                alert('Scholarship submitted successfully!');
+                //form.reset();
+            }
+        });
+    </script>
+    <script>
+        // Select all text areas with the class 'bulletTextArea'
+        const bulletTextAreas = document.querySelectorAll(".bulletTextArea");
+        bulletTextAreas.forEach((bulletTextArea, index) => {
+            bulletTextArea.addEventListener("keypress", (event) => {
+                if (event.key === "Enter") {
+                    event.preventDefault(); // Prevent the default newline action
+                    const start = bulletTextArea.selectionStart;
+                    const end = bulletTextArea.selectionEnd;
+                    const newValue = bulletTextArea.value.substring(0, start) + "\n• " + bulletTextArea.value.substring(end);
+                    bulletTextArea.value = newValue;
+
+                    bulletTextArea.selectionStart = bulletTextArea.selectionEnd = start + 3;
+
+
+                }
+            });
+
+            // Add the initial bullet when the textarea is focused for the first time
+            bulletTextArea.addEventListener("focus", () => {
+                if (!bulletTextArea.value.startsWith("• ")) {
+                    bulletTextArea.value = "• ";
+                }
+            });
+        });
+
+    </script>
+
+
+    <script>
+        const cityOptions = {
+            USA: ["New York", "Los Angeles", "Chicago"],
+            Canada: ["Toronto", "Vancouver", "Montreal"],
+            UK: ["London", "Manchester", "Birmingham"],
+            India: ["Delhi", "Mumbai", "Bangalore"]
+        };
+
+        function updateCities() {
+            const countrySelect = document.getElementById("country");
+            const citySelect = document.getElementById("city");
+
+            // Clear the current city options
+            citySelect.innerHTML = '<option value="">Select a city</option>';
+
+            const selectedCountry = countrySelect.value;
+
+            // If a country is selected, populate the city select
+            if (selectedCountry) {
+                const cities = cityOptions[selectedCountry];
+
+                cities.forEach(city => {
+                    const option = document.createElement("option");
+                    option.value = city;
+                    option.textContent = city;
+                    citySelect.appendChild(option);
+                });
+
+                citySelect.disabled = false; // Enable the city select
+            } else {
+                citySelect.disabled = true; // Disable the city select
+            }
+        }
+
+    </script>
+</body>
+
+</html>

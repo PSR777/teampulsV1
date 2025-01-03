@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Internship Details</title>
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jobs.css') }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo_search">
+                <a href="/" class="logo">
+                    <img src="../static/img/header_log.webp?height=40&width=120" alt="Unstop">
+                </a>
+
+                <div class="search-container">
+                    <span class="search-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </span>
+                    <input id="main_search" type="text" placeholder="Search Scholarships">
+                </div>
+            </div>
+
+
+            <nav>
+                <ul class="nav-links">
+                    <li id="homeLi"><a href="/home">Home</a></li>
+                    <li id="carrierLi"><a href="/carrier">Carrier</a></li>
+                    <li id="internshipLi"><a href="/internship/home">Internships</a></li>
+                    <li id="jobLi"><a href="/job/home">Jobs</a></li>
+                    <li id="scholarshipLi"><a href="/scholarship/home">Scholarship</a></li>
+                    <li id="courseLi"><a href="/courses">Courses</a></li>
+                    <li id="mentorshipLi"><a href="/mentorships">Mentorship</a></li>
+
+                </ul>
+            </nav>
+
+            <div class="right-section">
+                <button class="icon-button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                </button>
+
+                <div class="profile-pic" onclick="window.location = window.location.origin + '/profile'">
+                    <img width="37" height="37" alt=""
+                        src="https://d8it4huxumps7.cloudfront.net/uploads/images/unstop/user-avatar/png/15.png?d=100x100"
+                        class="">
+                </div>
+
+                <button class="host-button" onclick="window.location = window.location.origin + '/payment'">
+                    <i class="fa fa-rocket" aria-hidden="true"></i>
+                    <span>Pro</span>
+                </button>
+
+                <button class="business-button">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                        </path>
+                    </svg>
+                    <span>For Business</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+
+    <main>
+        <div class="left">
+            <div id="internship_list_container_1">
+                {% for job in jobs %}
+                <div class="individual_internship" id="{{job.0}}" internshipid="{{job.0}} " onclick="fetchDetails(id)"
+                    data-source_page="search_page"
+                    data-href="/internship/details/business-development-sales-internship-in-mumbai-at-zi-cloud1729834801">
+                    <div class="internship_meta">
+                        <div class="internship-heading-container">
+                            <div class="company">
+                                <h3 class="job-internship-name">
+                                    <a class="job-title-href" href='' target="_blank">{{job.jobTitle}}</a>
+                                </h3>
+                                <div class="heading_6 company_name">
+                                    <div class="company_and_premium">
+                                        <p class="company-name">
+                                            {{job.companyName}} </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="internship_logo">
+                                <img src='../static/img/placeholder.svg' alt="Zi Cloud">
+                            </div>
+
+                        </div>
+
+                        <div class="individual_internship_details  individual_internship_internship">
+                            <div class="detail-row-1">
+                                <div class="row-1-item locations">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>
+                                        <a>{{job.location}}</a> {{job.jobType}}
+                                        <span style="vertical-align: middle">
+                                            <i class="pop ic-16-alert-circle office_days_popover"
+                                                data-popover_content="3 day(s) in-office in a week"
+                                                data-original-title="" title=""></i>
+                                        </span>
+                                    </span>
+
+                                </div>
+                                <div class="row-1-item">
+                                    <i class="far fa-calendar-alt"></i>
+                                    <span></span>
+                                </div>
+                                <div class="row-1-item">
+                                    <i class="far fa-money-bill-alt"></i>
+                                    <span class="stipend">₹ {{job.salary}}</span>
+                                </div>
+                            </div>
+                            <div class="detail-row-2">
+                                <div class="color-labels">
+                                    <div class="status-info"><i class="far fa-clock"></i><span>10
+                                            days
+                                            ago</span></div>
+                                </div>
+                                <div class="gray-labels hidden">
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+                {% endfor %}
+
+
+
+            </div>
+        </div>
+        <div class="right">
+            <div class="job-card">
+                <div class="job-header">
+                    <div class="header-top">
+                        <div class="company-logo">
+                            NOBROKER HOOD
+                        </div>
+                        <div class="header-content">
+                            <h1 class="job-title">Inside Sales Associate</h1>
+                            <div class="company-name">NoBrokerHood</div>
+                            <div class="location-date">
+                                <span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                    Bangalore
+                                </span>
+                                <span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg>
+                                    Updated On: Nov 4, 2024
+                                </span>
+                            </div>
+                        </div>
+                        <button class="share-button">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                                <polyline points="16 6 12 2 8 6"></polyline>
+                                <line x1="12" y1="2" x2="12" y2="15"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="action-bar">
+                        <button id="apply_btn" onclick="apply(id)" class="quick-apply">Quick Apply</button>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-label">Salary</div>
+                        <div class="stat-value">2.40 Lpa - 3.50 Lpa</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Impressions</div>
+                        <div class="stat-value">226</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Application Deadline</div>
+                        <div class="stat-value">04 Dec 24, 12:04 PM IST</div>
+                    </div>
+                </div>
+
+                <div class="eligibility">
+                    <h2>Eligibility</h2>
+                    <p>Experienced Professionals</p>
+                </div>
+                <div class="job-description">
+                    <h2>Job Description</h2>
+
+                    <p class="hiring-statement">
+                        NoBrokerHood is hiring for the role of Sales Operations Analyst!
+                    </p>
+
+                    <div class="subsection">
+                        <h2 class="subsection-title">Job Summary:</h2>
+                        <p class="description-text">
+                            We are seeking a detail-oriented Sales Operations Analyst to maintain data integrity within
+                            our CRM system and support our sales team. This role involves monitoring updates, correcting
+                            issues, and managing multiple projects simultaneously, with a strong focus on data handling
+                            and reporting.
+                        </p>
+                    </div>
+
+                    <div class="subsection">
+                        <h2 class="subsection-title">Responsibilities of the Candidates:</h2>
+                        <ul id="responsibilities">
+                            <li>Monitor and validate updates made in the CRM by the sales team to ensure data accuracy.
+                            </li>
+                            <li>Identify and correct discrepancies in sales data.</li>
+                            <li>Develop and manage reports using Excel and Google Sheets, including advanced formulas.
+                            </li>
+                            <li>Support multiple projects concurrently, ensuring timely and accurate completion.</li>
+                            <li>Collaborate with sales and operations teams to enhance data quality and streamline
+                                processes.</li>
+                        </ul>
+                    </div>
+
+                    <div class="subsection">
+                        <h2 class="subsection-title">Qualifications:</h2>
+                        <ul id="qualifications">
+                            <li>Bachelor's degree in Business, Data Analysis, or a related field.</li>
+                            <li>2+ years of experience in sales operations or data management.</li>
+                            <li>Strong proficiency in Excel and Google Sheets, including advanced functions and
+                                formulas.</li>
+                            <li>Excellent attention to detail and problem-solving skills.</li>
+                            <li>Ability to manage multiple priorities in a fast-paced environment.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="additional-info">
+                    <h2 class="section-title">Additional Information</h2>
+
+                    <div class="info-item">
+                        <div class="info-content">
+                            <div class="info-label">Job Location(s)</div>
+                            <div class="info-value" id="location">Bangalore</div>
+                        </div>
+                        <div class="icon-wrapper">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-content">
+                            <div class="info-label">Experience</div>
+                            <div class="info-value" id="experienceMin">Minimum: 2 years</div>
+                            <div class="info-subvalue" id="experienceMax">Maximum: 10 years</div>
+                        </div>
+                        <div class="icon-wrapper">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-content">
+                            <div class="info-label">Salary</div>
+                            <div class="info-value" id="salary">Not Disclosed</div>
+                        </div>
+                        <div class="icon-wrapper">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                <line x1="12" y1="16" x2="12" y2="16"></line>
+                                <line x1="6" y1="12" x2="18" y2="12"></line>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-content">
+                            <div class="info-label">Work Detail</div>
+                            <div class="info-value" id="workingDays">Working Days: 5 Days</div>
+                        </div>
+                        <div class="icon-wrapper">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <polyline points="10 9 9 9 8 9"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-content">
+                            <div class="info-label">Job Type/Timing</div>
+                            <div class="info-value" id="jobType">Job Type: In Office</div>
+                            <div class="info-subvalue" id="jobTiming">Job Timing: Full Time</div>
+                        </div>
+                        <div class="icon-wrapper">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <script>
+            function apply() {
+                let id = document.getElementById('apply_btn').getAttribute('data-id')
+                let table = 'jobsMain'
+
+                fetch(`/apply/${table}/${id}`, {
+                    method: 'POST',
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data) {
+                            alert(data.message);
+                            let applyBtn = document.getElementById('apply_btn')
+                            applyBtn.innerText = 'Applied'
+                            applyBtn.style.opacity = '0.7'
+                            applyBtn.style.cursor = 'none'
+                            applyBtn.disabled = true;
+
+                        } else {
+                            alert(`Error while applying`);
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                        alert(`Error while ${table}`);
+                    });
+            }
+
+
+            function fetchDetails(id) {
+                // Fetch the job data using the job ID
+                fetch('/job/' + id)
+                    .then(response => response.json())
+                    .then(job_data => {
+                        data = job_data[0]
+                        let applyBtn = document.getElementById('apply_btn')
+                        if (job_data[1] == true) {
+
+                            applyBtn.innerText = 'Applied'
+                            applyBtn.style.opacity = '0.7'
+                            applyBtn.style.cursor = 'none'
+                            applyBtn.disabled = true;
+                        } else {
+                            applyBtn.innerText = 'Apply'
+                            applyBtn.style.opacity = '1'
+                            applyBtn.style.cursor = 'pointer'
+                            applyBtn.disabled = false;
+                        }
+                        // Insert data into the respective HTML elements
+                        document.querySelector('.company-logo').textContent = data.companyLogo;
+                        document.querySelector('.job-title').textContent = data.jobTitle;
+                        document.querySelector('.company-name').textContent = data.companyName;
+                        document.getElementById('apply_btn').setAttribute('data-id', data.id)
+                        document.querySelector('.location-date span:nth-child(1)').innerHTML = `
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            ${data.location}
+        `;
+                        document.querySelector('.location-date span:nth-child(2)').innerHTML = `
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            Updated On: ${data.updatedDate}
+        `;
+                        document.querySelector('.stat-item:nth-child(1) .stat-value').textContent = data.salary;
+                        document.querySelector('.stat-item:nth-child(2) .stat-value').textContent = data.impressions;
+                        document.querySelector('.stat-item:nth-child(3) .stat-value').textContent = data.applicationDeadline;
+
+                        document.querySelector('.eligibility p').textContent = data.eligibility;
+                        document.querySelector('.description-text').textContent = data.jobSummary;
+
+                        // Responsibilities
+                        const responsibilitiesList = document.getElementById('responsibilities');
+                        responsibilitiesList.innerHTML = ''; // Clear existing items
+                        JSON.parse(data.responsibilities).forEach(responsibility => {
+                            const li = document.createElement('li');
+                            li.textContent = responsibility;
+                            responsibilitiesList.appendChild(li);
+                        });
+
+                        // Qualifications
+                        const qualificationsList = document.getElementById('qualifications');
+                        qualificationsList.innerHTML = ''; // Clear existing items
+                        JSON.parse(data.qualifications).forEach(qualification => {
+                            const li = document.createElement('li');
+                            li.textContent = qualification;
+                            qualificationsList.appendChild(li);
+                        });
+
+                        document.getElementById('location').textContent = data.location;
+                        document.getElementById('experienceMin').textContent = `Minimum: ${data.experienceMin} years`;
+                        document.getElementById('experienceMax').textContent = `Maximum: ${data.experienceMax} years`;
+                        document.getElementById('salary').textContent = data.salary;
+                        document.getElementById('workingDays').textContent = `Working Days: ${data.workingDays}`;
+                        document.getElementById('jobType').textContent = `Job Type: ${data.jobType}`;
+                        document.getElementById('jobTiming').textContent = `Job Timing: ${data.jobTiming}`;
+                    })
+                    .catch(error => {
+                        console.error('Error fetching job data:', error);
+                    });
+
+                // Highlight selected scholarship in the list
+                document.querySelectorAll('.individual_internship').forEach(item => item.classList.remove('activeDiv'));
+                document.getElementById(id).classList.add('activeDiv');
+
+            }
+
+
+        </script>
+
+
+
+
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const li = document.getElementById("jobLi");
+                li.classList.add('LiActive');
+                var Id = {{ id|tojson }};
+                if (Id) {
+                    fetchDetails(Id);
+                } else {
+                    fetchDetails(1);
+                }
+            });
+        </script>
+
+
+
+</html>

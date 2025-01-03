@@ -1,0 +1,372 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f2f5;
+    margin: 0;
+}
+
+.login-container {
+    display: flex;
+    width: 900px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: auto;
+    background-color: #fff;
+}
+
+
+.login-left {
+    background-color: #5487ed;
+    color: #ffffff;
+    padding: 30px;
+    margin: 10px;
+    width: 60%;
+    position: relative;
+    border-radius: 50px 0px 50px 0px;
+}
+
+.logo h2 {
+    font-size: 36px;
+    color: #004e98;
+}
+
+.logo h2 span {
+    font-weight: bold;
+}
+
+.carousel-indicator {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 5px;
+}
+
+.carousel-indicator .dot {
+    width: 8px;
+    height: 8px;
+    background-color: #fff;
+    border-radius: 50%;
+}
+
+.carousel-indicator .active {
+    background-color: #004e98;
+}
+
+.login-right {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.p_box {
+    margin: 10px;
+    width: 80%;
+    
+    
+}
+
+.hdng {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+    position: relative;
+}
+.hdng h4{
+    color: var(--grey-1100);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 140%;
+    display: block;
+    margin: 0;
+}
+.hdng:after {
+    content: "";
+    width: 50%;
+    height: 2px;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    background: #e7e5e5;
+    background-image: linear-gradient(to right, #fff, #e7e5e5, #fff);
+}
+.google-btn{
+    margin-top: 30px;
+}
+.or_login {
+    position: relative;
+    color: #afafaf;
+    font-size: 12px;
+    margin: 24px 0;
+    text-align: center;
+    z-index: 9;
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+
+.or_login span {
+    background: #fff;
+    padding: 0 10px;
+}
+
+
+
+.login_social_btn {
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    cursor: pointer;
+    height: 40px;
+    margin-top: 16px;
+    padding: 0 12px;
+    
+}
+
+.login_social_btn img {
+    width: 18px;
+    height: auto;
+    max-width: 100%;
+}
+.j-between {
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+}
+
+.login_social_btn span {
+    color: #3c4043;
+    font-family: Google Sans, arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    flex: 1;
+    text-align: center;
+}
+
+
+.separator {
+    margin: 20px 0;
+    font-size: 14px;
+    color: #888;
+}
+
+form {
+    width: 100%;
+    
+}
+
+
+#signupDev {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    /* Adjust height as needed */
+}
+
+.signup-text {
+    font-size: 1em;
+}
+
+.signup-text a {
+    color: blue;
+    /* Optional: customize link color */
+    text-decoration: none;
+}
+
+.signup-text a:hover {
+    text-decoration: underline;
+}
+
+
+/*
+.input-group {
+    margin-bottom: 15px;
+    width: 100%;
+    display: flex;
+}
+
+input {
+    border-radius: 5px;
+    width: 100%;
+    height: 35px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+
+
+.user-input-wrp {
+    height: 60px;
+	position: relative;
+	width: 100%;
+    display: flex;
+    margin-bottom: 15px;
+}
+.user-input-wrp .inputText{
+	width: 100%;
+	outline: none;
+	border:none;
+	border: 1px solid #777;
+ 	box-shadow: none !important;
+}
+.user-input-wrp .inputText:focus{
+	border-color: rgb(158, 158, 158);
+	border-width: medium medium 2px;
+}
+.user-input-wrp .floating-label {
+	position: absolute;
+	pointer-events: none;
+	top: 11px;
+	left: 20px;
+	transition: 0.2s ease all;
+}
+.user-input-wrp input:focus ~ .floating-label,
+.user-input-wrp input:not(:focus):valid ~ .floating-label{
+	top: -15px;
+	left: 10px;
+	font-size: 13px;
+	opacity: 1;
+}
+
+
+
+
+.user-input-wrp {
+    height: 60px;
+	position: relative;
+	width: 100%;
+    display: flex;
+    margin-bottom: 15px;
+}
+*/
+.submit_btn{
+    margin-top: 10px;
+    border-radius: 50px;
+    background: #0073e6;
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    width: 100%;
+}
+
+.submit_btn :disabled {
+    pointer-events: none;
+    background-color: #dfdfdf !important;
+    box-shadow: none;
+    color: #9f9f9f !important;
+    cursor: default;
+}
+
+button {
+    margin-top: 10px;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0095f6;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0077cc;
+}
+
+
+
+
+
+
+.signup-text {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #888;
+}
+
+.signup-text a {
+    color: #0073b1;
+    text-decoration: none;
+}
+
+
+
+.input {
+
+    border-radius: 5px;
+    width: 100%;
+    height: 35px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+    border: none;
+    box-shadow: 0px 1.5px 0px 0px #858585;
+    padding: .5rem;
+    transition: all 200ms ease-in-out;
+    opacity: .8;
+    position: relative;
+}
+
+.input-box {
+    width: 100%;
+    
+}
+
+.input-label {
+    font-size: .625rem;
+    font-weight: bold;
+    color: #858585;
+    margin-bottom: 4px;
+    margin-left: 1px;
+}
+
+.input-helper {
+    color: #858585;
+    font-size: .5rem;
+    margin-top: 6px;
+    margin-left: 1px;
+    visibility: hidden;
+    transform: translateY(-.5rem);
+    transition: all 100ms linear;
+    z-index: -1;
+}
+
+.input::placeholder {
+    color: rgb(145, 145, 145);
+    font-size: .75rem;
+}
+
+.input::after {
+    content: attr(placeholder);
+    position: absolute;
+    color: #161616;
+    top: 0;
+    left: 0;
+}
+
+.input:focus {
+    border: none;
+    box-shadow: 0px 1.5px 0px 0px #72E985;
+    outline: none;
+}
+
+.input:focus+.input-helper {
+    visibility: visible;
+    transform: translateY(0rem);
+}
+
+.input:focus::placeholder {
+    visibility: hidden;
+}
